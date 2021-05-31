@@ -1,0 +1,79 @@
+body > footer {
+    width: 100%;
+    align-items: flex-start;
+    background-color: #f5f5f5;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+footer > .container {
+    width: var(--width-max);
+    align-items: flex-end;
+    color: #80858a;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 2.25rem 0;
+}
+
+footer > .container > * {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.666rem;
+    justify-content: flex-start;
+}
+
+footer > .container > * > *:not(:last-child) {
+    margin-bottom: 0.25rem;
+}
+
+footer > .container > .business {
+    flex: 1;
+    margin-left: 3rem;
+}
+
+footer > .container > .business > a > address {
+    display: inline;
+}
+
+footer > .container > .copyright > .social {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-bottom: 0.666rem;
+}
+
+footer > .container > .copyright > .social > li {
+    width: 3rem;
+    height: 3rem;
+    align-items: center;
+    background-color: #ffffff;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+footer > .container > .copyright > .social > li:not(:last-child) {
+    margin-right: 0.25rem;
+}
+
+footer > .container > .copyright > .social > li > a > i {
+    font-size: 1rem;
+}
+
+footer > .container > .copyright > .disc {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+footer > .container > .copyright > .disc > li:not(:last-child) {
+    margin-right: 0.5rem;
+}
