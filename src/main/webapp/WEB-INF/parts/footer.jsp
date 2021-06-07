@@ -6,7 +6,7 @@
             <a>MON - FRI : 10AM-4:30PM</a>
             <a>LUNCH : 11AM-2PM</a>
             <a>FRI SAT SUN HOLIDAY OFF</a>
-            <a>KB KOOKMIN BANK / 960305-01-503069 / SA HONG</a>
+            <a>KB KOOKMIN BANK / 960305-01-503069 / SUA HONG</a>
         </div>
         <div class="business">
             <a>COMPANY : (주)포트폴리오 / OWNER : 홍수아 / CALL : 010-4769-9511</a>

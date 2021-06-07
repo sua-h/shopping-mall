@@ -24,7 +24,7 @@
                     <div class="email">
                         <label>
                             <span hidden>Email</span>
-                            <input class="object-text" autofocus type="email" name="email" placeholder="EMAIL" maxlength="100">
+                            <input class="object-text" autofocus type="email" name="email" placeholder="EMAIL" maxlength="50">
                         </label>
                     </div>
                     <div class="password">

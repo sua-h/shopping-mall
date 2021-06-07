@@ -2,4 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.suah.shoppingmall.mappers.IUserMapper">
+    <select id="selectUser" parameterType="com.suah.shoppingmall.vos.LoginVo" resultType="com.suah.shoppingmall.dtos.UserDto">
+        SELECT `index` AS `index`,
+               `email` AS `email`,
+               `password` AS `password`,
+               `name` AS `name`,
+               `contact_first` AS `contactFirts`,
+               `contact_second` AS `contactSecond`,
+               `contact_third` AS `contactThird`,
+               `address_post` AS `addressPost`,
+               `address_primary` AS `addressPrimary`,
+               `address_secondary` AS `addressSecondary`,
+               `level` AS `level`
+        FROM `suavite`.`users`
+        WHERE `email` = #{email}
+          AND `password` = #{hashedPassword}
+        LIMIT 1
+    </select>
 </mapper>
