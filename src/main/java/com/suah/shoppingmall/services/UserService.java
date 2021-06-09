@@ -3,9 +3,14 @@ package com.suah.shoppingmall.services;
 import com.suah.shoppingmall.dtos.UserDto;
 import com.suah.shoppingmall.interfaces.LoginResult;
 import com.suah.shoppingmall.mappers.IUserMapper;
+import com.suah.shoppingmall.utils.CryptoUtil;
 import com.suah.shoppingmall.vos.LoginVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.servlet.http.Cookie;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Service
 public class UserService {
@@ -14,6 +19,11 @@ public class UserService {
     @Autowired
     public UserService(IUserMapper userMapper) {
         this.userMapper = userMapper;
+    }
+
+    public static class Config {
+        public static final int AUTO_SIGN_KEY_HASH_COUNT = 10;
+        public static final int AUTO_SIGN_VALID_DAYS = 7;
     }
 
 
@@ -52,6 +62,20 @@ public class UserService {
 
     public static boolean checkPassword(String password) { return password.matches(Regex.PASSWORD); }
 
+    public void extendAutoSignKey(Cookie autoSignKeyCookie) {
+        if (!autoSignKeyCookie.getValue().matches(Regex.AUTO_SIGN_KEY)) {
+            return;
+        }
+        this.userMapper.updateAutoSignKeyExtended(autoSignKeyCookie.getValue(), Config.AUTO_SIGN_VALID_DAYS);
+    }
+
+    public void expireAutoSignKey(Cookie autoSignKeyCookie) {
+        if (!autoSignKeyCookie.getValue().matches(Regex.AUTO_SIGN_KEY)) {
+            return;
+        }
+        this.userMapper.updateAutoSignKeyExpired(autoSignKeyCookie.getValue());
+    }
+
 
 
     public void login(LoginVo loginVo) {
@@ -74,6 +98,33 @@ public class UserService {
         loginVo.setResult(LoginResult.SUCCESS);
         loginVo.setUser(user);
     }
+
+    public UserDto login(Cookie autoSignKeyCookie) {
+        if (!autoSignKeyCookie.getValue().matches(Regex.AUTO_SIGN_KEY)) {
+            return null;
+        }
+
+        UserDto user = this.userMapper.selectUserFromCookie(autoSignKeyCookie.getValue());
+
+        if (user == null || user.getLevel() == 10) {
+            return null;
+        }
+        return user;
+    }
+
+    public void putAutoSignKey(UserDto user) {
+        String key = String.format("%s%s%s%f",
+                user.getEmail(),
+                user.getPassword(),
+                new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date()),
+                Math.random());
+        for (int i = 0; i < Config.AUTO_SIGN_KEY_HASH_COUNT; i++) {
+            key = CryptoUtil.Sha512.hash(key, null);
+        }
+        this.userMapper.insertAutoSignKey(user.getEmail(), key, Config.AUTO_SIGN_VALID_DAYS);
+        user.setAutoSignKey(key);
+    }
+
 
 
 }

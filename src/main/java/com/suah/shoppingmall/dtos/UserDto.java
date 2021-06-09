@@ -15,6 +15,8 @@ public class UserDto {
     private final String addressSecondary;
     private final int level;
 
+    private String autoSignKey;
+
     public UserDto(int index, String email, String password, String name, String contactFirst, String contactSecond, String contactThird, String addressPost, String addressPrimary, String addressSecondary, int level) {
         this.index = index;
         this.email = email;
@@ -71,5 +73,13 @@ public class UserDto {
 
     public int getLevel() {
         return this.level;
+    }
+
+    public String getAutoSignKey() {
+        return this.autoSignKey;
+    }
+
+    public void setAutoSignKey(String autoSignKey) {
+        this.autoSignKey = autoSignKey;
     }
 }

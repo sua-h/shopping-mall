@@ -1,3 +1,5 @@
+<%@ page import="com.suah.shoppingmall.services.UserService" %>
+<%@ page import="com.suah.shoppingmall.interfaces.LoginResult" %>
 <%@ page language="java" contentType="text/html" pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -24,13 +26,13 @@
                     <div class="email">
                         <label>
                             <span hidden>Email</span>
-                            <input class="object-text" autofocus type="email" name="email" placeholder="EMAIL" maxlength="50">
+                            <input class="object-text" autofocus type="email" name="email" placeholder="EMAIL" maxlength="50" value="${vo.email}" data-regex="<%=UserService.Regex.EMAIL%>">
                         </label>
                     </div>
                     <div class="password">
                         <label>
                             <span hidden>Password</span>
-                            <input class="object-text" type="password" name="password" placeholder="PASSWORD" maxlength="100">
+                            <input class="object-text" type="password" name="password" placeholder="PASSWORD" maxlength="100" data-regex="<%=UserService.Regex.PASSWORD%>">
                         </label>
                     </div>
                     <div class="submit">
@@ -52,5 +54,9 @@
     </div>
 </main>
 <%@ include file="/WEB-INF/parts/footer.jsp" %>
+<script>
+    ${vo.result == LoginResult.FAILURE? "alert('이메일 혹은 비밀번호가 올바르지 않습니다.');" : ""}
+    ${vo.result == LoginResult.UNAVAILABLE? "alert('해당 계정은 현재 이용하실 수 없습니다.');" : ""}
+</script>
 </body>
 </html>

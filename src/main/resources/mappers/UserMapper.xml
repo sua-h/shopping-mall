@@ -2,6 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.suah.shoppingmall.mappers.IUserMapper">
+    <update id="updateAutoSignKeyExtended">
+        UPDATE `suavite`.`user_auto_sign_keys`
+        SET `expires_at` = DATE_ADD(NOW(), INTERVAL #{days} day)
+        WHERE `key` = #{key}
+          AND `expires_at` > NOW()
+          AND `expired_flag` = FALSE
+    </update>
+
+    <update id="updateAutoSignKeyExpired">
+        UPDATE `suavite`.`user_auto_sign_keys`
+        SET `expired_flag` = TRUE
+        WHERE `key` = #{key}
+          AND `expires_at` > NOW()
+          AND `expired_flag` = FALSE
+    </update>
+
     <select id="selectUser" parameterType="com.suah.shoppingmall.vos.LoginVo" resultType="com.suah.shoppingmall.dtos.UserDto">
         SELECT `index` AS `index`,
                `email` AS `email`,
@@ -19,4 +35,28 @@
           AND `password` = #{hashedPassword}
         LIMIT 1
     </select>
+
+    <select id="selectUserFromCookie" resultType="com.suah.shoppingmall.dtos.UserDto">
+        SELECT `user`.`index` AS `index`,
+               `user`.`email` AS `email`,
+               `user`.`password` AS `password`,
+               `user`.`name` AS `name`,
+               `user`.`contact_first` AS `contactFirts`,
+               `user`.`contact_second` AS `contactSecond`,
+               `user`.`contact_third` AS `contactThird`,
+               `user`.`address_post` AS `addressPost`,
+               `user`.`address_primary` AS `addressPrimary`,
+               `user`.`address_secondary` AS `addressSecondary`,
+               `user`.`level` AS `level`
+        FROM `suavite`.`user_auto_sign_keys` AS `key`
+            LEFT JOIN `suavite`.`users` AS `user` ON `key`.`user_email` = `user`.`email`
+        WHERE `key`.`key` = #{key}
+          AND `key`.expires_at > NOW()
+          AND `key`.`expired_flag` = FALSE
+    </select>
+
+    <insert id="insertAutoSignKey">
+        INSERT INTO `suavite`.`user_auto_sign_keys` (`user_email`, `key`, `expires_at`)
+        VALUES (#{email}, #{key}, DATE_ADD(NOW(), INTERVAL #{days} DAY))
+    </insert>
 </mapper>
