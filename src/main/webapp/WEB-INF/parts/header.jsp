@@ -31,7 +31,12 @@
                 </li>
             </ul>
             <ul class="user-menu-list">
-                <li><a href="/user/login">login/join</a></li>
+                <c:if test="${user == null}">
+                    <li><a href="/user/login">login/join</a></li>
+                </c:if>
+                <c:if test="${user != null}">
+                    <li><a href="/user/logout">logout</a></li>
+                </c:if>
                 <li><a href="/cart">cart</a></li>
             </ul>
         </div>

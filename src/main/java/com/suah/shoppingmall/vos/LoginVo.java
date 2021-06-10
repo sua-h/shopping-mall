@@ -9,7 +9,7 @@ public class LoginVo {
     private final String password;
     private final String hashedPassword;
 
-    public boolean AutoSign;
+    private boolean autoSign;
     private LoginResult result;
     private UserDto user;
 
@@ -32,7 +32,11 @@ public class LoginVo {
     }
 
     public boolean isAutoSign() {
-        return AutoSign;
+        return autoSign;
+    }
+
+    public void setAutoSign(boolean autoSign) {
+        this.autoSign = autoSign;
     }
 
     public LoginResult getResult() {

@@ -12,6 +12,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Controller
 @RequestMapping(value = "/user/")
@@ -35,13 +40,24 @@ public class UserController extends StandardController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST, produces = MediaType.TEXT_HTML_VALUE)
     public String loginPost(
-            @ModelAttribute(UserDto.MODEL_NAME) UserDto user, Model model, LoginVo loginVo) {
+            @ModelAttribute(UserDto.MODEL_NAME) UserDto user,
+            HttpServletResponse response,
+            Model model,
+            LoginVo loginVo) {
         if (user != null) {
             return "redirect:/";
         }
 
         this.userService.login(loginVo);
         if (loginVo.getResult() == LoginResult.SUCCESS) {
+            if (loginVo.isAutoSign()) {
+                this.userService.putAutoSignKey(loginVo.getUser());
+
+                Cookie cookie = new Cookie("ask", loginVo.getUser().getAutoSignKey());
+                cookie.setMaxAge(60 * 60 * 24 * UserService.Config.AUTO_SIGN_VALID_DAYS);
+                cookie.setPath("/");
+                response.addCookie(cookie);
+            }
             model.addAttribute(UserDto.MODEL_NAME, loginVo.getUser());
             return "redirect:/";
         } else {
@@ -49,4 +65,31 @@ public class UserController extends StandardController {
             return "user/login";
         }
     }
+
+    @RequestMapping(value = "/logout", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+    public String logoutGet(
+            @ModelAttribute(UserDto.MODEL_NAME) UserDto user,
+            SessionStatus sessionStatus,
+            HttpServletResponse response,
+            HttpServletRequest request) {
+        if (user != null) {
+            Cookie autoSignKeyCookie = null;
+            for (Cookie cookie : request.getCookies()) {
+                if (cookie.getName().equals("ask")) {
+                    autoSignKeyCookie = cookie;
+                    break;
+                }
+            }
+            if (autoSignKeyCookie != null) {
+                this.userService.expireAutoSignKey(autoSignKeyCookie);
+                autoSignKeyCookie.setMaxAge(0);
+                autoSignKeyCookie.setPath("/");
+                response.addCookie(autoSignKeyCookie);
+            }
+        }
+        sessionStatus.setComplete();
+        return "redirect:/";
+    }
+
+
 }

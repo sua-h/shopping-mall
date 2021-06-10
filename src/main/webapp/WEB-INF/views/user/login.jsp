@@ -40,8 +40,8 @@
                     </div>
                 </div>
                 <label class="object-check">
-                    <input type="checkbox" value="true" name="isAutoSign">
-                    <input type="hidden" value="false" name="isAutoSign">
+                    <input type="checkbox" name="autoSign">
+<%--                    <input type="hidden" value="false" name="autoSign">--%>
                     <span>자동 로그인</span>
                 </label>
             </form>
