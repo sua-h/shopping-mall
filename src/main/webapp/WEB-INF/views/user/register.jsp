@@ -20,7 +20,127 @@
         <h1>JOIN</h1>
         <section class="register">
             <form method="post">
-
+                <table>
+                    <caption>기본 정보</caption>
+                    <tbody>
+                        <tr>
+                            <th>이름<span>*</span></th>
+                            <td>
+                                <label>
+                                    <span hidden>이름</span>
+                                    <input class="object-text" type="text" name="name" maxlength="10">
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>이메일<span>*</span></th>
+                            <td>
+                                <label>
+                                    <span hidden>이메일</span>
+                                    <input class="object-text" autofocus type="email" name="email" maxlength="50">
+                                    <span class="warning" rel="email-warning">해당 이메일은 이미 사용 중입니다.</span>
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>비밀번호<span>*</span></th>
+                            <td>
+                                <label>
+                                    <span hidden>비밀번호</span>
+                                    <input class="object-text" type="password" name="password" maxlength="100">
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>비밀번호 재확인</th>
+                            <td>
+                                <label>
+                                    <span hidden>비밀번호 재확인</span>
+                                    <input class="object-text" type="password" name="passwordCheck" maxlength="100">
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>휴대전화<span>*</span></th>
+                            <td>
+                                <label>
+                                    <span hidden>휴대전화</span>
+                                    <select name="contactFirst">
+                                        <option value="010">010</option>
+                                        <option value="011">011</option>
+                                        <option value="016">016</option>
+                                        <option value="017">017</option>
+                                        <option value="018">018</option>
+                                        <option value="019">019</option>
+                                    </select>
+                                </label>
+                                <label>
+                                    <span hidden>휴대전화(중간)</span>
+                                    <input class="object-text" type="number" name="contactSecond" maxlength="4">
+                                </label>
+                                <label>
+                                    <span hidden>휴대전화(끝)</span>
+                                    <input class="object-text" type="number" name="contactThird" maxlength="4">
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>주소<span>*</span></th>
+                            <td>
+                                <label>
+                                    <span hidden>우편번호</span>
+                                    <input class="object-text" type="number" name="addressPost" maxlength="5">
+                                    <input class="object-button prop-dark" id="postal-button" type="button" value="우편번호">
+                                </label>
+                                <label>
+                                    <span hidden>기본주소</span>
+                                    <input readonly class="object-text" type="text" name="addressPrimary" maxlength="100">
+                                </label>
+                                <label>
+                                    <span hidden>상세주소</span>
+                                    <input readonly class="object-text" type="text" name="addressSecondary" maxlength="100" placeholder="상세주">
+                                </label>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <caption>추가 정보</caption>
+                    <tbody>
+                        <tr>
+                            <th>생년월일</th>
+                            <td>
+                                <label>
+                                    <span hidden>년</span>
+                                    <input class="object-text" type="number" name="birthYear" maxlength="4">
+                                    <span>년</span>
+                                </label>
+                                <label>
+                                    <span hidden>월</span>
+                                    <input class="object-text" type="number" name="birthMonth" maxlength="2">
+                                    <span>월</span>
+                                </label>
+                                <label>
+                                    <span hidden>일</span>
+                                    <input class="object-text" type="number" name="birthDate" maxlength="2">
+                                    <span>일</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" name="isSolarCalendar" value="true">
+                                    <span>양력</span>
+                                    <input type="checkbox" name="isSolarCalendar" value="false">
+                                    <span>음력</span>
+                                </label>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <caption>이용약관</caption>
+                    <tbody>
+                        
+                    </tbody>
+                </table>
             </form>
         </section>
     </div>
