@@ -138,7 +138,33 @@
                 <table>
                     <caption>이용약관</caption>
                     <tbody>
-                        
+                        <tr>
+                            <td>
+                                <label class="object-check">
+                                    <input class="disc-agree-all" type="checkbox">
+                                    <span>이용약관 및 개인정보수집 및 이용, 쇼핑정보 수신(선택)에 모두 동의합니다.</span>
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="disc">
+                                <label>
+                                    <span><strong>[필수] 이용 약관</strong></span>
+                                    <textarea class="object-text" readonly>이용 약관</textarea>
+                                </label>
+                                <label class="object-check">
+                                    <input name="disc-agree-a" type="checkbox">
+                                    <span>본 페이지는 포트폴리오용 페이지 입니다.</span>
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="disc">
+                                <label>
+                                    <span><strong>[필수] </strong></span>
+                                </label>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </form>
