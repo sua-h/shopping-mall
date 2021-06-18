@@ -91,5 +91,15 @@ public class UserController extends StandardController {
         return "redirect:/";
     }
 
+    @RequestMapping(value = "/register", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+    public String registerGet(
+            @ModelAttribute(UserDto.MODEL_NAME) UserDto user,
+            Model model) {
+        if (user != null) {
+            return "redirect:/";
+        }
+        return "user/register";
+    }
+
 
 }

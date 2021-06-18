@@ -1,5 +1,3 @@
-@import "../object.css";
-
 body.user-login > main {
     display: flex;
     flex-direction: row;

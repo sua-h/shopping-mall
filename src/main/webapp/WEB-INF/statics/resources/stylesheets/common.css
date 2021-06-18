@@ -1,5 +1,6 @@
 @import "parts/header.css";
 @import "parts/footer.css";
+@import "object.css";
 
 :root {
     --background-default : #ffffff;
@@ -66,4 +67,8 @@ body > main > div > h1 {
 
 .hidden {
     display: none;
+}
+
+option {
+    padding: 0;
 }
