@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <link rel="stylesheet" href="/statics/resources/stylesheets/common.css">
     <link rel="stylesheet" href="/statics/resources/stylesheets/user/register.css">
+    <script src="/statics/resources/scripts/user/register.js"></script>
     <title>메인 페이지</title>
 </head>
 <body class="user-register">
@@ -20,7 +21,7 @@
     <div class="wrap">
         <h1>JOIN</h1>
         <section class="register">
-            <form method="post">
+            <form id="register-form" method="post">
                 <table>
                     <caption>기본 정보</caption>
                     <tbody>
@@ -93,7 +94,7 @@
                                 <label>
                                     <span hidden>우편번호</span>
                                     <input readonly class="object-text" type="number" name="addressPost" maxlength="5">
-                                    <input class="object-button prop-dark" id="postal-button" type="button" value="우편번호"><br>
+                                    <input class="object-button prop-dark" type="button" name="addressPostFindButton" value="우편번호" ><br>
                                 </label>
                                 <label>
                                     <span hidden>기본주소</span>
@@ -196,5 +197,8 @@
     </div>
 </main>
 <%@ include file="/WEB-INF/parts/footer.jsp" %>
+<script>
+
+</script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-package com.suah.shoppingmall.interfaces;
+package com.suah.shoppingmall.enums.user;
 
 public enum LoginResult {
     FAILURE,

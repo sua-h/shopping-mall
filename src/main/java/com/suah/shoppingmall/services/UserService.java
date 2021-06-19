@@ -1,7 +1,7 @@
 package com.suah.shoppingmall.services;
 
 import com.suah.shoppingmall.dtos.UserDto;
-import com.suah.shoppingmall.interfaces.LoginResult;
+import com.suah.shoppingmall.enums.user.LoginResult;
 import com.suah.shoppingmall.mappers.IUserMapper;
 import com.suah.shoppingmall.utils.CryptoUtil;
 import com.suah.shoppingmall.vos.LoginVo;
@@ -125,6 +125,8 @@ public class UserService {
         user.setAutoSignKey(key);
     }
 
+    public void register() {
 
+    }
 
 }

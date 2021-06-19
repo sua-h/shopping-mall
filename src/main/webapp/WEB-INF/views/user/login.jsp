@@ -1,5 +1,5 @@
 <%@ page import="com.suah.shoppingmall.services.UserService" %>
-<%@ page import="com.suah.shoppingmall.interfaces.LoginResult" %>
+<%@ page import="com.suah.shoppingmall.enums.user.LoginResult" %>
 <%@ page language="java" contentType="text/html" pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <link rel="stylesheet" href="/statics/resources/stylesheets/common.css">
     <link rel="stylesheet" href="/statics/resources/stylesheets/user/login.css">
+    <script src="/statics/resources/scripts/user/login.js"></script>
     <title>메인 페이지</title>
 </head>
 <body class="user-login">
@@ -21,7 +22,7 @@
     <div class="wrap">
         <h1>LOGIN</h1>
         <section class="login">
-            <form method="post">
+            <form id="login-form" method="post">
                 <div>
                     <div class="email">
                         <label>

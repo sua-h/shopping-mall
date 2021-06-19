@@ -1,7 +1,7 @@
 package com.suah.shoppingmall.vos;
 
 import com.suah.shoppingmall.dtos.UserDto;
-import com.suah.shoppingmall.interfaces.LoginResult;
+import com.suah.shoppingmall.enums.user.LoginResult;
 import com.suah.shoppingmall.utils.CryptoUtil;
 
 public class LoginVo {

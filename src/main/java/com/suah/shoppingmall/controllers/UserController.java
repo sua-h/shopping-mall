@@ -1,7 +1,7 @@
 package com.suah.shoppingmall.controllers;
 
 import com.suah.shoppingmall.dtos.UserDto;
-import com.suah.shoppingmall.interfaces.LoginResult;
+import com.suah.shoppingmall.enums.user.LoginResult;
 import com.suah.shoppingmall.services.UserService;
 import com.suah.shoppingmall.vos.LoginVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -98,6 +98,17 @@ public class UserController extends StandardController {
         if (user != null) {
             return "redirect:/";
         }
+        return "user/register";
+    }
+
+    @RequestMapping(value = "/register", method = RequestMethod.POST, produces = MediaType.TEXT_HTML_VALUE)
+    public String registerPost(
+            @ModelAttribute(UserDto.MODEL_NAME) UserDto user) {
+        if (user != null) {
+            return "redirect:/";
+        }
+
+
         return "user/register";
     }
 
