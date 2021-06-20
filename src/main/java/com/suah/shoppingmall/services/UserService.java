@@ -2,9 +2,11 @@ package com.suah.shoppingmall.services;
 
 import com.suah.shoppingmall.dtos.UserDto;
 import com.suah.shoppingmall.enums.user.LoginResult;
+import com.suah.shoppingmall.enums.user.RegisterResult;
 import com.suah.shoppingmall.mappers.IUserMapper;
 import com.suah.shoppingmall.utils.CryptoUtil;
 import com.suah.shoppingmall.vos.LoginVo;
+import com.suah.shoppingmall.vos.RegisterVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,23 +46,41 @@ public class UserService {
         public static final String AUTH_CODE = "^([0-9]{6})$";
     }
 
-    public static boolean checkEmail(String email) { return email.matches(Regex.EMAIL); }
+    public static boolean checkEmail(String email) {
+        return email.matches(Regex.EMAIL);
+    }
 
-    public static boolean checkName(String name) { return name.matches(Regex.NAME); }
+    public static boolean checkName(String name) {
+        return name.matches(Regex.NAME);
+    }
 
-    public static boolean checkContactFirst(String contactFirst) { return contactFirst.matches(Regex.CONTACT_FIRST); }
+    public static boolean checkContactFirst(String contactFirst) {
+        return contactFirst.matches(Regex.CONTACT_FIRST);
+    }
 
-    public static boolean checkContactSecond(String contactSecond) { return contactSecond.matches(Regex.CONTACT_SECOND); }
+    public static boolean checkContactSecond(String contactSecond) {
+        return contactSecond.matches(Regex.CONTACT_SECOND);
+    }
 
-    public static boolean checkContactThird(String contactThird) { return contactThird.matches(Regex.CONTACT_THIRD); }
+    public static boolean checkContactThird(String contactThird) {
+        return contactThird.matches(Regex.CONTACT_THIRD);
+    }
 
-    public static boolean checkAddressPost(String addressPost) { return addressPost.matches(Regex.ADDRESS_POST); }
+    public static boolean checkAddressPost(String addressPost) {
+        return addressPost.matches(Regex.ADDRESS_POST);
+    }
 
-    public static boolean checkAddressPrimary(String addressPrimary) { return addressPrimary.matches(Regex.ADDRESS_PRIMARY); }
+    public static boolean checkAddressPrimary(String addressPrimary) {
+        return addressPrimary.matches(Regex.ADDRESS_PRIMARY);
+    }
 
-    public static boolean checkAddressSecondary(String addressSecondary) { return addressSecondary.matches(Regex.ADDRESS_SECONDARY); }
+    public static boolean checkAddressSecondary(String addressSecondary) {
+        return addressSecondary.matches(Regex.ADDRESS_SECONDARY);
+    }
 
-    public static boolean checkPassword(String password) { return password.matches(Regex.PASSWORD); }
+    public static boolean checkPassword(String password) {
+        return password.matches(Regex.PASSWORD);
+    }
 
     public void extendAutoSignKey(Cookie autoSignKeyCookie) {
         if (!autoSignKeyCookie.getValue().matches(Regex.AUTO_SIGN_KEY)) {
@@ -75,7 +95,6 @@ public class UserService {
         }
         this.userMapper.updateAutoSignKeyExpired(autoSignKeyCookie.getValue());
     }
-
 
 
     public void login(LoginVo loginVo) {
@@ -125,8 +144,33 @@ public class UserService {
         user.setAutoSignKey(key);
     }
 
-    public void register() {
+    public void register(RegisterVo registerVo) {
+        if (!UserService.checkEmail(registerVo.getEmail()) ||
+                !UserService.checkName(registerVo.getName()) ||
+                !UserService.checkContactFirst(registerVo.getContactFirst()) ||
+                !UserService.checkContactSecond(registerVo.getContactSecond()) ||
+                !UserService.checkContactThird(registerVo.getContactThird()) ||
+                !UserService.checkAddressPost(registerVo.getAddressPost()) ||
+                !UserService.checkAddressPrimary(registerVo.getAddressPrimary()) ||
+                !UserService.checkAddressSecondary(registerVo.getAddressSecondary())) {
+            registerVo.setResult(RegisterResult.FAILURE);
+            return;
+        }
 
+        if (this.userMapper.selectEmailCount(registerVo.getEmail()) > 0) {
+            registerVo.setResult(RegisterResult.DUPLICATE_EMAIL);
+            return;
+        }
+
+        if (this.userMapper.selectContactCount(registerVo.getContactFirst(),
+                registerVo.getContactSecond(),
+                registerVo.getContactThird()) > 0) {
+            registerVo.setResult(RegisterResult.DUPLICATE_CONTACT);
+            return;
+        }
+
+        this.userMapper.insertUser(registerVo);
+        registerVo.setResult(RegisterResult.SUCCESS);
     }
 
 }

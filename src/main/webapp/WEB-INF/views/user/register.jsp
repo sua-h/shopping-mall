@@ -1,3 +1,4 @@
+<%@ page import="com.suah.shoppingmall.services.UserService" %>
 <%@ page language="java" contentType="text/html" pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -11,8 +12,9 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <link rel="stylesheet" href="/statics/resources/stylesheets/common.css">
     <link rel="stylesheet" href="/statics/resources/stylesheets/user/register.css">
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="/statics/resources/scripts/user/register.js"></script>
-    <title>메인 페이지</title>
+    <title>회원가입</title>
 </head>
 <body class="user-register">
 <%@ include file="/WEB-INF/parts/header.jsp" %>
@@ -30,7 +32,7 @@
                             <td>
                                 <label>
                                     <span hidden>이름</span>
-                                    <input class="object-text" autofocus type="text" name="name" maxlength="10">
+                                    <input class="object-text" autofocus type="text" name="name" maxlength="10" value="${vo.name}" data-regex="<%UserService.Regex.NAME%>">
                                 </label>
                             </td>
                         </tr>
@@ -39,7 +41,7 @@
                             <td>
                                 <label>
                                     <span hidden>이메일</span>
-                                    <input class="object-text" type="email" name="email" maxlength="50">
+                                    <input class="object-text" type="email" name="email" maxlength="50" value="${vo.email}" data-regex="<%UserService.Regex.EMAIL%>">
                                     <span class="warning" rel="email-warning">해당 이메일은 이미 사용 중입니다.</span>
                                 </label>
                             </td>
@@ -49,7 +51,7 @@
                             <td>
                                 <label>
                                     <span hidden>비밀번호</span>
-                                    <input class="object-text" type="password" name="password" maxlength="100">
+                                    <input class="object-text" type="password" name="password" maxlength="100" data-regex="<%UserService.Regex.PASSWORD%>">
                                 </label>
                             </td>
                         </tr>
@@ -68,23 +70,23 @@
                                 <label>
                                     <span hidden>휴대전화</span>
                                     <select class="num-box" name="contactFirst">
-                                        <option value="010">010</option>
-                                        <option value="011">011</option>
-                                        <option value="016">016</option>
-                                        <option value="017">017</option>
-                                        <option value="018">018</option>
-                                        <option value="019">019</option>
+                                        <option value="010" ${vo.contactFirst.equals("010") ? "selected" : ""}>010</option>
+                                        <option value="011" ${vo.contactFirst.equals("011") ? "selected" : ""}>011</option>
+                                        <option value="016" ${vo.contactFirst.equals("016") ? "selected" : ""}>016</option>
+                                        <option value="017" ${vo.contactFirst.equals("017") ? "selected" : ""}>017</option>
+                                        <option value="018" ${vo.contactFirst.equals("018") ? "selected" : ""}>018</option>
+                                        <option value="019" ${vo.contactFirst.equals("019") ? "selected" : ""}>019</option>
                                     </select>
                                     <span>-</span>
                                 </label>
                                 <label>
                                     <span hidden>휴대전화(중간)</span>
-                                    <input class="object-text num-box" type="number" name="contactSecond" maxlength="4">
+                                    <input class="object-text num-box" type="number" name="contactSecond" maxlength="4" value="${vo.contactSecond}" data-regex="<%UserService.Regex.CONTACT_SECOND%>">
                                     <span>-</span>
                                 </label>
                                 <label>
                                     <span hidden>휴대전화(끝)</span>
-                                    <input class="object-text num-box" type="number" name="contactThird" maxlength="4">
+                                    <input class="object-text num-box" type="number" name="contactThird" maxlength="4" value="${vo.contactThird}" data-regex="<%UserService.Regex.CONTACT_THIRD%>">
                                 </label>
                             </td>
                         </tr>
@@ -93,16 +95,16 @@
                             <td>
                                 <label>
                                     <span hidden>우편번호</span>
-                                    <input readonly class="object-text" type="number" name="addressPost" maxlength="5">
-                                    <input class="object-button prop-dark" type="button" name="addressPostFindButton" value="우편번호" ><br>
+                                    <input readonly class="object-text" type="number" name="addressPost" maxlength="5" value="${vo.addressPost}">
+                                    <input class="object-button prop-dark" type="button" name="addressPostFindButton" value="우편번호"><br>
                                 </label>
                                 <label>
                                     <span hidden>기본주소</span>
-                                    <input readonly class="object-text" type="text" name="addressPrimary" maxlength="100"><br>
+                                    <input readonly class="object-text" type="text" name="addressPrimary" maxlength="100" value="${vo.addressPrimary}"><br>
                                 </label>
                                 <label>
                                     <span hidden>상세주소</span>
-                                    <input class="object-text" type="text" name="addressSecondary" maxlength="100" placeholder="상세주소">
+                                    <input class="object-text" type="text" name="addressSecondary" maxlength="100" placeholder="상세주소" value="${vo.addressSecondary}" data-regex="<%UserService.Regex.ADDRESS_SECONDARY%>">
                                 </label>
                             </td>
                         </tr>

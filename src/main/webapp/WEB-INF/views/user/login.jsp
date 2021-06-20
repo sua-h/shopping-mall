@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="/statics/resources/stylesheets/common.css">
     <link rel="stylesheet" href="/statics/resources/stylesheets/user/login.css">
     <script src="/statics/resources/scripts/user/login.js"></script>
-    <title>메인 페이지</title>
+    <title>로그인</title>
 </head>
 <body class="user-login">
 <%@ include file="/WEB-INF/parts/header.jsp" %>

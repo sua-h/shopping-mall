@@ -2,8 +2,10 @@ package com.suah.shoppingmall.controllers;
 
 import com.suah.shoppingmall.dtos.UserDto;
 import com.suah.shoppingmall.enums.user.LoginResult;
+import com.suah.shoppingmall.enums.user.RegisterResult;
 import com.suah.shoppingmall.services.UserService;
 import com.suah.shoppingmall.vos.LoginVo;
+import com.suah.shoppingmall.vos.RegisterVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -103,13 +105,25 @@ public class UserController extends StandardController {
 
     @RequestMapping(value = "/register", method = RequestMethod.POST, produces = MediaType.TEXT_HTML_VALUE)
     public String registerPost(
-            @ModelAttribute(UserDto.MODEL_NAME) UserDto user) {
+            @ModelAttribute(UserDto.MODEL_NAME) UserDto user,
+            Model model,
+            RegisterVo registerVo) {
         if (user != null) {
             return "redirect:/";
         }
 
+        this.userService.register(registerVo);
+        if (registerVo.getResult() == RegisterResult.SUCCESS) {
+            return "user/register.success";
+        } else {
+            model.addAttribute("vo", registerVo);
+            return "user/register";
+        }
+    }
 
-        return "user/register";
+    @RequestMapping(value = "/register.success", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+    public String registerSuccess() {
+        return "user/register.success";
     }
 
 

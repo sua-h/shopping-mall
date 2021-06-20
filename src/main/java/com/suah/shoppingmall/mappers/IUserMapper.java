@@ -2,6 +2,7 @@ package com.suah.shoppingmall.mappers;
 
 import com.suah.shoppingmall.dtos.UserDto;
 import com.suah.shoppingmall.vos.LoginVo;
+import com.suah.shoppingmall.vos.RegisterVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -13,6 +14,16 @@ public interface IUserMapper {
 
     void updateAutoSignKeyExpired(
             @Param("key") String key);
+
+    int selectEmailCount(
+            @Param("email") String email);
+
+    int selectContactCount(
+            @Param("contactFirst") String contactFirst,
+            @Param("contactSecond") String contactSecond,
+            @Param("contactThird") String contactThird);
+
+    void insertUser(RegisterVo registerVo);
 
     UserDto selectUser(LoginVo loginVo);
 
