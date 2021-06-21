@@ -1,4 +1,5 @@
 <%@ page import="com.suah.shoppingmall.services.UserService" %>
+<%@ page import="com.suah.shoppingmall.enums.user.RegisterResult" %>
 <%@ page language="java" contentType="text/html" pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -32,7 +33,7 @@
                             <td>
                                 <label>
                                     <span hidden>이름</span>
-                                    <input class="object-text" autofocus type="text" name="name" maxlength="10" value="${vo.name}" data-regex="<%UserService.Regex.NAME%>">
+                                    <input class="object-text" autofocus type="text" name="name" maxlength="10" value="${vo.name}" data-regex="<%=UserService.Regex.NAME%>">
                                 </label>
                             </td>
                         </tr>
@@ -41,7 +42,7 @@
                             <td>
                                 <label>
                                     <span hidden>이메일</span>
-                                    <input class="object-text" type="email" name="email" maxlength="50" value="${vo.email}" data-regex="<%UserService.Regex.EMAIL%>">
+                                    <input class="object-text" type="email" name="email" maxlength="50" value="${vo.email}" data-regex="<%=UserService.Regex.EMAIL%>">
                                     <span class="warning" rel="email-warning">해당 이메일은 이미 사용 중입니다.</span>
                                 </label>
                             </td>
@@ -51,7 +52,7 @@
                             <td>
                                 <label>
                                     <span hidden>비밀번호</span>
-                                    <input class="object-text" type="password" name="password" maxlength="100" data-regex="<%UserService.Regex.PASSWORD%>">
+                                    <input class="object-text" type="password" name="password" maxlength="100" data-regex="<%=UserService.Regex.PASSWORD%>">
                                 </label>
                             </td>
                         </tr>
@@ -81,12 +82,12 @@
                                 </label>
                                 <label>
                                     <span hidden>휴대전화(중간)</span>
-                                    <input class="object-text num-box" type="number" name="contactSecond" maxlength="4" value="${vo.contactSecond}" data-regex="<%UserService.Regex.CONTACT_SECOND%>">
+                                    <input class="object-text num-box" type="number" name="contactSecond" maxlength="4" value="${vo.contactSecond}" data-regex="<%=UserService.Regex.CONTACT_SECOND%>">
                                     <span>-</span>
                                 </label>
                                 <label>
                                     <span hidden>휴대전화(끝)</span>
-                                    <input class="object-text num-box" type="number" name="contactThird" maxlength="4" value="${vo.contactThird}" data-regex="<%UserService.Regex.CONTACT_THIRD%>">
+                                    <input class="object-text num-box" type="number" name="contactThird" maxlength="4" value="${vo.contactThird}" data-regex="<%=UserService.Regex.CONTACT_THIRD%>">
                                 </label>
                             </td>
                         </tr>
@@ -104,7 +105,7 @@
                                 </label>
                                 <label>
                                     <span hidden>상세주소</span>
-                                    <input class="object-text" type="text" name="addressSecondary" maxlength="100" placeholder="상세주소" value="${vo.addressSecondary}" data-regex="<%UserService.Regex.ADDRESS_SECONDARY%>">
+                                    <input class="object-text" type="text" name="addressSecondary" maxlength="100" placeholder="상세주소" value="${vo.addressSecondary}" data-regex="<%=UserService.Regex.ADDRESS_SECONDARY%>">
                                 </label>
                             </td>
                         </tr>
@@ -118,17 +119,17 @@
                             <td>
                                 <label>
                                     <span hidden>년</span>
-                                    <input class="object-text add-year" type="number" name="birthYear" maxlength="4">
+                                    <input class="object-text add-year" type="number" name="birthYear" maxlength="4" value="${vo.birthYear}" data-regex="<%=UserService.Regex.BIRTH_YEAR%>">
                                     <span class="add-text">년</span>
                                 </label>
                                 <label>
                                     <span hidden>월</span>
-                                    <input class="object-text add" type="number" name="birthMonth" maxlength="2">
+                                    <input class="object-text add" type="number" name="birthMonth" maxlength="2" value="${vo.birthMonth}" data-regex="<%=UserService.Regex.BIRTH_MONTH%>">
                                     <span class="add-text">월</span>
                                 </label>
                                 <label>
                                     <span hidden>일</span>
-                                    <input class="object-text add" type="number" name="birthDate" maxlength="2">
+                                    <input class="object-text add" type="number" name="birthDate" maxlength="2" value="${vo.birthDate}" data-regex="<%=UserService.Regex.BIRTH_DATE%>">
                                     <span class="add-text">일</span>
                                 </label>
 <%--                                <label>--%>
@@ -192,7 +193,7 @@
                 </table>
                 <div>
                     <input class="object-button prop-dark" type="submit" value="회원가입">
-                    <a class="object-button prop-light" href="/user/login" target="_self">로그인</a>
+                    <a class="object-button prop-light" href="/user/login" target="_self">돌아가</a>
                 </div>
             </form>
         </section>
@@ -200,7 +201,9 @@
 </main>
 <%@ include file="/WEB-INF/parts/footer.jsp" %>
 <script>
-
+    ${vo.result == RegisterResult.DUPLICATE_EMAIL ? "alert('입력하신 이메일은 이미 사용 중입니다.');" : ""}
+    ${vo.result == RegisterResult.DUPLICATE_CONTACT ? "alert('입력하신 연락처는 이미 사용 중입니다.');" : ""}
+    ${vo.result == RegisterResult.FAILURE ? "alert('회원가입에 실패하였습니다. 다시 시도해주세요.');" : ""}
 </script>
 </body>
 </html>

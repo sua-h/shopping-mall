@@ -44,6 +44,11 @@ public class UserService {
 
         public static final String AUTH_CODE_KEY = "^([0-9a-z]{128})$";
         public static final String AUTH_CODE = "^([0-9]{6})$";
+
+        // TODO 생년월일 추가정보 정규화 + users DATABASE 생년월일 추가해서 수정 (NOT NULL 필요X)
+        public static final String BIRTH_YEAR = "";
+        public static final String BIRTH_MONTH = "";
+        public static final String BIRTH_DATE = "";
     }
 
     public static boolean checkEmail(String email) {

@@ -14,10 +14,13 @@ public class RegisterVo {
     private final String addressPrimary;
     private final String addressSecondary;
     private final String hashedPassword;
+    private final String birthYear;
+    private final String birthMonth;
+    private final String birthDate;
 
     private RegisterResult result;
 
-    public RegisterVo(String email, String password, String name, String contactFirst, String contactSecond, String contactThird, String addressPost, String addressPrimary, String addressSecondary) {
+    public RegisterVo(String email, String password, String name, String contactFirst, String contactSecond, String contactThird, String addressPost, String addressPrimary, String addressSecondary, String birthYear, String birthMonth, String birthDate) {
         this.email = email;
         this.password = password;
         this.name = name;
@@ -28,6 +31,10 @@ public class RegisterVo {
         this.addressPrimary = addressPrimary;
         this.addressSecondary = addressSecondary;
         this.hashedPassword = CryptoUtil.Sha512.hash(password, null);
+        this.birthYear = birthYear;
+        this.birthMonth = birthMonth;
+        this.birthDate = birthDate;
+
     }
 
     public String getEmail() {
@@ -68,6 +75,18 @@ public class RegisterVo {
 
     public String getHashedPassword() {
         return this.hashedPassword;
+    }
+
+    public String getBirthYear() {
+        return this.birthYear;
+    }
+
+    public String getBirthMonth() {
+        return this.birthMonth;
+    }
+
+    public String getBirthDate() {
+        return this.birthDate;
     }
 
     public RegisterResult getResult() {

@@ -13,11 +13,14 @@ public class UserDto {
     private final String addressPost;
     private final String addressPrimary;
     private final String addressSecondary;
+    private final String birthYear;
+    private final String birthMonth;
+    private final String birthDate;
     private final int level;
 
     private String autoSignKey;
 
-    public UserDto(int index, String email, String password, String name, String contactFirst, String contactSecond, String contactThird, String addressPost, String addressPrimary, String addressSecondary, int level) {
+    public UserDto(int index, String email, String password, String name, String contactFirst, String contactSecond, String contactThird, String addressPost, String addressPrimary, String addressSecondary, int level, String birthYear, String birthMonth, String birthDate) {
         this.index = index;
         this.email = email;
         this.password = password;
@@ -29,6 +32,9 @@ public class UserDto {
         this.addressPrimary = addressPrimary;
         this.addressSecondary = addressSecondary;
         this.level = level;
+        this.birthYear = birthYear;
+        this.birthMonth = birthMonth;
+        this.birthDate = birthDate;
     }
 
     public int getIndex() {
@@ -73,6 +79,18 @@ public class UserDto {
 
     public int getLevel() {
         return this.level;
+    }
+
+    public String getBirthYear() {
+        return this.birthYear;
+    }
+
+    public String getBirthMonth() {
+        return this.birthMonth;
+    }
+
+    public String getBirthDate() {
+        return this.birthDate;
     }
 
     public String getAutoSignKey() {
