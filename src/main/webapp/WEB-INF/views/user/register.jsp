@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="/statics/resources/stylesheets/common.css">
     <link rel="stylesheet" href="/statics/resources/stylesheets/user/register.css">
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="/statics/resources/scripts/class.ajax.js"></script>
     <script src="/statics/resources/scripts/user/register.js"></script>
     <title>회원가입</title>
 </head>
@@ -105,7 +106,7 @@
                                 </label>
                                 <label>
                                     <span hidden>상세주소</span>
-                                    <input class="object-text" type="text" name="addressSecondary" maxlength="100" placeholder="상세주소" value="${vo.addressSecondary}" data-regex="<%=UserService.Regex.ADDRESS_SECONDARY%>">
+                                    <input class="object-text" type="text" name="addressSecondary" maxlength="100"  placeholder="상세주소" value="${vo.addressSecondary}" data-regex="<%=UserService.Regex.ADDRESS_SECONDARY%>">
                                 </label>
                             </td>
                         </tr>
@@ -118,7 +119,7 @@
                             <th>생년월일</th>
                             <td>
                                 <label>
-                                    <span hidden>년</span>
+                                    <span hidden>생년</span>
                                     <input class="object-text add-year" type="number" name="birthYear" maxlength="4" value="${vo.birthYear}" data-regex="<%=UserService.Regex.BIRTH_YEAR%>">
                                     <span class="add-text">년</span>
                                 </label>
@@ -148,7 +149,7 @@
                         <tr>
                             <td>
                                 <label class="object-check">
-                                    <input class="disc-agree-all" type="checkbox">
+                                    <input name="disc-agree-all" type="checkbox">
                                     <span>이용약관 및 개인정보수집 및 이용, 쇼핑정보 수신(선택)에 모두 동의합니다.</span>
                                 </label>
                             </td>

@@ -93,17 +93,19 @@ main > .wrap > .register > form > table > tbody > tr > td input[name="birthDate"
     width: 2rem;
 }
 
-
-
-span.warning {
+main > .wrap > .register > form > table > tbody > tr > td span.warning {
+    color: red;
     display: none;
     margin-left: 1rem;
 }
 
-span.add-text {
+main > .wrap > .register > form > table > tbody > tr > td span.add-text {
     margin: 0 0.55rem 0 0.1rem;
 }
 
+main > .wrap > .register > form > table > tbody > tr > td span.warning.visible {
+    display: inline-block;
+}
 
 
 main > .wrap > .register > form > table > tbody > tr > td.disc > label:first-child {

@@ -178,4 +178,8 @@ public class UserService {
         registerVo.setResult(RegisterResult.SUCCESS);
     }
 
+    public int getEmailCount(String email) {
+        return this.userMapper.selectEmailCount(email);
+    }
+
 }
