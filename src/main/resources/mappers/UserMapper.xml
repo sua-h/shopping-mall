@@ -51,6 +51,9 @@
                `address_post`      AS `addressPost`,
                `address_primary`   AS `addressPrimary`,
                `address_secondary` AS `addressSecondary`,
+               `birth_year`        AS `birthYear`,
+               `birth_month`       AS `birthMonth`,
+               `birth_date`        AS `birthDate`,
                `level`             AS `level`
         FROM `suavite`.`users`
         WHERE `email` = #{email}

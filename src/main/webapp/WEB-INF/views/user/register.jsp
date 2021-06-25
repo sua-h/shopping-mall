@@ -120,17 +120,17 @@
                             <td>
                                 <label>
                                     <span hidden>생년</span>
-                                    <input class="object-text add-year" type="number" name="birthYear" maxlength="4" value="${vo.birthYear}" data-regex="<%=UserService.Regex.BIRTH_YEAR%>">
+                                    <input class="object-text add-year" type="number" name="birthYear" maxlength="4" placeholder="yyyy" value="${vo.birthYear}" data-regex="<%=UserService.Regex.BIRTH_YEAR%>">
                                     <span class="add-text">년</span>
                                 </label>
                                 <label>
                                     <span hidden>월</span>
-                                    <input class="object-text add" type="number" name="birthMonth" maxlength="2" value="${vo.birthMonth}" data-regex="<%=UserService.Regex.BIRTH_MONTH%>">
+                                    <input class="object-text add" type="number" name="birthMonth" maxlength="2" placeholder="mm" value="${vo.birthMonth}" data-regex="<%=UserService.Regex.BIRTH_MONTH%>">
                                     <span class="add-text">월</span>
                                 </label>
                                 <label>
                                     <span hidden>일</span>
-                                    <input class="object-text add" type="number" name="birthDate" maxlength="2" value="${vo.birthDate}" data-regex="<%=UserService.Regex.BIRTH_DATE%>">
+                                    <input class="object-text add" type="number" name="birthDate" maxlength="2" placeholder="dd" value="${vo.birthDate}" data-regex="<%=UserService.Regex.BIRTH_DATE%>">
                                     <span class="add-text">일</span>
                                 </label>
 <%--                                <label>--%>
