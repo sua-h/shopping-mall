@@ -46,9 +46,9 @@ public class UserService {
         public static final String AUTH_CODE = "^([0-9]{6})$";
 
         // TODO 정규식 NULL 포함하도록 만들기
-        public static final String BIRTH_YEAR = "^([0-9]{4})$";
-        public static final String BIRTH_MONTH = "^(0[1-9]|1[0-2])$";
-        public static final String BIRTH_DATE = "^(0[1-9]|[1-2][0-9]|3[0-1])$";
+        public static final String BIRTH_YEAR = "^(?:[0-9]{4}|)$";
+        public static final String BIRTH_MONTH = "^(?:(0[1-9]|1[0-2])|)$";
+        public static final String BIRTH_DATE = "^(?:(0[1-9]|[1-2][0-9]|3[0-1])|)$";
     }
 
     public static boolean checkEmail(String email) {
