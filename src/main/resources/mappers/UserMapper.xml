@@ -34,9 +34,9 @@
 
     <insert id="insertUser" parameterType="com.suah.shoppingmall.vos.RegisterVo">
         INSERT INTO `suavite`.`users` (`email`, `password`, `name`, `contact_first`, `contact_second`, `contact_third`,
-                                       `address_post`, `address_primary`, `address_secondary`)
+                                       `address_post`, `address_primary`, `address_secondary`, `birth_year`, `birth_month`, `birth_date`)
         VALUES (#{email}, #{hashedPassword}, #{name}, #{contactFirst}, #{contactSecond}, #{contactThird},
-                #{addressPost}, #{addressPrimary}, #{addressSecondary})
+                #{addressPost}, #{addressPrimary}, #{addressSecondary}, #{birthYear}, #{birthMonth}, #{birthDate})
     </insert>
 
     <select id="selectUser" parameterType="com.suah.shoppingmall.vos.LoginVo"
