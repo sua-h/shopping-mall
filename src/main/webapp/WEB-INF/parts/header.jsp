@@ -32,10 +32,17 @@
             </ul>
             <ul class="user-menu-list">
                 <c:if test="${user == null}">
-                    <li><a href="/user/login">login/join</a></li>
+                    <li class="main-menu"><a href="/user/login">login/join</a></li>
                 </c:if>
                 <c:if test="${user != null}">
-                    <li><a href="/user/logout">logout</a></li>
+                    <li class="main-menu"><a href="/user/mypage">account</a>
+                        <ul class="sub-list">
+                            <li class="sub-menu"><a href="/user/mypage">mypage</a></li>
+                            <li class="sub-menu"><a href="/user/order">order</a></li>
+                            <li class="sub-menu"><a href="/user/modify">modify</a></li>
+                            <li class="sub-menu"><a href="/user/logout">logout</a></li>
+                        </ul>
+                    </li>
                 </c:if>
                 <li><a href="/cart">cart</a></li>
             </ul>

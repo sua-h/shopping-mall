@@ -55,11 +55,11 @@ body > header > .container > .menu-container > ul > li:not(:last-child) {
     margin-right: 2rem;
 }
 
-body > header > .container > .menu-container > .menu-list > .main-menu {
+body > header > .container > .menu-container .main-menu {
     position: relative;
 }
 
-body > header > .container > .menu-container > .menu-list > .main-menu > .sub-list {
+body > header > .container > .menu-container .main-menu .sub-list {
     pointer-events: none;
     font-size: 0.8rem;
     left: 50%;
@@ -70,24 +70,24 @@ body > header > .container > .menu-container > .menu-list > .main-menu > .sub-li
     transition: opacity 200ms ease-in, transform 200ms ease-in, visibility 200ms ease-in;
 }
 
-body > header > .container > .menu-container > .menu-list > .main-menu:hover .sub-list {
+body > header > .container > .menu-container .main-menu:hover .sub-list {
     pointer-events: visible;
     opacity: 1;
     transform: translate(-50%, 0);
 }
 
-body > header > .container > .menu-container > .menu-list > .main-menu > .sub-list > li {
+body > header > .container > .menu-container .main-menu > .sub-list > li {
     background-color:#000000a0;
     color: #ffffff;
     cursor: pointer;
 }
 
-body > header > .container > .menu-container > .menu-list > .main-menu > .sub-list > li > a {
+body > header > .container > .menu-container .main-menu > .sub-list > li > a {
     display: block;
     padding: 0.65rem 1rem;
 }
 
-body > header > .container > .menu-container > .menu-list > .main-menu > .sub-list > li > a:hover {
+body > header > .container > .menu-container .main-menu > .sub-list > li > a:hover {
     background-color: #00000090;
 }
 

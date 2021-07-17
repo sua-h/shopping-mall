@@ -47,7 +47,7 @@
                 </label>
             </form>
             <div>
-                <a class="object-button prop-light" href="/user/register">REGISTER</a>
+                <a class="object-button prop-light" href="/user/register">JOIN</a>
                 <a class="object-button prop-light" href="/user/forgot">FORGOT EMAIL</a>
                 <a class="object-button prop-light" href="/user/recover">FORGOT PASSWORD</a>
             </div>
