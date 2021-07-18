@@ -194,7 +194,7 @@
                 </table>
                 <div>
                     <input class="object-button prop-dark" type="submit" value="회원가입">
-                    <a class="object-button prop-light" href="/user/login" target="_self">돌아가</a>
+                    <a class="object-button prop-light" href="/user/login" target="_self">돌아가기</a>
                 </div>
             </form>
         </section>

@@ -126,5 +126,28 @@ public class UserController extends StandardController {
         return "user/register.success";
     }
 
+    @RequestMapping(value = "/modify", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+    public String modifyGet(
+            @ModelAttribute(UserDto.MODEL_NAME) UserDto user,
+            Model model) {
+        if (user == null) {
+            return "redirect:/";
+        }
+        return "user/modify";
+    }
+
+    @RequestMapping(value = "/modify", method = RequestMethod.POST, produces = MediaType.TEXT_HTML_VALUE)
+    public String modifyPost(
+            @ModelAttribute(UserDto.MODEL_NAME) UserDto user,
+            Model model) {
+        if (user == null) {
+            return "redirect:/";
+        }
+
+
+        return "user/modify";
+
+    }
+
 
 }
