@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <link rel="stylesheet" href="/statics/resources/stylesheets/common.css">
     <link rel="stylesheet" href="/statics/resources/stylesheets/user/modify.css">
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="/statics/resources/scripts/user/modify.js"></script>
     <title>회원정보 수정</title>
 </head>
 <body class="user-modify">
@@ -22,7 +24,7 @@
         <section class="modify">
             <form id="modify-form" method="post">
                 <table>
-                    <caption>회원정보 수정</caption>
+                    <caption>기본 정보</caption>
                     <tbody>
                         <tr>
                             <th>이름<span> *</span></th>
@@ -37,7 +39,7 @@
                             <td>
                                 <label>
                                     <span hidden>비밀번호</span>
-                                    <input class="object-text" type="password" name="password" maxlength="100" data-regex="<%=UserService.Regex.PASSWORD%>">
+                                    <input class="object-text" type="password" name="passwordNew" maxlength="100" data-regex="<%=UserService.Regex.PASSWORD%>">
                                 </label>
                             </td>
                         </tr>
@@ -46,7 +48,7 @@
                             <td>
                                 <label>
                                     <span hidden>비밀번호 재확인</span>
-                                    <input class="object-text" type="password" name="passwordCheck" maxlength="100">
+                                    <input class="object-text" type="password" name="passwordNewCheck" maxlength="100">
                                 </label>
                             </td>
                         </tr>
@@ -122,7 +124,7 @@
                     </tbody>
                 </table>
                 <div>
-                    <input class="object-button prop-dark" type="submit" value="회원가입">
+                    <input class="object-button prop-dark" type="submit" value="정보 수정">
                     <a class="object-button prop-light" href="/user/mypage" target="_self">취소</a>
                 </div>
             </form>
