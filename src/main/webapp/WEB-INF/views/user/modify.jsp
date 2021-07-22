@@ -1,4 +1,5 @@
 <%@ page import="com.suah.shoppingmall.services.UserService" %>
+<%@ page import="com.suah.shoppingmall.enums.user.ModifyResult" %>
 <%@ page language="java" contentType="text/html" pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -35,16 +36,25 @@
                             <td>${vo.email}</td>
                         </tr>
                         <tr>
-                            <th>비밀번호<span> *</span></th>
+                            <th>기존 비밀번호<span> *</span></th>
                             <td>
                                 <label>
-                                    <span hidden>비밀번호</span>
-                                    <input class="object-text" type="password" name="passwordNew" maxlength="100" data-regex="<%=UserService.Regex.PASSWORD%>">
+                                    <span hidden>기존 비밀번호</span>
+                                    <input class="object-text" type="password" name="password" placeholder="100" data-regex="<%=UserService.Regex.PASSWORD%>">
                                 </label>
                             </td>
                         </tr>
                         <tr>
-                            <th>비밀번호 재확인<span> *</span></th>
+                            <th>신규 비밀번호<span> *</span></th>
+                            <td>
+                                <label>
+                                    <span hidden>신규 비밀번호</span>
+                                    <input class="object-text" type="password" name="passwordNew" maxlength="100" data-regex="^(()|([0-9a-zA-Z`~!@#$%^&*()\-_=+\[{\]}\\|;:',<.>/?]{8,50}))$">
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>신규 비밀번호 재확인<span> *</span></th>
                             <td>
                                 <label>
                                     <span hidden>비밀번호 재확인</span>
@@ -133,6 +143,10 @@
 </main>
 <%@ include file="/WEB-INF/parts/footer.jsp" %>
 <script>
+    ${vo.result == ModifyResult.DUPLICATE_CONTACT ? "alert('입력하신 연락처는 이미 사용 중입니다.');" : ""}
+    ${vo.result == ModifyResult.INVALID_PASSWORD ? "alert('기존 비밀번호를 다시 확인해주세요.');" : ""}
+    ${vo.result == ModifyResult.FAILURE ? "alert('회원정보 수정에 실패하였습니다. 다시 시도해주세요.');" : ""}
+    ${vo.result == ModifyResult.SUCCESS ? "alert('회원정보를 수정하였습니다. 다시 로그인해주세요.'); window.location.href='/';" : ""}
 </script>
 </body>
 </html>

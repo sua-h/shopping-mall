@@ -5,6 +5,7 @@ import com.suah.shoppingmall.enums.user.LoginResult;
 import com.suah.shoppingmall.enums.user.RegisterResult;
 import com.suah.shoppingmall.services.UserService;
 import com.suah.shoppingmall.vos.LoginVo;
+import com.suah.shoppingmall.vos.ModifyVo;
 import com.suah.shoppingmall.vos.RegisterVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -139,10 +140,12 @@ public class UserController extends StandardController {
     @RequestMapping(value = "/modify", method = RequestMethod.POST, produces = MediaType.TEXT_HTML_VALUE)
     public String modifyPost(
             @ModelAttribute(UserDto.MODEL_NAME) UserDto user,
-            Model model) {
+            Model model,
+            ModifyVo modifyVo) {
         if (user == null) {
             return "redirect:/";
         }
+        model.addAttribute("vo", modifyVo);
 
 
         return "user/modify";

@@ -2,10 +2,12 @@ package com.suah.shoppingmall.services;
 
 import com.suah.shoppingmall.dtos.UserDto;
 import com.suah.shoppingmall.enums.user.LoginResult;
+import com.suah.shoppingmall.enums.user.ModifyResult;
 import com.suah.shoppingmall.enums.user.RegisterResult;
 import com.suah.shoppingmall.mappers.IUserMapper;
 import com.suah.shoppingmall.utils.CryptoUtil;
 import com.suah.shoppingmall.vos.LoginVo;
+import com.suah.shoppingmall.vos.ModifyVo;
 import com.suah.shoppingmall.vos.RegisterVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,7 +34,7 @@ public class UserService {
     public static class Regex {
         public static final String EMAIL = "^(?=.{8,50}$)([0-9a-z]([_]?[0-9a-z])*?)@([0-9a-z][0-9a-z\\-]*[0-9a-z]\\.)?([0-9a-z][0-9a-z\\-]*[0-9a-z])\\.([a-z]{2,15})(\\.[a-z]{2})?$";
         public static final String NAME = "^([가-힣]{1,10})$";
-        public static final String CONTACT_FIRST = "^(010|070)$";
+        public static final String CONTACT_FIRST = "^(010|011|016|017|018|019)$";
         public static final String CONTACT_SECOND = "^([0-9]{4})$";
         public static final String CONTACT_THIRD = "^([0-9]{4})$";
         public static final String ADDRESS_POST = "^([0-9]{5})$";
@@ -45,7 +47,6 @@ public class UserService {
         public static final String AUTH_CODE_KEY = "^([0-9a-z]{128})$";
         public static final String AUTH_CODE = "^([0-9]{6})$";
 
-        // TODO 정규식 NULL 포함하도록 만들기
         public static final String BIRTH_YEAR = "^(?:[0-9]{4}|)$";
         public static final String BIRTH_MONTH = "^(?:(0[1-9]|1[0-2])|)$";
         public static final String BIRTH_DATE = "^(?:(0[1-9]|[1-2][0-9]|3[0-1])|)$";
@@ -83,9 +84,16 @@ public class UserService {
         return addressSecondary.matches(Regex.ADDRESS_SECONDARY);
     }
 
+    public static boolean checkBirthYear(String birthYear) { return birthYear.matches(Regex.BIRTH_YEAR); }
+
+    public static boolean checkBirthMonth(String birthMonth) { return birthMonth.matches(Regex.BIRTH_MONTH); }
+
+    public static boolean checkBirthDate(String birthDate) { return birthDate.matches(Regex.BIRTH_DATE); }
+
     public static boolean checkPassword(String password) {
         return password.matches(Regex.PASSWORD);
     }
+
 
     public void extendAutoSignKey(Cookie autoSignKeyCookie) {
         if (!autoSignKeyCookie.getValue().matches(Regex.AUTO_SIGN_KEY)) {
@@ -157,7 +165,10 @@ public class UserService {
                 !UserService.checkContactThird(registerVo.getContactThird()) ||
                 !UserService.checkAddressPost(registerVo.getAddressPost()) ||
                 !UserService.checkAddressPrimary(registerVo.getAddressPrimary()) ||
-                !UserService.checkAddressSecondary(registerVo.getAddressSecondary())) {
+                !UserService.checkAddressSecondary(registerVo.getAddressSecondary()) ||
+                !UserService.checkBirthYear(registerVo.getBirthYear()) ||
+                !UserService.checkBirthMonth(registerVo.getBirthMonth()) ||
+                !UserService.checkBirthDate(registerVo.getBirthDate())) {
             registerVo.setResult(RegisterResult.FAILURE);
             return;
         }
@@ -180,6 +191,25 @@ public class UserService {
 
     public int getEmailCount(String email) {
         return this.userMapper.selectEmailCount(email);
+    }
+
+    public void modify(ModifyVo modifyVo) {
+        if (!UserService.checkPassword(modifyVo.getPassword()) ||
+                !UserService.checkPassword(modifyVo.getPasswordNew()) ||
+                !UserService.checkContactFirst(modifyVo.getContactFirst()) ||
+                !UserService.checkContactSecond(modifyVo.getContactSecond()) ||
+                !UserService.checkContactThird(modifyVo.getContactThird()) ||
+                !UserService.checkAddressPost(modifyVo.getAddressPost()) ||
+                !UserService.checkAddressPrimary(modifyVo.getAddressPrimary()) ||
+                !UserService.checkAddressSecondary(modifyVo.getAddressSecondary()) ||
+                !UserService.checkBirthYear(modifyVo.getBirthYear()) ||
+                !UserService.checkBirthMonth(modifyVo.getBirthMonth()) ||
+                !UserService.checkBirthDate(modifyVo.getBirthDate())) {
+            modifyVo.setResult(ModifyResult.FAILURE);
+            return;
+        };
+
+
     }
 
 }
