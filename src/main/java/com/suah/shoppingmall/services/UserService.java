@@ -84,11 +84,17 @@ public class UserService {
         return addressSecondary.matches(Regex.ADDRESS_SECONDARY);
     }
 
-    public static boolean checkBirthYear(String birthYear) { return birthYear.matches(Regex.BIRTH_YEAR); }
+    public static boolean checkBirthYear(String birthYear) {
+        return birthYear.matches(Regex.BIRTH_YEAR);
+    }
 
-    public static boolean checkBirthMonth(String birthMonth) { return birthMonth.matches(Regex.BIRTH_MONTH); }
+    public static boolean checkBirthMonth(String birthMonth) {
+        return birthMonth.matches(Regex.BIRTH_MONTH);
+    }
 
-    public static boolean checkBirthDate(String birthDate) { return birthDate.matches(Regex.BIRTH_DATE); }
+    public static boolean checkBirthDate(String birthDate) {
+        return birthDate.matches(Regex.BIRTH_DATE);
+    }
 
     public static boolean checkPassword(String password) {
         return password.matches(Regex.PASSWORD);
@@ -207,9 +213,27 @@ public class UserService {
                 !UserService.checkBirthDate(modifyVo.getBirthDate())) {
             modifyVo.setResult(ModifyResult.FAILURE);
             return;
-        };
+        }
+        ;
 
+        if (!modifyVo.getUser().getPassword().equals(modifyVo.getHashedPassword())) {
+            modifyVo.setResult(ModifyResult.INVALID_PASSWORD);
+            return;
+        }
 
+        if ((!modifyVo.getUser().getContactFirst().equals(modifyVo.getContactFirst()) &&
+                !modifyVo.getUser().getContactSecond().equals(modifyVo.getContactSecond()) &&
+                !modifyVo.getUser().getContactThird().equals(modifyVo.getContactThird())) &&
+                this.userMapper.selectContactCount(
+                        modifyVo.getContactFirst(),
+                        modifyVo.getContactSecond(),
+                        modifyVo.getContactThird()) > 0) {
+            modifyVo.setResult(ModifyResult.DUPLICATE_CONTACT);
+            return;
+        }
+
+        this.userMapper.updateUser(modifyVo);
+        modifyVo.setResult(ModifyResult.SUCCESS);
     }
 
 }

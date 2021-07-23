@@ -29,18 +29,18 @@
                     <tbody>
                         <tr>
                             <th>이름<span> *</span></th>
-                            <td>${vo.name}</td>
+                            <td>${user.name}</td>
                         </tr>
                         <tr>
                             <th>이메일<span> *</span></th>
-                            <td>${vo.email}</td>
+                            <td>${user.email}</td>
                         </tr>
                         <tr>
                             <th>기존 비밀번호<span> *</span></th>
                             <td>
                                 <label>
                                     <span hidden>기존 비밀번호</span>
-                                    <input class="object-text" type="password" name="password" placeholder="100" data-regex="<%=UserService.Regex.PASSWORD%>">
+                                    <input class="object-text" type="password" name="password" maxlength="100" data-regex="<%=UserService.Regex.PASSWORD%>">
                                 </label>
                             </td>
                         </tr>
@@ -79,12 +79,12 @@
                                 </label>
                                 <label>
                                     <span hidden>휴대전화(중간)</span>
-                                    <input class="object-text num-box" type="number" name="contactSecond" maxlength="4" value="${vo.contactSecond}" data-regex="<%=UserService.Regex.CONTACT_SECOND%>">
+                                    <input class="object-text num-box" type="number" name="contactSecond" maxlength="4" value="${user.contactSecond}" data-regex="<%=UserService.Regex.CONTACT_SECOND%>">
                                     <span>-</span>
                                 </label>
                                 <label>
                                     <span hidden>휴대전화(끝)</span>
-                                    <input class="object-text num-box" type="number" name="contactThird" maxlength="4" value="${vo.contactThird}" data-regex="<%=UserService.Regex.CONTACT_THIRD%>">
+                                    <input class="object-text num-box" type="number" name="contactThird" maxlength="4" value="${user.contactThird}" data-regex="<%=UserService.Regex.CONTACT_THIRD%>">
                                 </label>
                             </td>
                         </tr>
@@ -93,16 +93,16 @@
                             <td>
                                 <label>
                                     <span hidden>우편번호</span>
-                                    <input readonly class="object-text" type="number" name="addressPost" maxlength="5" value="${vo.addressPost}">
+                                    <input readonly class="object-text" type="number" name="addressPost" maxlength="5" value="${user.addressPost}">
                                     <input class="object-button prop-dark" type="button" name="addressPostFindButton" value="우편번호"><br>
                                 </label>
                                 <label>
                                     <span hidden>기본주소</span>
-                                    <input readonly class="object-text" type="text" name="addressPrimary" maxlength="100" value="${vo.addressPrimary}"><br>
+                                    <input readonly class="object-text" type="text" name="addressPrimary" maxlength="100" value="${user.addressPrimary}"><br>
                                 </label>
                                 <label>
                                     <span hidden>상세주소</span>
-                                    <input class="object-text" type="text" name="addressSecondary" maxlength="100"  placeholder="상세주소" value="${vo.addressSecondary}" data-regex="<%=UserService.Regex.ADDRESS_SECONDARY%>">
+                                    <input class="object-text" type="text" name="addressSecondary" maxlength="100"  placeholder="상세주소" value="${user.addressSecondary}" data-regex="<%=UserService.Regex.ADDRESS_SECONDARY%>">
                                 </label>
                             </td>
                         </tr>
@@ -116,17 +116,17 @@
                         <td>
                             <label>
                                 <span hidden>생년</span>
-                                <input class="object-text add-year" type="number" name="birthYear" maxlength="4" placeholder="yyyy" value="${vo.birthYear}" data-regex="<%=UserService.Regex.BIRTH_YEAR%>">
+                                <input class="object-text add-year" type="number" name="birthYear" maxlength="4" placeholder="yyyy" value="${user.birthYear}" data-regex="<%=UserService.Regex.BIRTH_YEAR%>">
                                 <span class="add-text">년</span>
                             </label>
                             <label>
                                 <span hidden>월</span>
-                                <input class="object-text add" type="number" name="birthMonth" maxlength="2" placeholder="mm" value="${vo.birthMonth}" data-regex="<%=UserService.Regex.BIRTH_MONTH%>">
+                                <input class="object-text add" type="number" name="birthMonth" maxlength="2" placeholder="mm" value="${user.birthMonth}" data-regex="<%=UserService.Regex.BIRTH_MONTH%>">
                                 <span class="add-text">월</span>
                             </label>
                             <label>
                                 <span hidden>일</span>
-                                <input class="object-text add" type="number" name="birthDate" maxlength="2" placeholder="dd" value="${vo.birthDate}" data-regex="<%=UserService.Regex.BIRTH_DATE%>">
+                                <input class="object-text add" type="number" name="birthDate" maxlength="2" placeholder="dd" value="${user.birthDate}" data-regex="<%=UserService.Regex.BIRTH_DATE%>">
                                 <span class="add-text">일</span>
                             </label>
                         </td>

@@ -2,6 +2,7 @@ package com.suah.shoppingmall.mappers;
 
 import com.suah.shoppingmall.dtos.UserDto;
 import com.suah.shoppingmall.vos.LoginVo;
+import com.suah.shoppingmall.vos.ModifyVo;
 import com.suah.shoppingmall.vos.RegisterVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -34,4 +35,6 @@ public interface IUserMapper {
             @Param("email") String email,
             @Param("key") String key,
             @Param("days") int days);
+
+    void updateUser(ModifyVo modifyVo);
 }

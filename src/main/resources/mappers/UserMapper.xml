@@ -34,7 +34,8 @@
 
     <insert id="insertUser" parameterType="com.suah.shoppingmall.vos.RegisterVo">
         INSERT INTO `suavite`.`users` (`email`, `password`, `name`, `contact_first`, `contact_second`, `contact_third`,
-                                       `address_post`, `address_primary`, `address_secondary`, `birth_year`, `birth_month`, `birth_date`)
+                                       `address_post`, `address_primary`, `address_secondary`, `birth_year`,
+                                       `birth_month`, `birth_date`)
         VALUES (#{email}, #{hashedPassword}, #{name}, #{contactFirst}, #{contactSecond}, #{contactThird},
                 #{addressPost}, #{addressPrimary}, #{addressSecondary}, #{birthYear}, #{birthMonth}, #{birthDate})
     </insert>
@@ -84,4 +85,20 @@
         INSERT INTO `suavite`.`user_auto_sign_keys` (`user_email`, `key`, `expires_at`)
         VALUES (#{email}, #{key}, DATE_ADD(NOW(), INTERVAL #{days} DAY))
     </insert>
+
+    <update id="updateUser">
+        UPDATE `suavite`.`users`
+        SET `password`          = #{hashedPasswordNew},
+            `contact_first`     = #{contactFirst},
+            `contact_second`    = #{contactSecond},
+            `contact_third`     = #{contactThird},
+            `address_post`      = #{addressPost},
+            `address_primary`   = #{addressPrimary},
+            `address_secondary` = #{addressSecondary},
+            `birth_year`        = #{birthYear},
+            `birth_month`       = #{birthMonth},
+            `birth_date`        = #{birthDate}
+        WHERE `email` = #{user.email}
+        LIMIT 1
+    </update>
 </mapper>
