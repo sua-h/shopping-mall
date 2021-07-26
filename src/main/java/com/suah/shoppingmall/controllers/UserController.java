@@ -2,6 +2,7 @@ package com.suah.shoppingmall.controllers;
 
 import com.suah.shoppingmall.dtos.UserDto;
 import com.suah.shoppingmall.enums.user.LoginResult;
+import com.suah.shoppingmall.enums.user.ModifyResult;
 import com.suah.shoppingmall.enums.user.RegisterResult;
 import com.suah.shoppingmall.services.UserService;
 import com.suah.shoppingmall.vos.LoginVo;
@@ -140,14 +141,18 @@ public class UserController extends StandardController {
     @RequestMapping(value = "/modify", method = RequestMethod.POST, produces = MediaType.TEXT_HTML_VALUE)
     public String modifyPost(
             @ModelAttribute(UserDto.MODEL_NAME) UserDto user,
+            SessionStatus sessionStatus,
             Model model,
             ModifyVo modifyVo) {
         if (user == null) {
             return "redirect:/";
         }
+        modifyVo.setUser(user);
+        this.userService.modify(modifyVo);
+        if (modifyVo.getResult() == ModifyResult.SUCCESS) {
+            sessionStatus.setComplete();
+        }
         model.addAttribute("vo", modifyVo);
-
-
         return "user/modify";
 
     }
