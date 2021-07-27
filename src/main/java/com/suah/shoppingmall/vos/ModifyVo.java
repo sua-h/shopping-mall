@@ -24,7 +24,7 @@ public class ModifyVo {
 
     public ModifyVo(String password, String passwordNew, String contactFirst, String contactSecond, String contactThird, String addressPost, String addressPrimary, String addressSecondary, String birthYear, String birthMonth, String birthDate) {
         this.password = password;
-        this.passwordNew = passwordNew;
+        this.passwordNew = passwordNew.equals("") ? password : passwordNew;
         this.contactFirst = contactFirst;
         this.contactSecond = contactSecond;
         this.contactThird = contactThird;
