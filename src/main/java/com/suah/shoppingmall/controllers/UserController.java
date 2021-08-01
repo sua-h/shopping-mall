@@ -154,7 +154,15 @@ public class UserController extends StandardController {
         }
         model.addAttribute("vo", modifyVo);
         return "user/modify";
+    }
 
+    @RequestMapping(value = "/forgot-email", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+    public String forgotEmailGet(
+            @ModelAttribute(UserDto.MODEL_NAME) UserDto user) {
+        if (user != null) {
+            return "redirect:/";
+        }
+        return "user/forgot-email";
     }
 
 
