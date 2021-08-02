@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <link rel="stylesheet" href="/statics/resources/stylesheets/common.css">
     <link rel="stylesheet" href="/statics/resources/stylesheets/user/forgot-email.css">
+    <script src="/statics/resources/scripts/class.ajax.js"></script>
+    <script src="/statics/resources/scripts/user/forgot-email.js"></script>
     <title>이메일 찾기</title>
 </head>
 <body class="user-forgot-email">
@@ -61,7 +63,7 @@
                     </tbody>
                 </table>
                 <div>
-                    <input class="object-button prop-dark" type="submit" value="이메일 찾기">
+                    <input class="object-button prop-dark" type="submit" name="submit" value="이메일 찾기">
                     <a href="/user/login" class="object-button prop-light" target="_self">돌아가기</a>
                 </div>
             </form>
