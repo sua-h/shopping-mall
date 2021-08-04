@@ -165,5 +165,34 @@ public class UserController extends StandardController {
         return "user/forgot-email";
     }
 
+    @RequestMapping(value = "/forgot-email", method = RequestMethod.POST, produces = MediaType.TEXT_HTML_VALUE)
+    public String forgotEmailPost(
+            @ModelAttribute(UserDto.MODEL_NAME) UserDto user) {
+        if (user != null) {
+            return "redirect:/";
+        }
+        return "user/forgot-email";
+    }
+
+    @RequestMapping(value = "/forgot-password", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+    public String forgotPasswordGet(
+            @ModelAttribute(UserDto.MODEL_NAME) UserDto user) {
+        if (user != null) {
+            return "redirect:/";
+        }
+        return "user/forgot-password";
+    }
+
+    @RequestMapping(value = "/forgot-password", method = RequestMethod.POST, produces = MediaType.TEXT_HTML_VALUE)
+    public String forgotPasswordPost(
+            @ModelAttribute(UserDto.MODEL_NAME) UserDto user) {
+        if (user != null) {
+            return "redirect:/";
+        }
+        return "user/forgot-password";
+    }
+
+
+
 
 }
