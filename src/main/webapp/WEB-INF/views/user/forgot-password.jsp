@@ -15,12 +15,12 @@
     <script src="/statics/resources/scripts/user/forgot-password.js"></script>
     <title>비밀번호 찾기</title>
 </head>
-<body class="user-forgot-email">
+<body class="user-forgot-password">
 <%@ include file="/WEB-INF/parts/header.jsp" %>
 <main>
     <div class="wrap">
         <h1>FORGOT PASSWORD</h1>
-        <section class="forgot-email">
+        <section class="forgot-password">
             <form id="forgotPasswordForm">
                 <table>
                     <caption>비밀번호 찾기</caption>
@@ -31,6 +31,15 @@
                             <label>
                                 <span hidden>이름</span>
                                 <input class="object-text" type="text" name="name" maxlength="10" value="" data-regex="">
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>이메일</th>
+                        <td>
+                            <label>
+                                <span hidden>이메일</span>
+                                <input class="object-text" type="text" name="email" maxlength="50" value="" data-regex="">
                             </label>
                         </td>
                     </tr>
@@ -63,7 +72,7 @@
                     </tbody>
                 </table>
                 <div>
-                    <input class="object-button prop-dark" type="submit" name="submit" value="이메일 찾기">
+                    <input class="object-button prop-dark" type="submit" name="submit" value="비밀번호 찾기">
                     <a href="/user/login" class="object-button prop-light" target="_self">돌아가기</a>
                 </div>
             </form>
