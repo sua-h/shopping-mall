@@ -20,22 +20,22 @@
         <h1>이메일 찾기 완료</h1>
         <section>
             <p>이메일 찾기가 완료 되었습니다.<br>다음 정보로 가입된 아이디가 있습니다.</p>
-            <div>
+            <div class="info">
                 <dl>
                     <dt>이름</dt>
-                    <dd>김김김<!--${vo.name}--></dd>
+                    <dd>${vo.name}</dd>
                 </dl>
                 <dl>
                     <dt>휴대전화</dt>
-                    <dd>010-0000-0000</dd>
+                    <dd>${vo.contactFirst}-${vo.contactSecond}-${vo.contactThird}</dd>
                 </dl>
                 <dl>
-                    <dt>이메일</dt>
-                    <dd>adbd@naver.com</dd>
+                    <dt>이메일 (ID)</dt>
+                    <dd>${vo.email}</dd>
                 </dl>
             </div>
-            <p><span>김김김</span>님 즐거운 쇼핑 되세요!</p>
-            <div>
+            <!--<p><span>김김김</span>님 즐거운 쇼핑 되세요!</p>-->
+            <div class="button">
                 <a class="object-button prop-dark" href="/user/login">로그인</a>
                 <a class="object-button prop-light" href="/">메인 페이지</a>
             </div>
