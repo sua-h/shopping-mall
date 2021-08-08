@@ -1,5 +1,6 @@
 package com.suah.shoppingmall.vos;
 
+import com.suah.shoppingmall.dtos.UserDto;
 import com.suah.shoppingmall.enums.user.ForgotEmailResult;
 
 public class ForgotEmailVo {
@@ -9,6 +10,7 @@ public class ForgotEmailVo {
     private final String contactThird;
 
     private ForgotEmailResult result;
+    private UserDto user;
 
     public ForgotEmailVo(String name, String contactFirst, String contactSecond, String contactThird) {
         this.name = name;
@@ -39,5 +41,13 @@ public class ForgotEmailVo {
 
     public void setResult(ForgotEmailResult result) {
         this.result = result;
+    }
+
+    public UserDto getUser() {
+        return this.user;
+    }
+
+    public void setUser(UserDto user) {
+        this.user = user;
     }
 }

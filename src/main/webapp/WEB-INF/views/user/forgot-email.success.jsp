@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <link rel="stylesheet" href="/statics/resources/stylesheets/common.css">
     <link rel="stylesheet" href="/statics/resources/stylesheets/user/forgot-email.success.css">
-    <title>회원가입 성공</title>
+    <title>이메일 찾기</title>
 </head>
 <body class="forgot-email-success">
 <%@ include file="/WEB-INF/parts/header.jsp" %>

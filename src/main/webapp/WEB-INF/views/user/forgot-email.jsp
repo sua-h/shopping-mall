@@ -1,3 +1,4 @@
+<%@ page import="com.suah.shoppingmall.services.UserService" %>
 <%@ page language="java" contentType="text/html" pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -21,7 +22,7 @@
     <div class="wrap">
         <h1>FORGOT EMAIL</h1>
         <section class="forgot-email">
-            <form id="forgotEmailForm">
+            <form id="forgotEmailForm" method="post">
                 <table>
                     <caption>이메일 찾기</caption>
                     <tbody>
@@ -30,7 +31,7 @@
                             <td>
                                 <label>
                                     <span hidden>이름</span>
-                                    <input class="object-text" type="text" name="name" maxlength="10" value="" data-regex="">
+                                    <input class="object-text" type="text" name="name" maxlength="10" value="${vo.name}" data-regex="<%=UserService.Regex.NAME%>">
                                 </label>
                             </td>
                         </tr>
@@ -51,12 +52,12 @@
                                 </label>
                                 <label>
                                     <span hidden>휴대전화(중간)</span>
-                                    <input class="object-text num-box" type="number" name="contactSecond" maxlength="4" value="" data-regex="">
+                                    <input class="object-text num-box" type="number" name="contactSecond" maxlength="4" value="${vo.contactSecond}" data-regex="<%=UserService.Regex.CONTACT_SECOND%>">
                                     <span>-</span>
                                 </label>
                                 <label>
                                     <span hidden>휴대전화(끝)</span>
-                                    <input class="object-text num-box" type="number" name="contactThird" maxlength="4" value="" data-regex="">
+                                    <input class="object-text num-box" type="number" name="contactThird" maxlength="4" value="${vo.contactThird}" data-regex="<%=UserService.Regex.CONTACT_THIRD%>">
                                 </label>
                             </td>
                         </tr>

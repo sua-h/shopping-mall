@@ -1,11 +1,13 @@
 package com.suah.shoppingmall.services;
 
 import com.suah.shoppingmall.dtos.UserDto;
+import com.suah.shoppingmall.enums.user.ForgotEmailResult;
 import com.suah.shoppingmall.enums.user.LoginResult;
 import com.suah.shoppingmall.enums.user.ModifyResult;
 import com.suah.shoppingmall.enums.user.RegisterResult;
 import com.suah.shoppingmall.mappers.IUserMapper;
 import com.suah.shoppingmall.utils.CryptoUtil;
+import com.suah.shoppingmall.vos.ForgotEmailVo;
 import com.suah.shoppingmall.vos.LoginVo;
 import com.suah.shoppingmall.vos.ModifyVo;
 import com.suah.shoppingmall.vos.RegisterVo;
@@ -214,7 +216,6 @@ public class UserService {
             modifyVo.setResult(ModifyResult.FAILURE);
             return;
         }
-        ;
 
         if (!modifyVo.getUser().getPassword().equals(modifyVo.getHashedPassword())) {
             modifyVo.setResult(ModifyResult.INVALID_PASSWORD);
@@ -234,6 +235,28 @@ public class UserService {
 
         this.userMapper.updateUser(modifyVo);
         modifyVo.setResult(ModifyResult.SUCCESS);
+    }
+
+    public void findEmail(ForgotEmailVo forgotEmailVo) {
+        if (!UserService.checkName(forgotEmailVo.getName()) ||
+                !UserService.checkContactFirst(forgotEmailVo.getContactFirst()) ||
+                !UserService.checkContactSecond(forgotEmailVo.getContactSecond()) ||
+                !UserService.checkContactThird(forgotEmailVo.getContactThird())) {
+            forgotEmailVo.setResult(ForgotEmailResult.FAILURE);
+            return;
+        }
+
+        UserDto user = this.userMapper.selectEmail(forgotEmailVo);
+
+        if (user == null) {
+            forgotEmailVo.setResult(ForgotEmailResult.FAILURE);
+            return;
+        }
+
+        forgotEmailVo.setResult(ForgotEmailResult.SUCCESS);
+        forgotEmailVo.setUser(user);
+
+        //TODO : forgotEmail.js - alert!! Result.FAILURE 일 경우 알림창, REGEX 정규식 틀릴 경우 알림창 띄우기
     }
 
 }

@@ -1,10 +1,12 @@
 package com.suah.shoppingmall.controllers;
 
 import com.suah.shoppingmall.dtos.UserDto;
+import com.suah.shoppingmall.enums.user.ForgotEmailResult;
 import com.suah.shoppingmall.enums.user.LoginResult;
 import com.suah.shoppingmall.enums.user.ModifyResult;
 import com.suah.shoppingmall.enums.user.RegisterResult;
 import com.suah.shoppingmall.services.UserService;
+import com.suah.shoppingmall.vos.ForgotEmailVo;
 import com.suah.shoppingmall.vos.LoginVo;
 import com.suah.shoppingmall.vos.ModifyVo;
 import com.suah.shoppingmall.vos.RegisterVo;
@@ -167,11 +169,25 @@ public class UserController extends StandardController {
 
     @RequestMapping(value = "/forgot-email", method = RequestMethod.POST, produces = MediaType.TEXT_HTML_VALUE)
     public String forgotEmailPost(
-            @ModelAttribute(UserDto.MODEL_NAME) UserDto user) {
+            @ModelAttribute(UserDto.MODEL_NAME) UserDto user,
+            Model model,
+            ForgotEmailVo forgotEmailVo) {
         if (user != null) {
             return "redirect:/";
         }
-        return "user/forgot-email";
+        this.userService.findEmail(forgotEmailVo);
+        if (forgotEmailVo.getResult() == ForgotEmailResult.SUCCESS) {
+            model.addAttribute("vo", forgotEmailVo.getUser());
+            return "user/forgot-email.success";
+        } else {
+            model.addAttribute("vo", forgotEmailVo);
+            return "user/forgot-email";
+        }
+    }
+
+    @RequestMapping(value = "/forgot-email.success", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+    public String forgotEmailSuccess() {
+        return "user/forgot-email.success";
     }
 
     @RequestMapping(value = "/forgot-password", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)

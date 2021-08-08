@@ -101,4 +101,28 @@
         WHERE `email` = #{user.email}
         LIMIT 1
     </update>
+
+    <select id="selectEmail" parameterType="com.suah.shoppingmall.vos.ForgotEmailVo"
+            resultType="com.suah.shoppingmall.dtos.UserDto">
+        SELECT `index`             AS `index`,
+               `email`             AS `email`,
+               `password`          AS `password`,
+               `name`              AS `name`,
+               `contact_first`     AS `contactFirts`,
+               `contact_second`    AS `contactSecond`,
+               `contact_third`     AS `contactThird`,
+               `address_post`      AS `addressPost`,
+               `address_primary`   AS `addressPrimary`,
+               `address_secondary` AS `addressSecondary`,
+               `birth_year`        AS `birthYear`,
+               `birth_month`       AS `birthMonth`,
+               `birth_date`        AS `birthDate`,
+               `level`             AS `level`
+        FROM `suavite`.`users`
+        WHERE `name` = #{name}
+          AND `contact_first` = #{contactFirst}
+          AND `contact_second` = #{contactSecond}
+          AND `contact_third` = #{contactThird}
+        LIMIT 1
+    </select>
 </mapper>

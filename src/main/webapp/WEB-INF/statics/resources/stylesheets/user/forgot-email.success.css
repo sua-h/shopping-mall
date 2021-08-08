@@ -20,6 +20,7 @@ main > .wrap > section > div.info {
 main > .wrap > section > div > dl {
     line-height: 2rem;
     text-align: center;
+    vertical-align: middle;
 }
 
 main > .wrap > section > div > dl > dt,
