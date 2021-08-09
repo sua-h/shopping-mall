@@ -1,4 +1,5 @@
 <%@ page import="com.suah.shoppingmall.services.UserService" %>
+<%@ page import="com.suah.shoppingmall.enums.user.ForgotEmailResult" %>
 <%@ page language="java" contentType="text/html" pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -73,6 +74,7 @@
 </main>
 <%@ include file="/WEB-INF/parts/footer.jsp" %>
 <script>
+    ${vo.result == ForgotEmailResult.FAILURE ? "alert('이메일 찾기에 실패하였습니다. 회원 정보를 확인하고 다시 시도해주세요.');" : ""}
 </script>
 </body>
 </html>

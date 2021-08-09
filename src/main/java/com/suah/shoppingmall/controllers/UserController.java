@@ -177,7 +177,7 @@ public class UserController extends StandardController {
         }
         this.userService.findEmail(forgotEmailVo);
         if (forgotEmailVo.getResult() == ForgotEmailResult.SUCCESS) {
-            model.addAttribute("vo", forgotEmailVo.getUser());
+            model.addAttribute("ui", forgotEmailVo.getUser());
             return "user/forgot-email.success";
         } else {
             model.addAttribute("vo", forgotEmailVo);

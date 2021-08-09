@@ -23,15 +23,15 @@
             <div class="info">
                 <dl>
                     <dt>이름</dt>
-                    <dd>${vo.name}</dd>
+                    <dd>${ui.name}</dd>
                 </dl>
                 <dl>
                     <dt>휴대전화</dt>
-                    <dd>${vo.contactFirst}-${vo.contactSecond}-${vo.contactThird}</dd>
+                    <dd>${ui.contactFirst}-${ui.contactSecond}-${ui.contactThird}</dd>
                 </dl>
                 <dl>
                     <dt>이메일 (ID)</dt>
-                    <dd>${vo.email}</dd>
+                    <dd>${ui.email}</dd>
                 </dl>
             </div>
             <!--<p><span>김김김</span>님 즐거운 쇼핑 되세요!</p>-->

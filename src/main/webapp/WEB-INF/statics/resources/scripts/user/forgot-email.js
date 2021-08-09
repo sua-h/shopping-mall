@@ -6,7 +6,7 @@ window.addEventListener('DOMContentLoaded', () => {
             let input = inputs[i];
             if (input.dataset.regex !== undefined) {
                 let regex = new RegExp(input.dataset.regex);
-                let name = input.getAttribute('placeholder');
+                let name = input.previousElementSibling.textContent;
                 if (!regex.test(input.value)) {
                     alert(`올바른 ${name} 값을 입력해주세요.`);
                     input.focus();
