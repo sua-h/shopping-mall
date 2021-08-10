@@ -1,3 +1,4 @@
+<%@ page import="com.suah.shoppingmall.services.UserService" %>
 <%@ page language="java" contentType="text/html" pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -30,7 +31,7 @@
                         <td>
                             <label>
                                 <span hidden>이름</span>
-                                <input class="object-text" type="text" name="name" maxlength="10" value="" data-regex="">
+                                <input class="object-text" type="text" name="name" maxlength="10" value="" data-regex="<%=UserService.Regex.NAME%>">
                             </label>
                         </td>
                     </tr>
@@ -39,7 +40,7 @@
                         <td>
                             <label>
                                 <span hidden>이메일</span>
-                                <input class="object-text" type="text" name="email" maxlength="50" value="" data-regex="">
+                                <input class="object-text" type="text" name="email" maxlength="50" value="" data-regex="<%=UserService.Regex.EMAIL%>">
                                 <span class="notice" rel="">회원정보가 일치하면 해당 메일로 비밀번호 재설정 링크를 보내드립니다.</span>
                             </label>
                         </td>
@@ -61,12 +62,12 @@
                             </label>
                             <label>
                                 <span hidden>휴대전화(중간)</span>
-                                <input class="object-text num-box" type="number" name="contactSecond" maxlength="4" value="" data-regex="">
+                                <input class="object-text num-box" type="number" name="contactSecond" maxlength="4" value="" data-regex="<%=UserService.Regex.CONTACT_SECOND%>">
                                 <span>-</span>
                             </label>
                             <label>
                                 <span hidden>휴대전화(끝)</span>
-                                <input class="object-text num-box" type="number" name="contactThird" maxlength="4" value="" data-regex="">
+                                <input class="object-text num-box" type="number" name="contactThird" maxlength="4" value="" data-regex="<%=UserService.Regex.CONTACT_THIRD%>">
                             </label>
                         </td>
                     </tr>

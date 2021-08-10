@@ -255,8 +255,10 @@ public class UserService {
 
         forgotEmailVo.setResult(ForgotEmailResult.SUCCESS);
         forgotEmailVo.setUser(user);
-
-        //TODO : forgotEmail.js - alert!! Result.FAILURE 일 경우 알림창, REGEX 정규식 틀릴 경우 알림창 띄우기
     }
+
+
+
+
 
 }

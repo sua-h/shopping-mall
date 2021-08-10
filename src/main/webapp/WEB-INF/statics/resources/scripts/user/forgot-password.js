@@ -1,8 +1,8 @@
 window.addEventListener('DOMContentLoaded', () => {
-    const forgotEmailForm = window.document.getElementById('forgotEmailForm');
-    forgotEmailForm.onsubmit = () => {
-        let inputs = forgotEmailForm.querySelectorAll('input');
-        for(let i = 0; i < inputs.length; i++) {
+    const forgotPasswordForm = window.document.getElementById('forgotPasswordForm');
+    forgotPasswordForm.onsubmit = () => {
+        let inputs = forgotPasswordForm.querySelectorAll('input');
+        for (let i = 0; i < inputs.length; i++) {
             let input = inputs[i];
             if (input.dataset.regex !== undefined) {
                 let regex = new RegExp(input.dataset.regex);
