@@ -1,16 +1,10 @@
 package com.suah.shoppingmall.services;
 
 import com.suah.shoppingmall.dtos.UserDto;
-import com.suah.shoppingmall.enums.user.ForgotEmailResult;
-import com.suah.shoppingmall.enums.user.LoginResult;
-import com.suah.shoppingmall.enums.user.ModifyResult;
-import com.suah.shoppingmall.enums.user.RegisterResult;
+import com.suah.shoppingmall.enums.user.*;
 import com.suah.shoppingmall.mappers.IUserMapper;
 import com.suah.shoppingmall.utils.CryptoUtil;
-import com.suah.shoppingmall.vos.ForgotEmailVo;
-import com.suah.shoppingmall.vos.LoginVo;
-import com.suah.shoppingmall.vos.ModifyVo;
-import com.suah.shoppingmall.vos.RegisterVo;
+import com.suah.shoppingmall.vos.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -257,6 +251,18 @@ public class UserService {
         forgotEmailVo.setUser(user);
     }
 
+    public void findPassword(ForgotPasswordVo forgotPasswordVo) {
+        if (!UserService.checkName(forgotPasswordVo.getName()) ||
+                !UserService.checkEmail(forgotPasswordVo.getEmail()) ||
+                !UserService.checkContactFirst(forgotPasswordVo.getContactFirst()) ||
+                !UserService.checkContactSecond(forgotPasswordVo.getContactSecond()) ||
+                !UserService.checkContactThird(forgotPasswordVo.getContactThird())) {
+            forgotPasswordVo.setResult(ForgotPasswordResult.FAILURE);
+            return;
+        }
+
+
+    }
 
 
 

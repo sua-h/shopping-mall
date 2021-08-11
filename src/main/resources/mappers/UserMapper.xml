@@ -125,4 +125,62 @@
           AND `contact_third` = #{contactThird}
         LIMIT 1
     </select>
+
+    <select id="selectPassword" parameterType="com.suah.shoppingmall.vos.ForgotPasswordVo"
+            resultType="com.suah.shoppingmall.dtos.UserDto">
+        SELECT `index`             AS `index`,
+               `email`             AS `email`,
+               `password`          AS `password`,
+               `name`              AS `name`,
+               `contact_first`     AS `contactFirts`,
+               `contact_second`    AS `contactSecond`,
+               `contact_third`     AS `contactThird`,
+               `address_post`      AS `addressPost`,
+               `address_primary`   AS `addressPrimary`,
+               `address_secondary` AS `addressSecondary`,
+               `birth_year`        AS `birthYear`,
+               `birth_month`       AS `birthMonth`,
+               `birth_date`        AS `birthDate`,
+               `level`             AS `level`
+        FROM `suavite`.`users`
+        WHERE `name` = #{name}
+          AND `email` = #{email}
+          AND `contact_first` = #{contactFirst}
+          AND `contact_second` = #{contactSecond}
+          AND `contact_third` = #{contactThird}
+        LIMIT 1
+    </select>
+
+    <insert id="insertReset">
+        INSERT INTO `suavite`.`resets` (`user_index`, `reset_binding_ua`, `reset_binding_ip`, `reset_key`,
+                                        `reset_expire_at`)
+        VALUES (#{userIndex}, #{bindingUa}, #{bindingIp}, #{key}, DATE_ADD(NOW(), INTERVAL 10 MINUTE))
+    </insert>
+
+    <select id="selectResetUserIndex" resultType="_int">
+        SELECT `user_index` AS `userIndex`
+        FROM `suavite`.`resets`
+        WHERE `reset_binding_ua` = #{bindingUa}
+          AND `reset_binding_ip` = #{bindingIp}
+          AND `reset_key` = #{key}
+          AND `reset_expired_flag` = FALSE
+          AND `reset_expire_at` > NOW()
+        LIMIT 1
+    </select>
+
+    <update id="updateResetExpire">
+        UPDATE `suavite`.`resets`
+        SET `reset_expired_flag` = TRUE
+        WHERE `reset_binding_ua` = #{bindingUa}
+          AND `reset_binding_ip` = #{bindingIp}
+          AND `reset_key` = #{key}
+        LIMIT 1
+    </update>
+
+    <update id="updatePassword">
+        UPDATE `suavite`.`users`
+        SET `password` = #{password}
+        WHERE `index` = #{userIndex}
+        LIMIT 1
+    </update>
 </mapper>
