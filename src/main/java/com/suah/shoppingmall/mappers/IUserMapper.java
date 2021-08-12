@@ -1,10 +1,7 @@
 package com.suah.shoppingmall.mappers;
 
 import com.suah.shoppingmall.dtos.UserDto;
-import com.suah.shoppingmall.vos.ForgotEmailVo;
-import com.suah.shoppingmall.vos.LoginVo;
-import com.suah.shoppingmall.vos.ModifyVo;
-import com.suah.shoppingmall.vos.RegisterVo;
+import com.suah.shoppingmall.vos.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -41,5 +38,25 @@ public interface IUserMapper {
 
     UserDto selectEmail(ForgotEmailVo forgotEmailVo);
 
+    UserDto selectPassword(ForgotPasswordVo forgotPasswordVo);
 
+    void insertReset(
+            @Param("userIndex") int userIndex,
+            @Param("bindingUa") String bindingUa,
+            @Param("bindingIp") String bindingIp,
+            @Param("key") String key);
+
+    int selectResetUserIndex(
+            @Param("bindingUa") String bindingUa,
+            @Param("bindingIp") String bindingIp,
+            @Param("key") String key);
+
+    void updateResetExpire(
+            @Param("bindingUa") String bindingUa,
+            @Param("bindingIp") String bindingIp,
+            @Param("key") String key);
+
+    void updatePassword(
+            @Param("userIndex") int userIndex,
+            @Param("password") String password);
 }

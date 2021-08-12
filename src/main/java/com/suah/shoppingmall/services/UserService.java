@@ -6,8 +6,12 @@ import com.suah.shoppingmall.mappers.IUserMapper;
 import com.suah.shoppingmall.utils.CryptoUtil;
 import com.suah.shoppingmall.vos.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.Cookie;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -15,10 +19,12 @@ import java.util.Date;
 @Service
 public class UserService {
     private final IUserMapper userMapper;
+    private final JavaMailSender mailSender;
 
     @Autowired
-    public UserService(IUserMapper userMapper) {
+    public UserService(IUserMapper userMapper, JavaMailSender mailSender) {
         this.userMapper = userMapper;
+        this.mailSender = mailSender;
     }
 
     public static class Config {
@@ -251,7 +257,7 @@ public class UserService {
         forgotEmailVo.setUser(user);
     }
 
-    public void findPassword(ForgotPasswordVo forgotPasswordVo) {
+    public void findPassword(ForgotPasswordVo forgotPasswordVo) throws MessagingException {
         if (!UserService.checkName(forgotPasswordVo.getName()) ||
                 !UserService.checkEmail(forgotPasswordVo.getEmail()) ||
                 !UserService.checkContactFirst(forgotPasswordVo.getContactFirst()) ||
@@ -261,9 +267,64 @@ public class UserService {
             return;
         }
 
+        UserDto user = this.userMapper.selectPassword(forgotPasswordVo);
 
+        if (user == null) {
+            forgotPasswordVo.setResult(ForgotPasswordResult.FAILURE);
+            return;
+        }
+
+        final String resetKey = CryptoUtil.Sha512.hash(String.format("%s%d%f%s",
+                user.getEmail(),
+                user.getIndex(),
+                Math.random(),
+                new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date())), null);
+
+        final String resetUrl = String.format("http://localhost/user/reset?key=%s", resetKey);
+
+        this.userMapper.insertReset(
+                user.getIndex(),
+                forgotPasswordVo.getHashedUa(),
+                forgotPasswordVo.getHashedIp(),
+                resetKey);
+
+        MimeMessage mimeMessage = this.mailSender.createMimeMessage();
+        MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, "utf-8");
+        mimeMessageHelper.setTo(user.getEmail());
+        mimeMessageHelper.setSubject("[suavite] 비밀번호 재설정 요청");
+        mimeMessageHelper.setText(String.format("%s<br>%s<br>%s%s%s<br>%s%s%s<br>%s",
+                "<h1>비밀번호 재설정</h1>",
+                "<h2>[suavite] 회원님의 비밀번호 재설정 요청이 있어 비밀번호를 재설정 할 수 있는 링크를 보냅니다. 아래 '비밀번호 재설정' 버튼을 클릭 하시거나, 링크를 복사하여 주소창에 붙여넣어 주세요.</h2>",
+                "<a href=\"", resetUrl, "\" target=\"_blank\">비밀번호 재설정</a>",
+                "<a>", resetUrl, "</a>",
+                "<b>비밀번호 재설정을 요청한적이 없는 경우 해당 메일을 폐기하세요.</b>"), true);
+        mimeMessageHelper.setFrom("admin@suavite.com");
+        this.mailSender.send(mimeMessage);
+        forgotPasswordVo.setResult(ForgotPasswordResult.EMAIL_SENT);
     }
 
+    public void reset(ForgotPasswordContinueVo forgotPasswordContinueVo) {
+        Integer userIndex = this.userMapper.selectResetUserIndex(
+                forgotPasswordContinueVo.getHashedUa(),
+                forgotPasswordContinueVo.getHashedIp(),
+                forgotPasswordContinueVo.getKey());
+
+        if (userIndex == null || userIndex < 1) {
+            forgotPasswordContinueVo.setResult(ForgotPasswordResult.FAILURE);
+            return;
+        }
+
+        this.userMapper.updateResetExpire(
+                forgotPasswordContinueVo.getHashedUa(),
+                forgotPasswordContinueVo.getHashedIp(),
+                forgotPasswordContinueVo.getKey());
+
+        this.userMapper.updatePassword(
+                userIndex,
+                forgotPasswordContinueVo.getHashedPassword());
+
+        forgotPasswordContinueVo.setResult(ForgotPasswordResult.SUCCESS);
+    }
 
 
 
