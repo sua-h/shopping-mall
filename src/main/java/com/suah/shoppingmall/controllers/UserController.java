@@ -208,6 +208,20 @@ public class UserController extends StandardController {
         return "user/forgot-password";
     }
 
+    @RequestMapping(value = "/forgot-password.success", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+    public String forgotPasswordSuccess(
+            @ModelAttribute(UserDto.MODEL_NAME) UserDto user) {
+        if (user != null) {
+            return "redirect:/";
+        }
+        return "user/forgot-password.success";
+    }
+
+    @RequestMapping(value = "/reset-password", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+    public String resetPasswordGet() {
+        return "user/reset-password";
+    }
+
 
 
 

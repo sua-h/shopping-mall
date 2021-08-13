@@ -11,15 +11,18 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <link rel="stylesheet" href="/statics/resources/stylesheets/common.css">
     <link rel="stylesheet" href="/statics/resources/stylesheets/user/user-success.css">
-    <title>회원가입</title>
+    <title>비밀번호 찾기</title>
 </head>
 <body class="success">
 <%@ include file="/WEB-INF/parts/header.jsp" %>
 <main>
     <div class="wrap">
-        <h1>회원가입 완료</h1>
+        <h1>비밀번호 찾기 완료</h1>
         <section>
-            <p>회원가입이 정상적으로 완료 되었습니다.<br>로그인 페이지로 이동해주세요.</p>
+            <p>비밀번호 재설정 링크가 포함된 이메일을 전송하였습니다.<br>
+                링크를 이용해 비밀번호를 재설정해주세요.<br>
+                <span class="sub-text">이메일 수신까지는 시간이 소요될 수 있습니다.</span>
+            </p>
             <div class="button">
                 <a class="object-button prop-dark" href="/user/login">로그인</a>
                 <a class="object-button prop-light" href="/">메인 페이지</a>

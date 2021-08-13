@@ -12,12 +12,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <link rel="stylesheet" href="/statics/resources/stylesheets/common.css">
-    <link rel="stylesheet" href="/statics/resources/stylesheets/user/forgot-email.css">
+    <link rel="stylesheet" href="/statics/resources/stylesheets/user/user-forgot.css">
     <script src="/statics/resources/scripts/class.ajax.js"></script>
     <script src="/statics/resources/scripts/user/forgot-email.js"></script>
     <title>이메일 찾기</title>
 </head>
-<body class="user-forgot-email">
+<body class="user-forgot">
 <%@ include file="/WEB-INF/parts/header.jsp" %>
 <main>
     <div class="wrap">
