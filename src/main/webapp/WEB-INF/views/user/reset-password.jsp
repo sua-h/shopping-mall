@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="/statics/resources/stylesheets/common.css">
     <link rel="stylesheet" href="/statics/resources/stylesheets/user/user-forgot.css">
     <script src="/statics/resources/scripts/class.ajax.js"></script>
-    <script src="/statics/resources/scripts/user/forgot-password.js"></script>
+    <script src="/statics/resources/scripts/user/reset-password.js"></script>
     <title>비밀번호 재설정</title>
 </head>
 <body class="user-forgot">

@@ -10,6 +10,7 @@ import com.suah.shoppingmall.vos.ForgotEmailVo;
 import com.suah.shoppingmall.vos.LoginVo;
 import com.suah.shoppingmall.vos.ModifyVo;
 import com.suah.shoppingmall.vos.RegisterVo;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -218,8 +219,30 @@ public class UserController extends StandardController {
     }
 
     @RequestMapping(value = "/reset-password", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
-    public String resetPasswordGet() {
+    public String resetPasswordGet(
+            @ModelAttribute(UserDto.MODEL_NAME) UserDto user) {
+        if (user != null) {
+            return "redirect:/";
+        }
         return "user/reset-password";
+    }
+
+    @RequestMapping(value = "/reset-password", method = RequestMethod.POST, produces = MediaType.TEXT_HTML_VALUE)
+    public String resetPasswordPost(
+            @ModelAttribute(UserDto.MODEL_NAME) UserDto user) {
+        if (user != null ) {
+            return "redirect:/";
+        }
+        return "user/reset-password";
+    }
+
+    @RequestMapping(value = "/reset-password.success", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+    public String resetPasswordSuccess(
+            @ModelAttribute(UserDto.MODEL_NAME) UserDto user) {
+        if (user != null) {
+            return "redirect:/";
+        }
+        return "user/reset-password.success";
     }
 
 
