@@ -257,7 +257,7 @@ public class UserService {
         forgotEmailVo.setUser(user);
     }
 
-    public void findPassword(ForgotPasswordVo forgotPasswordVo) throws MessagingException {
+    public void resetPassword(ForgotPasswordVo forgotPasswordVo) throws MessagingException {
         if (!UserService.checkName(forgotPasswordVo.getName()) ||
                 !UserService.checkEmail(forgotPasswordVo.getEmail()) ||
                 !UserService.checkContactFirst(forgotPasswordVo.getContactFirst()) ||
@@ -303,7 +303,7 @@ public class UserService {
         forgotPasswordVo.setResult(ForgotPasswordResult.EMAIL_SENT);
     }
 
-    public void reset(ForgotPasswordContinueVo forgotPasswordContinueVo) {
+    public void resetPassword(ForgotPasswordContinueVo forgotPasswordContinueVo) {
         Integer userIndex = this.userMapper.selectResetUserIndex(
                 forgotPasswordContinueVo.getHashedUa(),
                 forgotPasswordContinueVo.getHashedIp(),
@@ -325,7 +325,6 @@ public class UserService {
 
         forgotPasswordContinueVo.setResult(ForgotPasswordResult.SUCCESS);
     }
-
 
 
 }
