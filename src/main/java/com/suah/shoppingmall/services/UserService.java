@@ -263,14 +263,14 @@ public class UserService {
                 !UserService.checkContactFirst(forgotPasswordVo.getContactFirst()) ||
                 !UserService.checkContactSecond(forgotPasswordVo.getContactSecond()) ||
                 !UserService.checkContactThird(forgotPasswordVo.getContactThird())) {
-            forgotPasswordVo.setResult(ForgotPasswordResult.FAILURE);
+            forgotPasswordVo.setResult(ForgotPasswordSendCodeResult.FAILURE);
             return;
         }
 
         UserDto user = this.userMapper.selectPassword(forgotPasswordVo);
 
         if (user == null) {
-            forgotPasswordVo.setResult(ForgotPasswordResult.FAILURE);
+            forgotPasswordVo.setResult(ForgotPasswordSendCodeResult.FAILURE);
             return;
         }
 
@@ -300,7 +300,7 @@ public class UserService {
                 "<b>비밀번호 재설정을 요청한적이 없는 경우 해당 메일을 폐기하세요.</b>"), true);
         mimeMessageHelper.setFrom("admin@suavite.com");
         this.mailSender.send(mimeMessage);
-        forgotPasswordVo.setResult(ForgotPasswordResult.EMAIL_SENT);
+        forgotPasswordVo.setResult(ForgotPasswordSendCodeResult.SENT);
     }
 
     public void resetPassword(ForgotPasswordContinueVo forgotPasswordContinueVo) {

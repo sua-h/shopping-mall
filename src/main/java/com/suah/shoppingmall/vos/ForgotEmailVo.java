@@ -2,8 +2,9 @@ package com.suah.shoppingmall.vos;
 
 import com.suah.shoppingmall.dtos.UserDto;
 import com.suah.shoppingmall.enums.user.ForgotEmailResult;
+import com.suah.shoppingmall.interfaces.IResult;
 
-public class ForgotEmailVo {
+public class ForgotEmailVo implements IResult<ForgotEmailResult> {
     private final String name;
     private final String contactFirst;
     private final String contactSecond;
@@ -35,10 +36,17 @@ public class ForgotEmailVo {
         return this.contactThird;
     }
 
+    @Override
     public ForgotEmailResult getResult() {
         return this.result;
     }
 
+    @Override
+    public String getResultName() {
+        return this.result == null ? null : this.result.name();
+    }
+
+    @Override
     public void setResult(ForgotEmailResult result) {
         this.result = result;
     }

@@ -202,10 +202,10 @@ public class UserController extends StandardController {
             return "redirect:/";
         }
         this.userService.resetPassword(forgotPasswordVo);
-        if (forgotPasswordVo.getResult() == ForgotPasswordResult.EMAIL_SENT) {
+        if (forgotPasswordVo.getResult() == ForgotPasswordSendCodeResult.SENT) {
             model.addAttribute("vo", forgotPasswordVo);
             return "user/forgot-password.success";
-        } else if (forgotPasswordVo.getResult() == ForgotPasswordResult.FAILURE) {
+        } else if (forgotPasswordVo.getResult() == ForgotPasswordSendCodeResult.FAILURE) {
             model.addAttribute("vo", forgotPasswordVo);
             return "user/forgot-password";
         }

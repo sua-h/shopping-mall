@@ -2,9 +2,10 @@ package com.suah.shoppingmall.vos;
 
 import com.suah.shoppingmall.dtos.UserDto;
 import com.suah.shoppingmall.enums.user.ModifyResult;
+import com.suah.shoppingmall.interfaces.IResult;
 import com.suah.shoppingmall.utils.CryptoUtil;
 
-public class ModifyVo {
+public class ModifyVo implements IResult<ModifyResult> {
     private final String password;
     private final String passwordNew;
     private final String contactFirst;
@@ -98,10 +99,17 @@ public class ModifyVo {
         this.user = user;
     }
 
+    @Override
     public ModifyResult getResult() {
         return this.result;
     }
 
+    @Override
+    public String getResultName() {
+        return this.result == null ? null : this.result.name();
+    }
+
+    @Override
     public void setResult(ModifyResult result) {
         this.result = result;
     }

@@ -2,9 +2,10 @@ package com.suah.shoppingmall.vos;
 
 import com.suah.shoppingmall.dtos.UserDto;
 import com.suah.shoppingmall.enums.user.LoginResult;
+import com.suah.shoppingmall.interfaces.IResult;
 import com.suah.shoppingmall.utils.CryptoUtil;
 
-public class LoginVo {
+public class LoginVo implements IResult<LoginResult> {
     private final String email;
     private final String password;
     private final String hashedPassword;
@@ -39,10 +40,17 @@ public class LoginVo {
         this.autoSign = autoSign;
     }
 
+    @Override
     public LoginResult getResult() {
         return this.result;
     }
 
+    @Override
+    public String getResultName() {
+        return this.result == null ? null : this.result.name();
+    }
+
+    @Override
     public void setResult(LoginResult result) {
         this.result = result;
     }
