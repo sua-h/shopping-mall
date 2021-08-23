@@ -1,19 +1,18 @@
 package com.suah.shoppingmall.vos;
 
-import com.suah.shoppingmall.enums.user.ForgotPasswordResult;
-import com.suah.shoppingmall.enums.user.ForgotPasswordSendCodeResult;
+import com.suah.shoppingmall.enums.user.ForgotPasswordContinueResult;
 import com.suah.shoppingmall.interfaces.IResult;
 import com.suah.shoppingmall.utils.CryptoUtil;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class ForgotPasswordContinueVo implements IResult<ForgotPasswordResult> {
+public class ForgotPasswordContinueVo implements IResult<ForgotPasswordContinueResult> {
     private final String key;
     private final String hashedUa;
     private final String hashedIp;
     private final String hashedPassword;
 
-    private ForgotPasswordResult result;
+    private ForgotPasswordContinueResult result;
 
     public ForgotPasswordContinueVo(String key, HttpServletRequest request, String password) {
         this.key = key;
@@ -39,17 +38,17 @@ public class ForgotPasswordContinueVo implements IResult<ForgotPasswordResult> {
     }
 
     @Override
-    public ForgotPasswordResult getResult() {
+    public ForgotPasswordContinueResult getResult() {
         return this.result;
     }
 
     @Override
     public String getResultName() {
-        return this.result == null ? null : this.result.name();
+        return this.result.name();
     }
 
     @Override
-    public void setResult(ForgotPasswordResult result) {
+    public void setResult(ForgotPasswordContinueResult result) {
         this.result = result;
     }
 }

@@ -106,7 +106,7 @@ public class ModifyVo implements IResult<ModifyResult> {
 
     @Override
     public String getResultName() {
-        return this.result == null ? null : this.result.name();
+        return this.result.name();
     }
 
     @Override

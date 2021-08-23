@@ -43,7 +43,7 @@ public class ForgotEmailVo implements IResult<ForgotEmailResult> {
 
     @Override
     public String getResultName() {
-        return this.result == null ? null : this.result.name();
+        return this.result.name();
     }
 
     @Override

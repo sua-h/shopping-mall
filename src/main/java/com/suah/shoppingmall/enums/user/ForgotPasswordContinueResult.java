@@ -1,6 +1,6 @@
 package com.suah.shoppingmall.enums.user;
 
-public enum ForgotPasswordSendCodeResult {
+public enum ForgotPasswordContinueResult {
     FAILURE,
-    SENT
+    SUCCESS
 }
