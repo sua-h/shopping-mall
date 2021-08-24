@@ -1,5 +1,6 @@
 package com.suah.shoppingmall.vos;
 
+import com.suah.shoppingmall.dtos.UserDto;
 import com.suah.shoppingmall.enums.user.ForgotPasswordResult;
 import com.suah.shoppingmall.interfaces.IResult;
 import com.suah.shoppingmall.utils.CryptoUtil;

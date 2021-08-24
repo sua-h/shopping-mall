@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.Cookie;
+import java.security.SecureRandom;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -100,6 +101,28 @@ public class UserService {
 
     public static boolean checkPassword(String password) {
         return password.matches(Regex.PASSWORD);
+    }
+
+    public static String getTempPassword(int size) {
+        char[] charSet = new char[] {
+                '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+                'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+                'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+                '~', '!', '@', '#', '$', '%', '^', '&', '*'
+        };
+
+        StringBuffer stringBuffer = new StringBuffer();
+        SecureRandom secureRandom = new SecureRandom();
+        secureRandom.setSeed(new Date().getTime());
+
+        int idx = 0;
+        int len = charSet.length;
+        for (int i = 0; i < size; i++) {
+            idx = secureRandom.nextInt(len);
+            stringBuffer.append(charSet[idx]);
+        }
+
+        return stringBuffer.toString();
     }
 
 
@@ -274,16 +297,16 @@ public class UserService {
             return;
         }
 
-        final String tempPassword = String.format("%d%f%s",
-                user.getIndex(),
-                Math.random(),
-                new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date()));
 
+        int size = (int) ((Math.random() * (16 - 10)) + 10);
 
+        final String tempPassword = getTempPassword(size);
 
-
-
+        forgotPasswordVo.setResult(ForgotPasswordResult.SUCCESS);
+        this.userMapper.updatePassword(user.getEmail(), tempPassword);
     }
+
+
 
 
 

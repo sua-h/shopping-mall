@@ -57,6 +57,6 @@ public interface IUserMapper {
             @Param("key") String key);
 
     void updatePassword(
-            @Param("userIndex") int userIndex,
+            @Param("email") String email,
             @Param("password") String password);
 }
