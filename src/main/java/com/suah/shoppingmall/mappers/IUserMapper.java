@@ -40,22 +40,6 @@ public interface IUserMapper {
 
     UserDto selectPassword(ForgotPasswordVo forgotPasswordVo);
 
-    void insertReset(
-            @Param("userIndex") int userIndex,
-            @Param("bindingUa") String bindingUa,
-            @Param("bindingIp") String bindingIp,
-            @Param("key") String key);
-
-    int selectResetUserIndex(
-            @Param("bindingUa") String bindingUa,
-            @Param("bindingIp") String bindingIp,
-            @Param("key") String key);
-
-    void updateResetExpire(
-            @Param("bindingUa") String bindingUa,
-            @Param("bindingIp") String bindingIp,
-            @Param("key") String key);
-
     void updatePassword(
             @Param("email") String email,
             @Param("password") String password);

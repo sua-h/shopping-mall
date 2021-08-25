@@ -151,32 +151,6 @@
         LIMIT 1
     </select>
 
-    <insert id="insertReset">
-        INSERT INTO `suavite`.`resets` (`user_index`, `reset_binding_ua`, `reset_binding_ip`, `reset_key`,
-                                        `reset_expire_at`)
-        VALUES (#{userIndex}, #{bindingUa}, #{bindingIp}, #{key}, DATE_ADD(NOW(), INTERVAL 10 MINUTE))
-    </insert>
-
-    <select id="selectResetUserIndex" resultType="_int">
-        SELECT `user_index` AS `userIndex`
-        FROM `suavite`.`resets`
-        WHERE `reset_binding_ua` = #{bindingUa}
-          AND `reset_binding_ip` = #{bindingIp}
-          AND `reset_key` = #{key}
-          AND `reset_expired_flag` = FALSE
-          AND `reset_expire_at` > NOW()
-        LIMIT 1
-    </select>
-
-    <update id="updateResetExpire">
-        UPDATE `suavite`.`resets`
-        SET `reset_expired_flag` = TRUE
-        WHERE `reset_binding_ua` = #{bindingUa}
-          AND `reset_binding_ip` = #{bindingIp}
-          AND `reset_key` = #{key}
-        LIMIT 1
-    </update>
-
     <update id="updatePassword">
         UPDATE `suavite`.`users`
         SET `password` = #{password}

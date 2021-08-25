@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import javax.mail.MessagingException;
 import javax.servlet.http.Cookie;
@@ -192,7 +191,8 @@ public class UserController extends StandardController {
         return "user/forgot-password";
     }
 
-    @RequestMapping(value = "/forgot-password", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    @RequestMapping(value = "/forgot-password", method = RequestMethod.POST, produces = MediaType.TEXT_HTML_VALUE)
     public String forgotPasswordPost(
             @ModelAttribute(UserDto.MODEL_NAME) UserDto user,
             Model model,
@@ -200,81 +200,25 @@ public class UserController extends StandardController {
         if (user != null) {
             return "redirect:/";
         }
-        this.userService.resetPassword(forgotPasswordVo);
-        if (forgotPasswordVo.getResult() == ForgotPasswordResult.SENT) {
-            model.addAttribute("vo", forgotPasswordVo);
+
+        this.userService.findPassword(forgotPasswordVo);
+
+        if (forgotPasswordVo.getResult() == ForgotPasswordResult.SUCCESS) {
             return "user/forgot-password.success";
-        } else if (forgotPasswordVo.getResult() == ForgotPasswordResult.FAILURE) {
+        } else {
             model.addAttribute("vo", forgotPasswordVo);
             return "user/forgot-password";
         }
-
-        return "user/forgot-password";
     }
 
-    @RequestMapping(value = "/forgot-password/send-code", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public String forgotPasswordSendCodePost(
+    @ResponseBody
+    @RequestMapping(value = "/forgot-password.success", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+    public String forgotPasswordSuccess(
             @ModelAttribute(UserDto.MODEL_NAME) UserDto user) {
         if (user != null) {
             return "redirect:/";
         }
         return "user/forgot-password.success";
     }
-
-//    @RequestMapping(value = "/reset-password", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
-//    public String resetPasswordGet(
-//            @ModelAttribute(UserDto.MODEL_NAME) UserDto user,
-//            @RequestParam(name = "key", defaultValue = "") String key) {
-//        if (user != null) {
-//            return "redirect:/";
-//        }
-//
-//        if (key.matches("^([0-9a-f]{128})$")) {
-//            return "user/reset-password";
-//        } else {
-//            return "user/forgot-password";
-//        }
-//    }
-//
-//    @RequestMapping(value = "/reset-password", method = RequestMethod.POST, produces = MediaType.TEXT_HTML_VALUE)
-//    public String resetPasswordPost(
-//            HttpServletRequest request,
-//            @ModelAttribute(UserDto.MODEL_NAME) UserDto user,
-//            @RequestParam(name = "email", defaultValue = "") String email,
-//            @RequestParam(name = "name", defaultValue = "") String name,
-//            @RequestParam(name = "contactFirst", defaultValue = "") String contactFirst,
-//            @RequestParam(name = "contactSecond", defaultValue = "") String contactSecond,
-//            @RequestParam(name = "contactThird", defaultValue = "") String contactThird,
-//            @RequestParam(name = "key", defaultValue = "") String key,
-//            @RequestParam(name = "password", defaultValue = "") String password) throws NotImplementedException, MessagingException {
-//        if (user != null) {
-//            return "redirect:/";
-//        }
-//
-//        String dist;
-//        if (key.matches("^([0-9a-f]{128})$")) {
-//            ForgotPasswordContinueVo forgotPasswordContinueVo = new ForgotPasswordContinueVo(key, request, password);
-//            this.userService.resetPassword(forgotPasswordContinueVo);
-//            dist = forgotPasswordContinueVo.getResult().name().toLowerCase();
-//        } else {
-//            ForgotPasswordVo forgotPasswordVo = new ForgotPasswordVo(email, name, contactFirst, contactSecond, contactThird, request);
-//            this.userService.resetPassword(forgotPasswordVo);
-//            dist = forgotPasswordVo.getResult().name().toLowerCase();
-//        }
-//
-//        return String.format("user/reset-password.%s", dist);
-//    }
-
-    @RequestMapping(value = "/reset-password.success", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
-    public String resetPasswordSuccess(
-            @ModelAttribute(UserDto.MODEL_NAME) UserDto user) {
-        if (user != null) {
-            return "redirect:/";
-        }
-        return "user/reset-password.success";
-    }
-
-
-
 
 }

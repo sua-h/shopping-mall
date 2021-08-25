@@ -104,7 +104,7 @@ public class UserService {
     }
 
     public static String getTempPassword(int size) {
-        char[] charSet = new char[] {
+        char[] charSet = new char[]{
                 '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
                 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
                 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
@@ -280,7 +280,7 @@ public class UserService {
         forgotEmailVo.setUser(user);
     }
 
-    public void findPassword(ForgotPasswordVo forgotPasswordVo) {
+    public void findPassword(ForgotPasswordVo forgotPasswordVo) throws MessagingException {
         if (!UserService.checkName(forgotPasswordVo.getName()) ||
                 !UserService.checkEmail(forgotPasswordVo.getEmail()) ||
                 !UserService.checkContactFirst(forgotPasswordVo.getContactFirst()) ||
@@ -302,11 +302,22 @@ public class UserService {
 
         final String tempPassword = getTempPassword(size);
 
+        MimeMessage mimeMessage = this.mailSender.createMimeMessage();
+        MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, "utf-8");
+        mimeMessageHelper.setTo(user.getEmail());
+        mimeMessageHelper.setSubject(String.format("%s%s%s", "[suavité] ", user.getName(), "님의 임시 비밀번호입니다."));
+        mimeMessageHelper.setText(String.format("%s<br>%s<br>%s%s%s<br>%s",
+                "<h1>[suavite]  임시 비밀번호 안내</h1>",
+                "<p>회원님의 비밀번호 재설정 요청이 있어 임시 비밀번호를 보내드립니다. 로그인 시 아래 임시 비밀번호를 이용해주시고, 비밀번호 변경을 권장드립니다.</p>",
+                "<h3>", tempPassword, "</h3>",
+                "<p>비밀번호를 요청한 적 없는 경우 해당 메일을 폐기하시거나 고객센터로 문의 바랍니다.</p>"), true);
+
+        mimeMessageHelper.setFrom("admin@suavite.com");
+        this.mailSender.send(mimeMessage);
+
         forgotPasswordVo.setResult(ForgotPasswordResult.SUCCESS);
         this.userMapper.updatePassword(user.getEmail(), tempPassword);
     }
-
-
 
 
 
