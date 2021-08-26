@@ -1,4 +1,5 @@
 <%@ page import="com.suah.shoppingmall.services.UserService" %>
+<%@ page import="com.suah.shoppingmall.enums.user.ForgotPasswordResult" %>
 <%@ page language="java" contentType="text/html" pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -22,7 +23,7 @@
     <div class="wrap">
         <h1>FORGOT PASSWORD</h1>
         <section class="forgot-password">
-            <form id="forgotPasswordForm">
+            <form id="forgotPasswordForm" method="post">
                 <table>
                     <caption>비밀번호 찾기</caption>
                     <tbody>
@@ -83,6 +84,7 @@
 </main>
 <%@ include file="/WEB-INF/parts/footer.jsp" %>
 <script>
+    ${vo.result == ForgotPasswordResult.FAILURE ? "alert('비밀번호 찾기에 실패하였습니다. 회원 정보를 확인하고 다시 시도해주세요.');" : ""}
 </script>
 </body>
 </html>

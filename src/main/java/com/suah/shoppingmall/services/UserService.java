@@ -301,6 +301,9 @@ public class UserService {
         int size = (int) ((Math.random() * (16 - 10)) + 10);
 
         final String tempPassword = getTempPassword(size);
+        System.out.println(tempPassword);
+
+        String hashedTempPassword = CryptoUtil.Sha512.hash(tempPassword, null);
 
         MimeMessage mimeMessage = this.mailSender.createMimeMessage();
         MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, "utf-8");
@@ -316,10 +319,8 @@ public class UserService {
         this.mailSender.send(mimeMessage);
 
         forgotPasswordVo.setResult(ForgotPasswordResult.SUCCESS);
-        this.userMapper.updatePassword(user.getEmail(), tempPassword);
+        this.userMapper.updatePassword(hashedTempPassword, user.getEmail());
     }
-
-
 
 
 }

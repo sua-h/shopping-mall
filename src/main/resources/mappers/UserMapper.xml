@@ -154,7 +154,7 @@
     <update id="updatePassword">
         UPDATE `suavite`.`users`
         SET `password` = #{password}
-        WHERE `email` = #{user.email}
+        WHERE `email` = #{email}
         LIMIT 1
     </update>
 </mapper>

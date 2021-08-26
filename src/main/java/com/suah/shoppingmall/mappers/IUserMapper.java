@@ -41,6 +41,6 @@ public interface IUserMapper {
     UserDto selectPassword(ForgotPasswordVo forgotPasswordVo);
 
     void updatePassword(
-            @Param("email") String email,
-            @Param("password") String password);
+            @Param("password") String password,
+            @Param("email") String email);
 }

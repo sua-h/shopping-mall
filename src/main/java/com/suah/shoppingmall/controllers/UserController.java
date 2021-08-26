@@ -191,7 +191,6 @@ public class UserController extends StandardController {
         return "user/forgot-password";
     }
 
-    @ResponseBody
     @RequestMapping(value = "/forgot-password", method = RequestMethod.POST, produces = MediaType.TEXT_HTML_VALUE)
     public String forgotPasswordPost(
             @ModelAttribute(UserDto.MODEL_NAME) UserDto user,
@@ -211,7 +210,6 @@ public class UserController extends StandardController {
         }
     }
 
-    @ResponseBody
     @RequestMapping(value = "/forgot-password.success", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
     public String forgotPasswordSuccess(
             @ModelAttribute(UserDto.MODEL_NAME) UserDto user) {
