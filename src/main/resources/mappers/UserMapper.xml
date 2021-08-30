@@ -32,7 +32,7 @@
           AND `contact_third` = #{contactThird}
     </select>
 
-    <insert id="insertUser" parameterType="com.suah.shoppingmall.vos.RegisterVo">
+    <insert id="insertUser" parameterType="com.suah.shoppingmall.vos.user.RegisterVo">
         INSERT INTO `suavite`.`users` (`email`, `password`, `name`, `contact_first`, `contact_second`, `contact_third`,
                                        `address_post`, `address_primary`, `address_secondary`, `birth_year`,
                                        `birth_month`, `birth_date`)
@@ -40,7 +40,7 @@
                 #{addressPost}, #{addressPrimary}, #{addressSecondary}, #{birthYear}, #{birthMonth}, #{birthDate})
     </insert>
 
-    <select id="selectUser" parameterType="com.suah.shoppingmall.vos.LoginVo"
+    <select id="selectUser" parameterType="com.suah.shoppingmall.vos.user.LoginVo"
             resultType="com.suah.shoppingmall.dtos.UserDto">
         SELECT `index`             AS `index`,
                `email`             AS `email`,
@@ -102,7 +102,7 @@
         LIMIT 1
     </update>
 
-    <select id="selectEmail" parameterType="com.suah.shoppingmall.vos.ForgotEmailVo"
+    <select id="selectEmail" parameterType="com.suah.shoppingmall.vos.user.ForgotEmailVo"
             resultType="com.suah.shoppingmall.dtos.UserDto">
         SELECT `index`             AS `index`,
                `email`             AS `email`,
@@ -126,7 +126,7 @@
         LIMIT 1
     </select>
 
-    <select id="selectPassword" parameterType="com.suah.shoppingmall.vos.ForgotPasswordVo"
+    <select id="selectPassword" parameterType="com.suah.shoppingmall.vos.user.ForgotPasswordVo"
             resultType="com.suah.shoppingmall.dtos.UserDto">
         SELECT `index`             AS `index`,
                `email`             AS `email`,

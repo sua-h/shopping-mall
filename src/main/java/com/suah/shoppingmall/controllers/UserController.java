@@ -3,7 +3,7 @@ package com.suah.shoppingmall.controllers;
 import com.suah.shoppingmall.dtos.UserDto;
 import com.suah.shoppingmall.enums.user.*;
 import com.suah.shoppingmall.services.UserService;
-import com.suah.shoppingmall.vos.*;
+import com.suah.shoppingmall.vos.user.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;

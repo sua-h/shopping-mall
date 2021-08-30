@@ -1,4 +1,4 @@
-package com.suah.shoppingmall.vos;
+package com.suah.shoppingmall.vos.user;
 
 import com.suah.shoppingmall.dtos.UserDto;
 import com.suah.shoppingmall.enums.user.ForgotEmailResult;

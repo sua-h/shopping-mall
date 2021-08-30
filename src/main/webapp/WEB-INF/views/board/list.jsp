@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="/statics/resources/stylesheets/user/list.css">
     <title>글 목록</title>
 </head>
-<body class="">
+<body>
 <%@ include file="/WEB-INF/parts/header.jsp" %>
 <main>
     <div class="wrap">

@@ -1,7 +1,7 @@
 package com.suah.shoppingmall.mappers;
 
 import com.suah.shoppingmall.dtos.UserDto;
-import com.suah.shoppingmall.vos.*;
+import com.suah.shoppingmall.vos.user.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

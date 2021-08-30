@@ -4,7 +4,7 @@ import com.suah.shoppingmall.dtos.UserDto;
 import com.suah.shoppingmall.enums.user.*;
 import com.suah.shoppingmall.mappers.IUserMapper;
 import com.suah.shoppingmall.utils.CryptoUtil;
-import com.suah.shoppingmall.vos.*;
+import com.suah.shoppingmall.vos.user.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
