@@ -1,4 +1,4 @@
-body > main {
+body.list > main {
     align-items: center;
     padding: 5rem 0;
     display: flex;
@@ -9,6 +9,7 @@ body > main {
 main > .wrap > section > table {
     width: var(--width-max);
     border-collapse: collapse;
+    border-top: 0.125rem solid #2b2b2b;
     margin-bottom: 3rem;
 }
 
@@ -17,8 +18,13 @@ main > .wrap > section > table > caption {
     text-align: left;
 }
 
-main > .wrap > section > table > thaed > tr > th {
-    border-top: 0.125rem solid #000000;
+main > .wrap > section > table > thead {
+
+}
+
+main > .wrap > section > table > thead > tr > th {
+    border-bottom: 0.0625rem solid #2b2b2b;
+    padding: 1rem 0;
 }
 
 /*main > .wrap > section > table > tbody > tr:first-child > th,*/

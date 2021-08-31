@@ -9,10 +9,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/statics/resources/stylesheets/common.css">
-    <link rel="stylesheet" href="/statics/resources/stylesheets/user/list.css">
+    <link rel="stylesheet" href="/statics/resources/stylesheets/board/list.css">
     <title>글 목록</title>
 </head>
-<body>
+<body class="list">
 <%@ include file="/WEB-INF/parts/header.jsp" %>
 <main>
     <div class="wrap">
