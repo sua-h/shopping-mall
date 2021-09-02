@@ -7,7 +7,7 @@ body.list > main {
 }
 
 main > .wrap > section > table {
-    width: var(--width-max);
+    width: 80rem;
     border-collapse: collapse;
     border-top: 0.125rem solid #2b2b2b;
     margin-bottom: 3rem;
@@ -27,36 +27,38 @@ main > .wrap > section > table > thead > tr > th {
     padding: 1rem 0;
 }
 
-/*main > .wrap > section > table > tbody > tr:first-child > th,*/
-/*main > .wrap > section > table > tbody > tr:first-child > td {*/
-/*    border-top: 0.125rem solid #000000;*/
+main > .wrap > section > table > thead > tr > th:nth-child(2) {
+    width: 55rem;
+}
+
+/*main > .wrap > section > table > tbody > tr > td:nth-child(2) {*/
+/*    text-align: left;*/
 /*}*/
 
-main > .wrap > section > table > tbody > tr > th,
 main > .wrap > section > table > tbody > tr > td {
     border-bottom: 0.0625rem solid var(--border-color-default);
+    text-align: center;
     padding: 0.75rem;
 }
 
-main > .wrap > section > table > tbody > tr > th {
-    width: 10rem;
-    border-right: 0.0625rem solid var(--border-color-default);
-    text-align: left;
+main > .wrap > section > table > tfoot {
+    line-height: 5rem;
 }
 
-main > .wrap > section > table > tbody > tr > th > span {
-    color: red;
-    vertical-align: middle;
-}
-
-main > .wrap > section > table > tbody > tr > td input {
+main > .wrap > section > table > tfoot > tr > td > form > input {
     height: 1.75rem;
     padding: 0 0.66rem;
 }
 
-main > .wrap > section > table > tbody > tr > td select.num-box {
+main > .wrap > section > table > tfoot > tr > td > form > label > input {
+    border: 0.0625rem solid var(--border-color-default);
+    outline: none;
+    padding: 0.37rem 1rem;
+}
+
+main > .wrap > section > table > tfoot > tr > td > form > label select {
     width: 4.85rem;
     border: 0.0625rem solid var(--border-color-default);
     outline: none;
-    padding: 0.35rem 1rem;
+    padding: 0.3rem 1rem;
 }
