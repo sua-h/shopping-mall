@@ -2,5 +2,57 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.suah.shoppingmall.mappers.IUserMapper">
+    <select id="selectBoards" resultType="com.suah.shoppingmall.dtos.BoardDto">
+        select `index`         AS `index`,
+               `id`            AS `id`,
+               `name`          AS `name`,
+               `level_list`    AS `levelList`,
+               `level_read`    AS `levelRead`,
+               `level_write`   AS `levelWrite`,
+               `level_comment` AS `levelComment`
+        FROM `suavite`.`boards`
+    </select>
 
+    <select id="selectBoard" resultType="com.suah.shoppingmall.dtos.BoardDto">
+        select `index`         AS `index`,
+               `id`            AS `id`,
+               `name`          AS `name`,
+               `level_list`    AS `levelList`,
+               `level_read`    AS `levelRead`,
+               `level_write`   AS `levleWrite`,
+               `level_comment` AS `levelComment`
+        FROM `suavite`.`boards`
+        WHERE `id` = #{id}
+        LIMIT 1
+    </select>
+
+    <select id="selectBoardByArticle" resultType="com.suah.shoppingmall.dtos.BoardDto">
+    </select>
+
+    <select id="selectArticles" resultType="com.suah.shoppingmall.dtos.ArticleDto">
+        select `index`      AS `index`,
+               `board_id`   AS `boardId`,
+               `user_email` AS `userEmail`,
+               `title`      AS `title`,
+               `content`    AS `content`,
+               `timestamp`  AS `timestamp`,
+               `view`       AS `view`
+        FROM `suavite`.`articles`
+        WHERE `board_id` = #{bid}
+        ORDER BY `index` DESC
+        LIMIT #{limit} OFFSET #{offset}
+    </select>
+
+    <select id="selectArticle" resultType="com.suah.shoppingmall.dtos.ArticleDto">
+        select `index`      AS `index`,
+               `board_id`   AS `boardId`,
+               `user_email` AS `userEmail`,
+               `title`      AS `title`,
+               `content`    AS `content`,
+               `timestamp`  AS `timestamp`,
+               `view`       AS `view`
+        FROM `suavite`.`articles`
+        WHERE `index` = #{aid}
+        LIMIT 1
+    </select>
 </mapper>

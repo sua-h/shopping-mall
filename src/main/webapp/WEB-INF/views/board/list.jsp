@@ -17,7 +17,7 @@
 <%@ include file="/WEB-INF/parts/header.jsp" %>
 <main>
     <div class="wrap">
-        <h1>글 목록</h1>
+        <h1>${vo.boardId}</h1>
         <section>
             <table>
                 <caption></caption>
@@ -70,7 +70,7 @@
                 <tfoot>
                     <tr>
                         <td colspan="5">
-                            <form action="" method="get">
+                            <form action="/board/search/${vo.boardId}" method="get">
                                 <label>
                                     <span hidden>기준</span>
                                     <select name="criteria">
