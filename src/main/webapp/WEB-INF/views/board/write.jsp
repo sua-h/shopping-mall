@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html" pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
 <!doctype html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -11,10 +11,12 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <link rel="stylesheet" href="/statics/resources/stylesheets/common.css">
     <link rel="stylesheet" href="/statics/resources/stylesheets/board/write.css">
+    <script src="https://cdn.ckeditor.com/ckeditor5/29.2.0/classic/ckeditor.js"></script>
     <title>글 쓰기</title>
 </head>
+<body class="write">
 <%@ include file="/WEB-INF/parts/header.jsp" %>
-<body>
+<main>
     <div class="wrap">
         <h1>write</h1>
         <section class="write">
@@ -23,16 +25,23 @@
                     <span hidden>제목</span>
                     <input autofocus name="title" type="text" maxlength="100" placeholder="제목">
                 </label>
+                <br>
                 <label>
                     <span hidden>내용</span>
-                    <textarea name="content" maxlength="10000" placeholder="내용"></textarea>
+                    <textarea id="editor" name="content" maxlength="10000" placeholder="내용"></textarea>
                 </label>
-                <input type="reset" value="되돌리기">
-                <input type="submit" value="글 작성">
+                <div class="left-button">
+                    <a href="#" onclick="window.history.back();">취소</a>
+                </div>
+                <div class="right-button">
+                    <input class="object-button prop-light" type="reset" value="되돌리기">
+                    <input class="object-button prop-dark" type="submit" value="글 작성">
+                </div>
             </form>
-            <a href="#" onclick="window.history.back();">취소</a>
         </section>
     </div>
+</main>
 <%@ include file="/WEB-INF/parts/footer.jsp" %>
+<script src="/statics/resources/scripts/board/ckeditor.js"></script>
 </body>
 </html>

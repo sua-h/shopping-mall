@@ -8,6 +8,7 @@
     --forecolor-default: #00050a;
 
     --width-max: 70rem;
+    --board-width-max: 80rem;
 }
 
 html {font-size: 16px;}

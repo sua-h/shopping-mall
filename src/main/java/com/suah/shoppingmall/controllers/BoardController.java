@@ -30,4 +30,9 @@ public class BoardController extends StandardController {
 
         return "board/list";
     }
+
+    @RequestMapping(value = "/write", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+    public String writeGet() {
+        return "board/write";
+    }
 }
