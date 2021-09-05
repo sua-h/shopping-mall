@@ -21,11 +21,20 @@
         <h1>write</h1>
         <section class="write">
             <form method="post">
-                <label>
-                    <span hidden>제목</span>
-                    <input autofocus name="title" type="text" maxlength="100" placeholder="제목">
-                </label>
-                <br>
+                <table>
+                    <caption>글쓰기</caption>
+                    <tbody>
+                        <tr>
+                            <th>TITLE</th>
+                            <td>
+                                <label>
+                                    <span hidden>제목</span>
+                                    <input autofocus name="title" type="text" maxlength="100" placeholder="제목">
+                                </label>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
                 <label>
                     <span hidden>내용</span>
                     <textarea id="editor" name="content" maxlength="10000" placeholder="내용"></textarea>
