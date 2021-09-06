@@ -29,6 +29,11 @@
     <select id="selectBoardByArticle" resultType="com.suah.shoppingmall.dtos.BoardDto">
     </select>
 
+    <insert id="insertArticle">
+        INSERT INTO `suavite`.`articles` (`board_id`, `user_email`, `title`, `content`)
+        VALUES(#{bid}, #{userEmail}, #{title}, #{content})
+    </insert>
+
     <select id="selectArticles" resultType="com.suah.shoppingmall.dtos.ArticleDto">
         select `index`      AS `index`,
                `board_id`   AS `boardId`,
@@ -44,7 +49,7 @@
     </select>
 
     <select id="selectArticle" resultType="com.suah.shoppingmall.dtos.ArticleDto">
-        select `index`      AS `index`,
+        SELECT `index`      AS `index`,
                `board_id`   AS `boardId`,
                `user_email` AS `userEmail`,
                `title`      AS `title`,

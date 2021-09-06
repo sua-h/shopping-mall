@@ -39,12 +39,15 @@
                     <span hidden>내용</span>
                     <textarea id="editor" name="content" maxlength="10000" placeholder="내용"></textarea>
                 </label>
-                <div class="left-button">
-                    <a href="#" onclick="window.history.back();">취소</a>
-                </div>
-                <div class="right-button">
-                    <input class="object-button prop-light" type="reset" value="되돌리기">
-                    <input class="object-button prop-dark" type="submit" value="글 작성">
+                <div class="button">
+                    <div class="left-button">
+                        <a href="#" class="object-button prop-light" onclick="window.history.back();">취소</a>
+                    </div>
+                    <div class="stretch"></div>
+                    <div class="right-button">
+                        <input class="object-button prop-light" type="reset" value="되돌리기">
+                        <input class="object-button prop-light" type="submit" value="글쓰기">
+                    </div>
                 </div>
             </form>
         </section>

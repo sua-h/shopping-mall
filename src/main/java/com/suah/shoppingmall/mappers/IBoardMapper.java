@@ -14,6 +14,12 @@ public interface IBoardMapper {
     BoardDto selectBoard(
             @Param("id") String id);
 
+    void insertArticle(
+            @Param("bid") String bid,
+            @Param("userEmail") String userEmail,
+            @Param("title") String title,
+            @Param("content") String content);
+
     ArrayList<ArticleDto> selectArticles(
             @Param("bid") String bid,
             @Param("limit") int limit,

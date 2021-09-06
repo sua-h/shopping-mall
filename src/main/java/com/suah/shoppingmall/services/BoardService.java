@@ -2,7 +2,9 @@ package com.suah.shoppingmall.services;
 
 import com.suah.shoppingmall.dtos.BoardDto;
 import com.suah.shoppingmall.dtos.UserDto;
+import com.suah.shoppingmall.enums.board.WriteResult;
 import com.suah.shoppingmall.mappers.IBoardMapper;
+import com.suah.shoppingmall.vos.board.WriteVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,6 +47,25 @@ public class BoardService {
 
     public BoardDto getBoard(String bid) {
         return this.boardMapper.selectBoard(bid);
+    }
+
+    public void writeArticle(WriteVo writeVo) {
+        if (writeVo.getBoard() == null) {
+            writeVo.setResult(WriteResult.NO_SUCH_BOARD);
+            return;
+        }
+
+        if (!BoardService.isAllowedToWrite(writeVo.getUser(), writeVo.getBoard())) {
+            writeVo.setResult(WriteResult.NOT_AUTHORIZED);
+            return;
+        }
+
+        this.boardMapper.insertArticle(
+                writeVo.getBoard().getId(),
+                writeVo.getUser().getEmail(),
+                writeVo.getTitle(),
+                writeVo.getContent());
+        writeVo.setResult(WriteResult.OKAY);
     }
 
 
