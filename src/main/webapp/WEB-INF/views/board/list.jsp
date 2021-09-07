@@ -1,3 +1,4 @@
+<%@ page import="com.suah.shoppingmall.enums.board.ListResult" %>
 <%@ page language="java" contentType="text/html" pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -17,10 +18,10 @@
 <%@ include file="/WEB-INF/parts/header.jsp" %>
 <main>
     <div class="wrap">
-        <h1>${vo.boardId}</h1>
+        <h1>${vo.result == ListResult.NO_SUCH_BOARD ? "존재하지 않는 게시판" : vo.board.name}</h1>
         <section>
             <table>
-                <caption></caption>
+                <caption>게시판 목록</caption>
                 <thead>
                     <tr>
                         <th>NO</th>
@@ -31,41 +32,37 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>주문/입금 안내</td>
-                        <td>관리자</td>
-                        <td>2021-08-21</td>
-                        <td>2101</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>반품/환불 안내</td>
-                        <td>관리자</td>
-                        <td>2021-08-21</td>
-                        <td>1223</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>추석 연휴 배송 지연 안내</td>
-                        <td>관리자</td>
-                        <td>2021-08-25</td>
-                        <td>4442</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>카카오톡 실시간 알람 톡 OPEN</td>
-                        <td>관리자</td>
-                        <td>2021-09-01</td>
-                        <td>13231</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>멤버쉽 혜택 안내</td>
-                        <td>관리자</td>
-                        <td>2021-09-02</td>
-                        <td>331</td>
-                    </tr>
+                    <c:if test="${vo.result == ListResult.NO_SUCH_BOARD}">
+                        <tr>
+                            <td colspan="5">존재하지 않는 게시판입니다.</td>
+                        </tr>
+                    </c:if>
+
+                    <c:if test="${vo.result == ListResult.NOT_AUTHORIZED}">
+                        <tr>
+                            <td colspan="5">게시판을 확인할 권한이 없습니다.</td>
+                        </tr>
+                    </c:if>
+
+                    <c:if test="${vo.result == ListResult.OKAY}">
+                        <c:if test="${vo.articles.size() == 0}">
+                            <tr>
+                                <td colspan="5">작성된 게시글이 없습니다.</td>
+                            </tr>
+                        </c:if>
+                        <c:forEach var="article" items="${vo.articles}">
+                            <tr>
+                                <td>${article.index}</td>
+                                <td>
+                                    <a href="/board/read/${article.index}?is=0&p=${vo.page}">${article.title}</a>
+                                    <a>[${article.comments.size()}]</a>
+                                </td>
+                                <td>${article.user.name}</td>
+                                <td>${article.timestamp}</td>
+                                <td>${article.view}</td>
+                            </tr>
+                        </c:forEach>
+                    </c:if>
                 </tbody>
                 <tfoot>
                     <tr>

@@ -25,6 +25,9 @@ public interface IBoardMapper {
             @Param("limit") int limit,
             @Param("offset") int offset);
 
+    int selectArticleCount(
+            @Param("bid") String bid);
+
     ArticleDto selectArticle(
             @Param("aid") int articleId);
 }

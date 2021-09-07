@@ -6,9 +6,9 @@ body.write > main {
     justify-content: center;
 }
 
-main > .wrap > h1 {
-    display: none;
-}
+/*main > .wrap > h1 {*/
+/*    display: none;*/
+/*}*/
 
 main > .wrap > section > form {
     /*padding-bottom: 0.75rem;*/

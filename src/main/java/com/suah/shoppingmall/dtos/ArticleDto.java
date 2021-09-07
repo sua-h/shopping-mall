@@ -19,6 +19,7 @@ public class ArticleDto {
     private final String formattedTimestamp;
 
     private BoardDto board;
+    private UserDto user;
     private ArrayList<CommentDto> comments;
 
     public ArticleDto(int index, String boardId, String userEmail, String title, String content, Date timestamp, int view) {
@@ -70,6 +71,14 @@ public class ArticleDto {
 
     public void setBoard(BoardDto board) {
         this.board = board;
+    }
+
+    public UserDto getUser() {
+        return this.user;
+    }
+
+    public void setUser(UserDto user) {
+        this.user = user;
     }
 
     public ArrayList<CommentDto> getComments() {

@@ -18,7 +18,7 @@
 <%@ include file="/WEB-INF/parts/header.jsp" %>
 <main>
     <div class="wrap">
-        <h1>write</h1>
+        <h1>${vo.board.id}</h1>
         <section class="write">
             <form method="post">
                 <table>

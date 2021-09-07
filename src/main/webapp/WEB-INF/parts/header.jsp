@@ -23,10 +23,9 @@
                 <li class="main-menu"><a href="/lookbook">lookbook</a></li>
                 <li class="main-menu"><a href="/board">community</a>
                     <ul class="sub-list">
-                        <li class="sub-menu"><a href="/board/notice">notice</a></li>
-                        <li class="sub-menu"><a href="/board/review">review</a></li>
-                        <li class="sub-menu"><a href="/board/qna">Q&A</a></li>
-                        <li class="sub-menu"><a href="/board/contact">contact</a></li>
+                        <c:forEach var="board" items="${boards}">
+                            <li class="sub-menu"><a href="/board/list/${board.id}" target="_self">${board.name}</a></li>
+                        </c:forEach>
                     </ul>
                 </li>
             </ul>
