@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.suah.shoppingmall.mappers.IUserMapper">
+<mapper namespace="com.suah.shoppingmall.mappers.IBoardMapper">
     <select id="selectBoards" resultType="com.suah.shoppingmall.dtos.BoardDto">
-        select `index`         AS `index`,
+        SELECT `index`         AS `index`,
                `id`            AS `id`,
                `name`          AS `name`,
                `level_list`    AS `levelList`,
                `level_read`    AS `levelRead`,
-               `level_write`   AS `levelWrite`,
+               `level_write`   AS `levleWrite`,
                `level_comment` AS `levelComment`
         FROM `suavite`.`boards`
     </select>
