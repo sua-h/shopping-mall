@@ -67,6 +67,32 @@
                 <tfoot>
                     <tr>
                         <td colspan="5">
+                            <c:if test="${vo.page > 1}">
+                                <span>
+                                    <a href="/board/list/${vo.board.id}/1" target="_self"><<</a>
+                                </span>
+                            </c:if>
+                            <c:forEach var="i" begin="${vo.leftPage}" end="${vo.rightPage}" step="1">
+                                <c:if test="${i == vo.page}">
+                                    <span>
+                                        <a>${i}</a>
+                                    </span>
+                                </c:if>
+                                <c:if test="${i != vo.page}">
+                                    <span>
+                                        <a href="/board/list/${vo.board.id}/${i}" target="_self">${i}</a>
+                                    </span>
+                                </c:if>
+                            </c:forEach>
+                            <c:if test="${vo.page < maxPage}">
+                                <span>
+                                    <a href="/board/list/${vo.board.id}}/${vo.maxPage}" target="_self">>></a>
+                                </span>
+                            </c:if>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="5">
                             <form action="/board/search/${vo.boardId}" method="get">
                                 <label>
                                     <span hidden>기준</span>
@@ -83,9 +109,6 @@
                                 <input class="object-button prop-dark" type="submit" value="검색">
                             </form>
                         </td>
-                    </tr>
-                    <tr>
-
                     </tr>
                 </tfoot>
             </table>
