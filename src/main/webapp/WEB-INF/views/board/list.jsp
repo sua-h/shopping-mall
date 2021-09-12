@@ -66,7 +66,10 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="5">
+                        <td class="button"><a class="object-button prop-light" href="/board/write/{bid}">WRITE</a></td>
+                    </tr>
+                    <tr>
+                        <td class="page-num" colspan="5">
                             <c:if test="${vo.page > 1}">
                                 <span>
                                     <a href="/board/list/${vo.board.id}/1" target="_self"><<</a>
@@ -84,7 +87,7 @@
                                     </span>
                                 </c:if>
                             </c:forEach>
-                            <c:if test="${vo.page < maxPage}">
+                            <c:if test="${vo.page < vo.maxPage}">
                                 <span>
                                     <a href="/board/list/${vo.board.id}}/${vo.maxPage}" target="_self">>></a>
                                 </span>
