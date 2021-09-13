@@ -41,12 +41,12 @@
                 </label>
                 <div class="button">
                     <div class="left-button">
-                        <a href="#" class="object-button prop-light" onclick="window.history.back();">취소</a>
+                        <a href="#" class="object-button prop-light" onclick="window.history.back();">CANCEL</a>
                     </div>
                     <div class="stretch"></div>
                     <div class="right-button">
-                        <input class="object-button prop-light" type="reset" value="되돌리기">
-                        <input class="object-button prop-light" type="submit" value="글쓰기">
+                        <input class="object-button prop-light" type="reset" value="RESET">
+                        <input class="object-button prop-light" type="submit" value="WRITE">
                     </div>
                 </div>
             </form>

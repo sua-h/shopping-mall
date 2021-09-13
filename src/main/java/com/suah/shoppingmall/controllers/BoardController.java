@@ -70,7 +70,7 @@ public class BoardController extends StandardController {
         this.boardService.writeArticle(writeVo);
         model.addAttribute("vo", writeVo);
         if (writeVo.getResult() == WriteResult.OKAY) {
-            return "redirect:/board/list" + boardId;
+            return "redirect:/board/list/" + boardId;
         } else {
             return "board/write";
         }

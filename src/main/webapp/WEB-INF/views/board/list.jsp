@@ -21,7 +21,7 @@
         <h1>${vo.result == ListResult.NO_SUCH_BOARD ? "존재하지 않는 게시판" : vo.board.name}</h1>
         <section>
             <table>
-                <caption>게시판 목록</caption>
+                <caption class="hidden">게시판 목록</caption>
                 <thead>
                     <tr>
                         <th>NO</th>
@@ -58,7 +58,7 @@
                                     <a>[${article.comments.size()}]</a>
                                 </td>
                                 <td>${article.user.name}</td>
-                                <td>${article.timestamp}</td>
+                                <td>${article.formattedTimestamp}</td>
                                 <td>${article.view}</td>
                             </tr>
                         </c:forEach>
@@ -66,7 +66,11 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td class="button"><a class="object-button prop-light" href="/board/write/{bid}">WRITE</a></td>
+                        <td class="button" colspan="5">
+                            <c:if test="${vo.board.levelWrite <= user.level}">
+                                <a class="object-button prop-light" href="/board/write/${vo.boardId}">WRITE</a>
+                            </c:if>
+                        </td>
                     </tr>
                     <tr>
                         <td class="page-num" colspan="5">

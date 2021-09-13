@@ -13,10 +13,6 @@ main > .wrap > section > table {
     margin-bottom: 3rem;
 }
 
-main > .wrap > section > table > caption {
-    display: none;
-}
-
 main > .wrap > section > table > thead > tr > th {
     border-bottom: 0.0625rem solid #2b2b2b;
     padding: 1rem 0;
@@ -37,16 +33,14 @@ main > .wrap > section > table > tbody > tr > td {
     padding: 0.75rem;
 }
 
-/*main > .wrap > section > table > tfoot {*/
-/*    line-height: 5rem;*/
-/*}*/
-
 main > .wrap > section > table > tfoot > tr > .button {
 
 }
 
 main > .wrap > section > table > tfoot > tr > .button > a {
-    padding: 0.825rem 1.5rem;
+    float: right;
+    margin: 0.5rem 0;
+    padding: 0.825rem 1.825rem;
 }
 
 main > .wrap > section > table > tfoot > tr > .page-num {
@@ -70,3 +64,7 @@ main > .wrap > section > table > tfoot > tr > td > form > label select {
     outline: none;
     padding: 0.3rem 1rem;
 }
+
+/*main > .wrap > section > table > tfoot > tr > td.space {*/
+/*    border-top: 3rem solid var(--background-default);*/
+/*}*/
