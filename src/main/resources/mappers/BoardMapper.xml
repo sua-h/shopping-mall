@@ -30,8 +30,8 @@
     </select>
 
     <insert id="insertArticle">
-        INSERT INTO `suavite`.`articles` (`board_id`, `user_email`, `title`, `content`)
-        VALUES (#{bid}, #{userEmail}, #{title}, #{content})
+        INSERT INTO `suavite`.`articles` (`board_id`, `user_email`, `user_name`, `title`, `content`)
+        VALUES (#{bid}, #{userEmail}, #{userName}, #{title}, #{content})
     </insert>
 
     <select id="selectArticles" resultType="com.suah.shoppingmall.dtos.ArticleDto">

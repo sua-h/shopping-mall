@@ -12,6 +12,7 @@ public class ArticleDto {
     private final int index;
     private final String boardId;
     private final String userEmail;
+    private final String userName;
     private final String title;
     private final String content;
     private final Date timestamp;
@@ -19,13 +20,13 @@ public class ArticleDto {
     private final String formattedTimestamp;
 
     private BoardDto board;
-    private UserDto user;
     private ArrayList<CommentDto> comments;
 
-    public ArticleDto(int index, String boardId, String userEmail, String title, String content, Date timestamp, int view) {
+    public ArticleDto(int index, String boardId, String userEmail, String userName, String title, String content, Date timestamp, int view) {
         this.index = index;
         this.boardId = boardId;
         this.userEmail = userEmail;
+        this.userName = userName;
         this.title = title;
         this.content = content;
         this.timestamp = timestamp;
@@ -43,6 +44,10 @@ public class ArticleDto {
 
     public String getUserEmail() {
         return this.userEmail;
+    }
+
+    public String getUserName() {
+        return this.userName;
     }
 
     public String getTitle() {
@@ -71,14 +76,6 @@ public class ArticleDto {
 
     public void setBoard(BoardDto board) {
         this.board = board;
-    }
-
-    public UserDto getUser() {
-        return this.user;
-    }
-
-    public void setUser(UserDto user) {
-        this.user = user;
     }
 
     public ArrayList<CommentDto> getComments() {

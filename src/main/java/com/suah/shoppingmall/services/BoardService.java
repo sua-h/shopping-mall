@@ -97,6 +97,7 @@ public class BoardService {
         this.boardMapper.insertArticle(
                 writeVo.getBoard().getId(),
                 writeVo.getUser().getEmail(),
+                writeVo.getUser().getName(),
                 writeVo.getTitle(),
                 writeVo.getContent());
         writeVo.setResult(WriteResult.OKAY);

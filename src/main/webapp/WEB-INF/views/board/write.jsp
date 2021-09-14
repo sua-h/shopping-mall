@@ -45,7 +45,7 @@
                     </div>
                     <div class="stretch"></div>
                     <div class="right-button">
-                        <input class="object-button prop-light" type="reset" value="RESET">
+                        <input id="reset" class="object-button prop-light" type="reset" value="RESET">
                         <input class="object-button prop-light" type="submit" value="WRITE">
                     </div>
                 </div>
@@ -55,5 +55,20 @@
 </main>
 <%@ include file="/WEB-INF/parts/footer.jsp" %>
 <script src="/statics/resources/scripts/board/ckeditor.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        // You can define it before replacing the editor
+        ClassicEditor.on('instanceReady', function(e){
+            // Do your bindings / other actions here
+            // To access the editor that this event has fired on:
+            const editor = e.editor;
+        });
+
+        // replace editor
+        const editorVar = ClassicEditor.editor.replace('editor');
+
+
+    });
+</script>
 </body>
 </html>

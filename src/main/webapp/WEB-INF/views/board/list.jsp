@@ -57,7 +57,7 @@
                                     <a href="/board/read/${article.index}?is=0&p=${vo.page}">${article.title}</a>
                                     <a>[${article.comments.size()}]</a>
                                 </td>
-                                <td>${article.user.name}</td>
+                                <td>${article.userName}</td>
                                 <td>${article.formattedTimestamp}</td>
                                 <td>${article.view}</td>
                             </tr>

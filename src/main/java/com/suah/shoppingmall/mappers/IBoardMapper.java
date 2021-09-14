@@ -17,6 +17,7 @@ public interface IBoardMapper {
     void insertArticle(
             @Param("bid") String bid,
             @Param("userEmail") String userEmail,
+            @Param("userName") String userName,
             @Param("title") String title,
             @Param("content") String content);
 
