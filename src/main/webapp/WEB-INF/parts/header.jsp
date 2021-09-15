@@ -21,7 +21,7 @@
                     </ul>
                 </li>
                 <li class="main-menu"><a href="/lookbook">lookbook</a></li>
-                <li class="main-menu"><a href="/board">community</a>
+                <li class="main-menu"><a href="#">community</a>
                     <ul class="sub-list">
                         <c:forEach var="board" items="${boards}">
                             <li class="sub-menu"><a href="/board/list/${board.id}" target="_self">${board.name}</a></li>

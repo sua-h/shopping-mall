@@ -1,3 +1,4 @@
+<%@ page import="com.suah.shoppingmall.enums.board.WriteResult" %>
 <%@ page language="java" contentType="text/html" pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
 <!doctype html>
 <html lang="ko">
@@ -55,20 +56,5 @@
 </main>
 <%@ include file="/WEB-INF/parts/footer.jsp" %>
 <script src="/statics/resources/scripts/board/ckeditor.js"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        // You can define it before replacing the editor
-        ClassicEditor.on('instanceReady', function(e){
-            // Do your bindings / other actions here
-            // To access the editor that this event has fired on:
-            const editor = e.editor;
-        });
-
-        // replace editor
-        const editorVar = ClassicEditor.editor.replace('editor');
-
-
-    });
-</script>
 </body>
 </html>

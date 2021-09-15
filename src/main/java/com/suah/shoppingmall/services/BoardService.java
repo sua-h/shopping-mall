@@ -60,6 +60,7 @@ public class BoardService {
 
         if (!BoardService.isAllowedToList(listVo.getUser(), listVo.getBoard())) {
             listVo.setResult(ListResult.NOT_AUTHORIZED);
+
             return;
         }
 

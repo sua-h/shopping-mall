@@ -18,7 +18,7 @@
 <%@ include file="/WEB-INF/parts/header.jsp" %>
 <main>
     <div class="wrap">
-        <h1>${vo.result == ListResult.NO_SUCH_BOARD ? "존재하지 않는 게시판" : vo.board.name}</h1>
+        <h1>${vo.result == ListResult.NO_SUCH_BOARD ? "NO SUCH BOARD" : vo.board.name}</h1>
         <section>
             <table>
                 <caption class="hidden">게시판 목록</caption>
@@ -50,9 +50,11 @@
                                 <td colspan="5">작성된 게시글이 없습니다.</td>
                             </tr>
                         </c:if>
-                        <c:forEach var="article" items="${vo.articles}">
+                        <c:forEach var="article" items="${vo.articles}" varStatus="artIndex">
                             <tr>
-                                <td>${article.index}</td>
+                                <td>
+                                   ${vo.articles.size() - artIndex.index}
+                                </td>
                                 <td>
                                     <a href="/board/read/${article.index}?is=0&p=${vo.page}">${article.title}</a>
                                     <a>[${article.comments.size()}]</a>
@@ -67,34 +69,36 @@
                 <tfoot>
                     <tr>
                         <td class="button" colspan="5">
-                            <c:if test="${vo.board.levelWrite <= user.level}">
+                            <c:if test="${vo.board.levelWrite >= user.level && vo.result != ListResult.NO_SUCH_BOARD}">
                                 <a class="object-button prop-light" href="/board/write/${vo.boardId}">WRITE</a>
                             </c:if>
                         </td>
                     </tr>
                     <tr>
                         <td class="page-num" colspan="5">
-                            <c:if test="${vo.page > 1}">
+                            <c:if test="${vo.result != ListResult.NOT_AUTHORIZED}">
+                                <c:if test="${vo.page > 1}">
                                 <span>
                                     <a href="/board/list/${vo.board.id}/1" target="_self"><<</a>
                                 </span>
-                            </c:if>
-                            <c:forEach var="i" begin="${vo.leftPage}" end="${vo.rightPage}" step="1">
-                                <c:if test="${i == vo.page}">
+                                </c:if>
+                                <c:forEach var="i" begin="${vo.leftPage}" end="${vo.rightPage}" step="1">
+                                    <c:if test="${i == vo.page}">
                                     <span>
                                         <a>${i}</a>
                                     </span>
-                                </c:if>
-                                <c:if test="${i != vo.page}">
+                                    </c:if>
+                                    <c:if test="${i != vo.page}">
                                     <span>
                                         <a href="/board/list/${vo.board.id}/${i}" target="_self">${i}</a>
                                     </span>
-                                </c:if>
-                            </c:forEach>
-                            <c:if test="${vo.page < vo.maxPage}">
+                                    </c:if>
+                                </c:forEach>
+                                <c:if test="${vo.page < vo.maxPage}">
                                 <span>
                                     <a href="/board/list/${vo.board.id}}/${vo.maxPage}" target="_self">>></a>
                                 </span>
+                                </c:if>
                             </c:if>
                         </td>
                     </tr>
@@ -123,5 +127,9 @@
     </div>
 </main>
 <%@ include file="/WEB-INF/parts/footer.jsp" %>
+<script>
+    ${vo.result == ListResult.NOT_AUTHORIZED ? "alert('접근 권한이 없습니다.');" : ""}
+    ${vo.result == ListResult.NO_SUCH_BOARD ? "alert('게시판을 찾을 수 없습니다.');" : ""}
+</script>
 </body>
 </html>
