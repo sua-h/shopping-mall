@@ -50,10 +50,11 @@
                                 <td colspan="5">작성된 게시글이 없습니다.</td>
                             </tr>
                         </c:if>
-                        <c:forEach var="article" items="${vo.articles}" varStatus="artIndex">
+                        <c:forEach var="article" items="${vo.articles}" varStatus="status">
                             <tr>
                                 <td>
-                                   ${vo.articles.size() - artIndex.index}
+                                    <!-- 전체 레코드 수 - ( (현재 페이지 번호 - 1) * 한 페이지당 보여지는 레코드 수 + 현재 게시물 출력 순서 ) -->
+                                    ${vo.articleCount - ((vo.page - 1) * 10 + status.index)}
                                 </td>
                                 <td>
                                     <a href="/board/read/${article.index}?is=0&p=${vo.page}">${article.title}</a>
@@ -84,7 +85,7 @@
                                 </c:if>
                                 <c:forEach var="i" begin="${vo.leftPage}" end="${vo.rightPage}" step="1">
                                     <c:if test="${i == vo.page}">
-                                    <span>
+                                    <span class="current-page">
                                         <a>${i}</a>
                                     </span>
                                     </c:if>
@@ -96,7 +97,7 @@
                                 </c:forEach>
                                 <c:if test="${vo.page < vo.maxPage}">
                                 <span>
-                                    <a href="/board/list/${vo.board.id}}/${vo.maxPage}" target="_self">>></a>
+                                    <a href="/board/list/${vo.board.id}/${vo.maxPage}" target="_self">>></a>
                                 </span>
                                 </c:if>
                             </c:if>

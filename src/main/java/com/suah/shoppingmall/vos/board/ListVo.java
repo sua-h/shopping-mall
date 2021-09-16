@@ -17,6 +17,7 @@ public class ListVo implements IResult<ListResult> {
     private ArrayList<ArticleDto> articles;
     private ListResult result;
 
+    private int articleCount;
     private int leftPage;
     private int rightPage;
     private int maxPage;
@@ -71,6 +72,14 @@ public class ListVo implements IResult<ListResult> {
     @Override
     public void setResult(ListResult result) {
         this.result = result;
+    }
+
+    public int getArticleCount() {
+        return this.articleCount;
+    }
+
+    public void setArticleCount(int articleCount) {
+        this.articleCount = articleCount;
     }
 
     public int getLeftPage() {

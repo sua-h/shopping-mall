@@ -43,7 +43,6 @@ public class BoardService {
         return (user == null ? 10 : user.getLevel()) <= board.getLevelWrite();
     }
 
-
     public ArrayList<BoardDto> getBoards() {
         return this.boardMapper.selectBoards();
     }
@@ -69,6 +68,7 @@ public class BoardService {
         int leftPage = Math.max(1, listVo.getPage() - Config.PAGE_RANGE);
         int rightPage = Math.min(maxPage, listVo.getPage() + Config.PAGE_RANGE);
 
+        listVo.setArticleCount(articleCount);
         listVo.setMaxPage(maxPage);
         listVo.setLeftPage(leftPage);
         listVo.setRightPage(rightPage);

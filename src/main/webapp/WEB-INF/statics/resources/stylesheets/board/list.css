@@ -48,8 +48,14 @@ main > .wrap > section > table > tfoot > tr > .page-num {
 }
 
 main > .wrap > section > table > tfoot > tr > .page-num > span {
-    display: block;
+    display: inline-block;
+    padding: 0.1rem 0.425rem;
     margin-top: 1.25rem;
+}
+
+main > .wrap > section > table > tfoot > tr > .page-num > span.current-page {
+    background-color: #ececec;
+    border-radius: 100%;
 }
 
 main > .wrap > section > table > tfoot > tr > td > form {
