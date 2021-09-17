@@ -4,9 +4,11 @@ import com.suah.shoppingmall.dtos.ArticleDto;
 import com.suah.shoppingmall.dtos.BoardDto;
 import com.suah.shoppingmall.dtos.UserDto;
 import com.suah.shoppingmall.enums.board.ListResult;
+import com.suah.shoppingmall.enums.board.ReadResult;
 import com.suah.shoppingmall.enums.board.WriteResult;
 import com.suah.shoppingmall.mappers.IBoardMapper;
 import com.suah.shoppingmall.vos.board.ListVo;
+import com.suah.shoppingmall.vos.board.ReadVo;
 import com.suah.shoppingmall.vos.board.WriteVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,6 +52,8 @@ public class BoardService {
     public BoardDto getBoard(String bid) {
         return this.boardMapper.selectBoard(bid);
     }
+
+    public BoardDto getBoard(int aid) { return this.boardMapper.selectBoardByArticle(aid); }
 
     public void getArticles(ListVo listVo) {
         if (listVo.getBoard() == null) {
@@ -102,6 +106,10 @@ public class BoardService {
                 writeVo.getTitle(),
                 writeVo.getContent());
         writeVo.setResult(WriteResult.OKAY);
+    }
+
+    public void read(ReadVo readVo) {
+        BoardDto board = this.getBoard(readVo.getArticleId());
     }
 
 

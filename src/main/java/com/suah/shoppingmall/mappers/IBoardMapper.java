@@ -14,6 +14,9 @@ public interface IBoardMapper {
     BoardDto selectBoard(
             @Param("id") String id);
 
+    BoardDto selectBoardByArticle(
+            @Param("aid") int articleId);
+
     void insertArticle(
             @Param("bid") String bid,
             @Param("userEmail") String userEmail,

@@ -27,6 +27,17 @@
     </select>
 
     <select id="selectBoardByArticle" resultType="com.suah.shoppingmall.dtos.BoardDto">
+        SELECT `board`.`index`         AS `index`,
+               `board`.`id`            AS `id`,
+               `board`.`name`          AS `name`,
+               `board`.`level_list`    AS `levelList`,
+               `board`.`level_read`    AS `levelRead`,
+               `board`.`level_write`   AS `levelWrite`,
+               `board`.`level_comment` AS `levelComment`
+        FROM `suavite`.`articles` AS `article`
+                 LEFT JOIN `suavite`.`boards` AS `board` ON `article`.`board_id` = `board`.`id`
+        WHERE `article`.`index` = #{aid}
+        LIMIT 1
     </select>
 
     <insert id="insertArticle">
