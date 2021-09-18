@@ -78,4 +78,11 @@
         FROM `suavite`.`articles`
         WHERE `board_id` = #{bid}
     </select>
+
+    <update id="updateArticleViewed">
+        update `suavite`.`articles`
+        SET `view` = `view` + 1
+        WHERE `index` = #{aid}
+        LIMIT 1
+    </update>
 </mapper>

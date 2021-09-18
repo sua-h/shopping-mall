@@ -34,4 +34,7 @@ public interface IBoardMapper {
 
     ArticleDto selectArticle(
             @Param("aid") int articleId);
+
+    void updateArticleViewed(
+            @Param("aid") int articleId);
 }

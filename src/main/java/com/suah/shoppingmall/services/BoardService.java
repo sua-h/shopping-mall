@@ -110,6 +110,22 @@ public class BoardService {
 
     public void read(ReadVo readVo) {
         BoardDto board = this.getBoard(readVo.getArticleId());
+        if (board == null) {
+            readVo.setResult(ReadResult.NO_SUCH_ARTICLES);
+            return;
+        }
+
+        if (!BoardService.isAllowedToRead(readVo.getUser(), board)) {
+            readVo.setResult(ReadResult.NOT_AUTHORIZED);
+            return;
+        }
+
+        this.boardMapper.updateArticleViewed(readVo.getArticleId());
+        ArticleDto article = this.boardMapper.selectArticle(readVo.getArticleId());
+        // TODO : article - comment set
+        readVo.setArticle(article);
+        readVo.setBoard(board);
+        readVo.setResult(ReadResult.OKAY);
     }
 
 

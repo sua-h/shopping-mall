@@ -5,6 +5,7 @@ import com.suah.shoppingmall.dtos.UserDto;
 import com.suah.shoppingmall.enums.board.WriteResult;
 import com.suah.shoppingmall.services.BoardService;
 import com.suah.shoppingmall.vos.board.ListVo;
+import com.suah.shoppingmall.vos.board.ReadVo;
 import com.suah.shoppingmall.vos.board.WriteVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.print.attribute.standard.Media;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Optional;
 
@@ -74,5 +76,25 @@ public class BoardController extends StandardController {
         } else {
             return "board/write";
         }
+    }
+
+    @RequestMapping(value = "/read/{aid}", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+    public String readGet(
+            Model model,
+            @PathVariable("aid") int articleId,
+            @ModelAttribute(UserDto.MODEL_NAME) UserDto user) {
+        ReadVo readVo = new ReadVo(articleId);
+        readVo.setUser(user);
+        this.boardService.read(readVo);
+        model.addAttribute("vo", readVo);
+        return "/board/read";
+    }
+
+    @RequestMapping(value = "/read/{aid}", method = RequestMethod.POST, produces = MediaType.TEXT_HTML_VALUE)
+    public String readPost(
+            Model model,
+            @PathVariable("aid") int articleId,
+            @ModelAttribute(UserDto.MODEL_NAME) UserDto user) {
+        return "/board/read";
     }
 }
