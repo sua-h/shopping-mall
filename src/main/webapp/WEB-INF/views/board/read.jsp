@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <link rel="stylesheet" href="/statics/resources/stylesheets/common.css">
-    <link rel="stylesheet" href="/statics/resources/stylesheets/board/list.css">
+    <link rel="stylesheet" href="/statics/resources/stylesheets/board/read.css">
     <title>글 목록</title>
 </head>
 <body class="list">
@@ -36,28 +36,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr class="content">
                         <td colspan="5">${vo.article.content}</td>
                     </tr>
-                    <tr>
-                        <td>WRITE</td>
-                        <td>21-01-01 12:21</td>
-                        <td colspan="2">COMMENT CONTENT</td>
-                    </tr>
-                    <tr>
-                        <th>comment</th>
-                        <td colspan="5">
-                            <form method="post">
-                                <label>
-                                    <span hidden>댓글</span>
-                                    <input name="content" type="text" maxlength="100" placeholder="댓글">
-                                </label>
-                                <input type="submit" value="WRITE">
-                            </form>
-                        </td>
-                    </tr>
-                </tbody>
-                <tfoot>
                     <tr>
                         <td>
                             <a class="object-button prop-light" href="/board/list/${vo.board.id}">LIST</a>
@@ -67,6 +48,26 @@
                             <a class="object-button prop-light" href="/board/delete/${vo.article.index}" target="_self">DELETE</a>
                         </td>
                     </tr>
+                </tbody>
+                <tfoot>
+                <tr class="comment-read head">
+                    <td colspan="5">이재현<span>2021-01-01 11:11</span></td>
+                </tr>
+                <tr class="comment-read cont">
+                    <td colspan="5">COMMENT CONTENT</td>
+                </tr>
+                <tr class="comment-write">
+                    <th>comment</th>
+                    <td colspan="5">
+                        <form method="post">
+                            <label>
+                                <span hidden>댓글</span>
+                                <input class="object-text" name="content" type="text" maxlength="100" placeholder="댓글">
+                            </label>
+                            <input class="object-button prop-light" type="submit" value="WRITE">
+                        </form>
+                    </td>
+                </tr>
                 </tfoot>
             </table>
         </section>

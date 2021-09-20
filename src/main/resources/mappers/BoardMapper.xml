@@ -64,6 +64,7 @@
         SELECT `index`      AS `index`,
                `board_id`   AS `boardId`,
                `user_email` AS `userEmail`,
+               `user_name`  AS `userName`,
                `title`      AS `title`,
                `content`    AS `content`,
                `timestamp`  AS `timestamp`,

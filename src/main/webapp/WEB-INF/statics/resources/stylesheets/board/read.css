@@ -1,0 +1,57 @@
+body.list > main {
+    align-items: center;
+    padding: 5rem 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+main > .wrap > section > table {
+    width: var(--board-width-max);
+    border-collapse: collapse;
+    border-top: 0.125rem solid #2b2b2b;
+    margin-bottom: 3rem;
+}
+
+/*main > .wrap > section > table th {*/
+/*    width: 15%;*/
+/*}*/
+
+main > .wrap > section > table > thead > tr > * {
+    border-bottom: 0.0625rem solid var(--border-color-default);
+    padding: 1rem 0;
+}
+
+main > .wrap > section > table > thead > tr:nth-child(2) > * {
+    border-bottom: 0.0625rem solid #2b2b2b;
+}
+
+main > .wrap > section > table > tbody > tr.content > td {
+    border-bottom: 0.0625rem solid #2b2b2b;
+    padding: 10rem 2rem;
+}
+
+main > .wrap > section > table > tfoot > tr > * {
+}
+
+main > .wrap > section > table > tfoot > tr.comment-read {
+    border: 0.0625rem solid var(--border-color-default);
+}
+
+main > .wrap > section > table > tfoot > tr.comment-read.head > td {
+    font-weight: 500;
+    padding: 0.5rem 2rem;
+    text-align: left;
+}
+
+main > .wrap > section > table > tfoot > tr.comment-read.head > td > span {
+    color: #80858a;
+    font-size: 0.6rem;
+    font-weight: 400;
+    padding: 0 1rem;
+}
+
+main > .wrap > section > table > tfoot > tr.comment-read.cont > td {
+    font-size: 0.8rem;
+    padding: 2rem;
+}
