@@ -39,10 +39,11 @@
                     <tr class="content">
                         <td colspan="5">${vo.article.content}</td>
                     </tr>
-                    <tr>
+                    <tr class="button">
                         <td>
                             <a class="object-button prop-light" href="/board/list/${vo.board.id}">LIST</a>
                         </td>
+                        <td colspan="3"></td>
                         <td>
                             <a class="object-button prop-light" href="/board/edit/${vo.article.index}" target="_self">EDIT</a>
                             <a class="object-button prop-light" href="/board/delete/${vo.article.index}" target="_self">DELETE</a>
@@ -50,24 +51,24 @@
                     </tr>
                 </tbody>
                 <tfoot>
-                <tr class="comment-read head">
-                    <td colspan="5">이재현<span>2021-01-01 11:11</span></td>
-                </tr>
-                <tr class="comment-read cont">
-                    <td colspan="5">COMMENT CONTENT</td>
-                </tr>
-                <tr class="comment-write">
-                    <th>comment</th>
-                    <td colspan="5">
-                        <form method="post">
-                            <label>
-                                <span hidden>댓글</span>
-                                <input class="object-text" name="content" type="text" maxlength="100" placeholder="댓글">
-                            </label>
-                            <input class="object-button prop-light" type="submit" value="WRITE">
-                        </form>
-                    </td>
-                </tr>
+                    <tr class="comment-read head">
+                        <td colspan="5">이재현<span>2021-01-01 11:11</span></td>
+                    </tr>
+                    <tr class="comment-read cont">
+                        <td colspan="5">COMMENT CONTENT</td>
+                    </tr>
+                    <tr class="comment-write">
+                        <th>comment</th>
+                        <td colspan="5">
+                            <form method="post">
+                                <label>
+                                    <span hidden>댓글</span>
+                                    <input class="object-text" name="content" type="text" maxlength="100" placeholder="댓글">
+                                </label>
+                                <input class="object-button prop-light" type="submit" value="WRITE">
+                            </form>
+                        </td>
+                    </tr>
                 </tfoot>
             </table>
         </section>
