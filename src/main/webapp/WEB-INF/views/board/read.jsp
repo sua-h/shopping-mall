@@ -52,13 +52,18 @@
                 </tbody>
                 <tfoot>
                     <tr class="comment-read head">
-                        <td colspan="5">이재현<span>2021-01-01 11:11</span></td>
+                        <td colspan="5">홍은비<span>2021-01-01 11:11</span></td>
                     </tr>
                     <tr class="comment-read cont">
-                        <td colspan="5">COMMENT CONTENT</td>
+                        <td colspan="5"><span>COMMENT CONTENT</span></td>
                     </tr>
-                    <tr class="comment-write">
-                        <th>comment</th>
+                    <tr class="empty">
+                        <td colspan="5"></td>
+                    </tr>
+                    <tr class="comment-write head">
+                        <td colspan="5">write a comment</td>
+                    </tr>
+                    <tr class="comment-write cont">
                         <td colspan="5">
                             <form method="post">
                                 <label>
