@@ -13,9 +13,10 @@ main > .wrap > section > table {
     margin-bottom: 3rem;
 }
 
-/*main > .wrap > section > table th {*/
-/*    width: 15%;*/
-/*}*/
+main > .wrap > section > table > thead > tr.read-header > th,
+main > .wrap > section > table > thead > tr.read-header > td {
+    width: 15%;
+}
 
 main > .wrap > section > table > tr > td {}
 

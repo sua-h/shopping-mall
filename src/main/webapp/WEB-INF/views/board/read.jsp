@@ -26,7 +26,7 @@
                         <th>TITLE</th>
                         <td colspan="5">${vo.article.title}</td>
                     </tr>
-                    <tr>
+                    <tr class="read-header">
                         <th>WRITER</th>
                         <td>${vo.article.userName}</td>
                         <th>DATE</th>
