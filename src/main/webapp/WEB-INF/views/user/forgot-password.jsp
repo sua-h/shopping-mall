@@ -42,7 +42,7 @@
                             <label>
                                 <span hidden>이메일</span>
                                 <input class="object-text" type="text" name="email" maxlength="50" value="${vo.email}" data-regex="<%=UserService.Regex.EMAIL%>">
-                                <span class="notice" rel="">회원정보가 일치하면 해당 메일로 비밀번호 재설정 링크를 보내드립니다.</span>
+                                <span class="notice" rel="">회원정보가 일치하면 해당 메일로 임시 비밀번호를 보내드립니다.</span>
                             </label>
                         </td>
                     </tr>

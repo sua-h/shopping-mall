@@ -7,6 +7,7 @@ import com.suah.shoppingmall.enums.board.ListResult;
 import com.suah.shoppingmall.enums.board.ReadResult;
 import com.suah.shoppingmall.enums.board.WriteResult;
 import com.suah.shoppingmall.mappers.IBoardMapper;
+import com.suah.shoppingmall.vos.board.CommentVo;
 import com.suah.shoppingmall.vos.board.ListVo;
 import com.suah.shoppingmall.vos.board.ReadVo;
 import com.suah.shoppingmall.vos.board.WriteVo;
@@ -102,7 +103,6 @@ public class BoardService {
         this.boardMapper.insertArticle(
                 writeVo.getBoard().getId(),
                 writeVo.getUser().getEmail(),
-                writeVo.getUser().getName(),
                 writeVo.getTitle(),
                 writeVo.getContent());
         writeVo.setResult(WriteResult.OKAY);
@@ -123,9 +123,25 @@ public class BoardService {
         this.boardMapper.updateArticleViewed(readVo.getArticleId());
         ArticleDto article = this.boardMapper.selectArticle(readVo.getArticleId());
         // TODO : article - comment set
+        article.setComments(this.boardMapper.selectComments(readVo.getArticleId()));
         readVo.setArticle(article);
         readVo.setBoard(board);
         readVo.setResult(ReadResult.OKAY);
+    }
+
+    public void writeComment(CommentVo commentVo) {
+        BoardDto board = this.getBoard(commentVo.getArticleId());
+
+        System.out.println(commentVo.getContent());
+
+        if (board == null || BoardService.isAllowedToComment(commentVo.getUser(), board)) {
+            return;
+        }
+
+        this.boardMapper.insertComment(
+                commentVo.getArticleId(),
+                commentVo.getUser().getEmail(),
+                commentVo.getContent());
     }
 
 

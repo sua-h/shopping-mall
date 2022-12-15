@@ -2,6 +2,7 @@ package com.suah.shoppingmall.mappers;
 
 import com.suah.shoppingmall.dtos.ArticleDto;
 import com.suah.shoppingmall.dtos.BoardDto;
+import com.suah.shoppingmall.dtos.CommentDto;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -20,7 +21,6 @@ public interface IBoardMapper {
     void insertArticle(
             @Param("bid") String bid,
             @Param("userEmail") String userEmail,
-            @Param("userName") String userName,
             @Param("title") String title,
             @Param("content") String content);
 
@@ -34,6 +34,17 @@ public interface IBoardMapper {
 
     ArticleDto selectArticle(
             @Param("aid") int articleId);
+
+    void insertComment(
+            @Param("aid") int articleId,
+            @Param("userEmail") String userEmail,
+            @Param("content") String content);
+
+    ArrayList<CommentDto> selectComments(
+            @Param("aid") int articleId);
+
+    CommentDto selectComment(
+            @Param("cid") int commentId);
 
     void updateArticleViewed(
             @Param("aid") int articleId);

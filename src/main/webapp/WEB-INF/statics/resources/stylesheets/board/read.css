@@ -90,11 +90,29 @@ main > .wrap > section > div.read-footer > div.comment-write > div.read-head {
     padding: 0.5rem 2rem;
 }
 
-main > .wrap > section > div.read-footer > div.comment-read > div.read-head > span {
+main > .wrap > section > div.read-footer > div.comment-read > div.read-head > div.read-head-info > span {
     color: #80858a;
     font-size: 0.6rem;
     font-weight: 400;
     padding: 0 1rem;
+}
+
+main > .wrap > section > div.read-footer > div.comment-read > div.read-head > div.read-head-menu > a {
+    color: #5e5e5e;
+    font-size: 0.8rem;
+
+}
+
+main > .wrap > section > div.read-footer > div.comment-read > div.read-head > div.read-head-menu > a:first-child {
+    margin-right: 1rem;
+}
+
+main > .wrap > section > div.read-footer > div.comment-read > div.read-head {
+    display: flex;
+}
+
+main > .wrap > section > div.read-footer > div.comment-read > div.read-head > div.stretch {
+    flex: 1;
 }
 
 main > .wrap > section > div.read-footer > div.comment-read > div.read-cont {

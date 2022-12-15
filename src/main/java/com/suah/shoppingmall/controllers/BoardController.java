@@ -4,6 +4,7 @@ import com.suah.shoppingmall.dtos.BoardDto;
 import com.suah.shoppingmall.dtos.UserDto;
 import com.suah.shoppingmall.enums.board.WriteResult;
 import com.suah.shoppingmall.services.BoardService;
+import com.suah.shoppingmall.vos.board.CommentVo;
 import com.suah.shoppingmall.vos.board.ListVo;
 import com.suah.shoppingmall.vos.board.ReadVo;
 import com.suah.shoppingmall.vos.board.WriteVo;
@@ -93,8 +94,14 @@ public class BoardController extends StandardController {
     @RequestMapping(value = "/read/{aid}", method = RequestMethod.POST, produces = MediaType.TEXT_HTML_VALUE)
     public String readPost(
             Model model,
+            CommentVo commentVo,
             @PathVariable("aid") int articleId,
             @ModelAttribute(UserDto.MODEL_NAME) UserDto user) {
-        return "/board/read";
+        commentVo.setArticleId(articleId);
+        commentVo.setUser(user);
+        this.boardService.writeComment(commentVo);
+        return "redirect:/board/read/" + articleId;
     }
 }
+
+

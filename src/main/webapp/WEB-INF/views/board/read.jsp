@@ -54,8 +54,15 @@
                 </div>
                 <div class="comment-read">
                     <div class="read-head">
-                        <strong>홍은비</strong>
-                        <span>2021-01-01 11:11</span>
+                        <div class="read-head-info">
+                            <strong>김김김</strong>
+                            <span>2021-01-01 11:11</span>
+                        </div>
+                        <div class="stretch"></div>
+                        <div class="read-head-menu">
+                            <a href="/">modify</a>
+                            <a href="/">delete</a>
+                        </div>
                     </div>
                     <div class="read-cont">
                         <span>COMMENT CONTENT</span>

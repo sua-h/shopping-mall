@@ -14,7 +14,7 @@
     </select>
 
     <select id="selectBoard" resultType="com.suah.shoppingmall.dtos.BoardDto">
-        select `index`         AS `index`,
+        SELECT `index`         AS `index`,
                `id`            AS `id`,
                `name`          AS `name`,
                `level_list`    AS `levelList`,
@@ -41,36 +41,38 @@
     </select>
 
     <insert id="insertArticle">
-        INSERT INTO `suavite`.`articles` (`board_id`, `user_email`, `user_name`, `title`, `content`)
-        VALUES (#{bid}, #{userEmail}, #{userName}, #{title}, #{content})
+        INSERT INTO `suavite`.`articles` (`board_id`, `user_email`, `title`, `content`)
+        VALUES (#{bid}, #{userEmail}, #{title}, #{content})
     </insert>
 
     <select id="selectArticles" resultType="com.suah.shoppingmall.dtos.ArticleDto">
-        SELECT `index`      AS `index`,
-               `board_id`   AS `boardId`,
-               `user_email` AS `userEmail`,
-               `user_name`  AS `userName`,
-               `title`      AS `title`,
-               `content`    AS `content`,
-               `timestamp`  AS `timestamp`,
-               `view`       AS `view`
-        FROM `suavite`.`articles`
+        SELECT A.`index`      AS `index`,
+               A.`board_id`   AS `boardId`,
+               A.`user_email` AS `userEmail`,
+               B.`name`       AS `userName`,
+               A.`title`      AS `title`,
+               A.`content`    AS `content`,
+               A.`timestamp`  AS `timestamp`,
+               A.`view`       AS `view`
+        FROM `suavite`.`articles` AS A
+                 INNER JOIN `suavite`.`users` AS B ON A.`user_email` = B.`email`
         WHERE `board_id` = #{bid}
         ORDER BY `index` DESC
         LIMIT #{limit} OFFSET #{offset}
     </select>
 
     <select id="selectArticle" resultType="com.suah.shoppingmall.dtos.ArticleDto">
-        SELECT `index`      AS `index`,
-               `board_id`   AS `boardId`,
-               `user_email` AS `userEmail`,
-               `user_name`  AS `userName`,
-               `title`      AS `title`,
-               `content`    AS `content`,
-               `timestamp`  AS `timestamp`,
-               `view`       AS `view`
-        FROM `suavite`.`articles`
-        WHERE `index` = #{aid}
+        SELECT A.`index`      AS `index`,
+               A.`board_id`   AS `boardId`,
+               A.`user_email` AS `userEmail`,
+               B.`name`       AS `userName`,
+               A.`title`      AS `title`,
+               A.`content`    AS `content`,
+               A.`timestamp`  AS `timestamp`,
+               A.`view`       AS `view`
+        FROM `suavite`.`articles` AS A
+                 INNER JOIN `suavite`.`users` AS B ON A.`user_email` = B.`email`
+        WHERE A.`index` = #{aid}
         LIMIT 1
     </select>
 
@@ -80,8 +82,38 @@
         WHERE `board_id` = #{bid}
     </select>
 
+    <insert id="insertComment">
+        INSERT INTO `suavite`.`comments` (`article_index`, `user_email`, `content`)
+        VALUES (#{aid}, #{userEmail}, #{content})
+    </insert>
+
+    <select id="selectComments" resultType="com.suah.shoppingmall.dtos.CommentDto">
+        SELECT A.`index`         AS `index`,
+               A.`article_index` AS `articleIndex`,
+               A.`user_email`    AS `userEmail`,
+               B.`name`          AS `userName`,
+               A.`timestamp`     AS `timestamp`,
+               A.`content`       AS `content`
+        FROM `suavite`.`comments` AS A
+                 INNER JOIN `suavite`.`users` AS B ON A.`user_email` = B.`email`
+        WHERE A.`article_index` = #{aid}
+    </select>
+
+    <select id="selectComment" resultType="com.suah.shoppingmall.dtos.CommentDto">
+        SELECT A.`index`         AS `index`,
+               A.`article_index` AS `articleIndex`,
+               A.`user_email`    AS `userEmail`,
+               B.`name`          AS `userName`,
+               A.`timestamp`     AS `timestamp`,
+               A.`content`       AS `content`
+        FROM `suavite`.`comments` AS A
+                 INNER JOIN `suavite`.`users` AS B ON A.`user_email` = B.`email`
+        WHERE A.`index` = #{cid}
+        LIMIT 1
+    </select>
+
     <update id="updateArticleViewed">
-        update `suavite`.`articles`
+        UPDATE `suavite`.`articles`
         SET `view` = `view` + 1
         WHERE `index` = #{aid}
         LIMIT 1
