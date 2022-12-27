@@ -124,7 +124,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>com.sua-h.App</mainClass>
+                            <mainClass>com.suah.shoppingmall.ShoppingmallApplication</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
