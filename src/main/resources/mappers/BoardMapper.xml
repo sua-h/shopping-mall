@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.suah.shoppingmall.mappers.IBoardMapper">
+    <select id="selectBoards" resultType="com.suah.shoppingmall.dtos.BoardDto">
+        SELECT `index`         AS `index`,
+               `id`            AS `id`,
+               `name`          AS `name`,
+               `level_list`    AS `levelList`,
+               `level_read`    AS `levelRead`,
+               `level_write`   AS `levleWrite`,
+               `level_comment` AS `levelComment`
+        FROM `suavite`.`boards`
+    </select>
+
+    <select id="selectBoard" resultType="com.suah.shoppingmall.dtos.BoardDto">
+        SELECT `index`         AS `index`,
+               `id`            AS `id`,
+               `name`          AS `name`,
+               `level_list`    AS `levelList`,
+               `level_read`    AS `levelRead`,
+               `level_write`   AS `levleWrite`,
+               `level_comment` AS `levelComment`
+        FROM `suavite`.`boards`
+        WHERE `id` = #{id}
+        LIMIT 1
+    </select>
+
+    <select id="selectBoardByArticle" resultType="com.suah.shoppingmall.dtos.BoardDto">
+        SELECT `board`.`index`         AS `index`,
+               `board`.`id`            AS `id`,
+               `board`.`name`          AS `name`,
+               `board`.`level_list`    AS `levelList`,
+               `board`.`level_read`    AS `levelRead`,
+               `board`.`level_write`   AS `levelWrite`,
+               `board`.`level_comment` AS `levelComment`
+        FROM `suavite`.`articles` AS `article`
+                 LEFT JOIN `suavite`.`boards` AS `board` ON `article`.`board_id` = `board`.`id`
+        WHERE `article`.`index` = #{aid}
+        LIMIT 1
+    </select>
+
+    <insert id="insertArticle">
+        INSERT INTO `suavite`.`articles` (`board_id`, `user_email`, `title`, `content`)
+        VALUES (#{bid}, #{userEmail}, #{title}, #{content})
+    </insert>
+
+    <select id="selectArticles" resultType="com.suah.shoppingmall.dtos.ArticleDto">
+        SELECT A.`index`      AS `index`,
+               A.`board_id`   AS `boardId`,
+               A.`user_email` AS `userEmail`,
+               B.`name`       AS `userName`,
+               A.`title`      AS `title`,
+               A.`content`    AS `content`,
+               A.`timestamp`  AS `timestamp`,
+               A.`view`       AS `view`
+        FROM `suavite`.`articles` AS A
+                 INNER JOIN `suavite`.`users` AS B ON A.`user_email` = B.`email`
+        WHERE `board_id` = #{bid}
+        ORDER BY `index` DESC
+        LIMIT #{limit} OFFSET #{offset}
+    </select>
+
+    <select id="selectArticle" resultType="com.suah.shoppingmall.dtos.ArticleDto">
+        SELECT A.`index`      AS `index`,
+               A.`board_id`   AS `boardId`,
+               A.`user_email` AS `userEmail`,
+               B.`name`       AS `userName`,
+               A.`title`      AS `title`,
+               A.`content`    AS `content`,
+               A.`timestamp`  AS `timestamp`,
+               A.`view`       AS `view`
+        FROM `suavite`.`articles` AS A
+                 INNER JOIN `suavite`.`users` AS B ON A.`user_email` = B.`email`
+        WHERE A.`index` = #{aid}
+        LIMIT 1
+    </select>
+
+    <select id="selectArticleCount" resultType="_int">
+        SELECT COUNT(`index`)
+        FROM `suavite`.`articles`
+        WHERE `board_id` = #{bid}
+    </select>
+
+    <insert id="insertComment">
+        INSERT INTO `suavite`.`comments` (`article_index`, `user_email`, `content`)
+        VALUES (#{aid}, #{userEmail}, #{content})
+    </insert>
+
+    <select id="selectComments" resultType="com.suah.shoppingmall.dtos.CommentDto">
+        SELECT A.`index`         AS `index`,
+               A.`article_index` AS `articleIndex`,
+               A.`user_email`    AS `userEmail`,
+               B.`name`          AS `userName`,
+               A.`timestamp`     AS `timestamp`,
+               A.`content`       AS `content`
+        FROM `suavite`.`comments` AS A
+                 INNER JOIN `suavite`.`users` AS B ON A.`user_email` = B.`email`
+        WHERE A.`article_index` = #{aid}
+    </select>
+
+    <select id="selectComment" resultType="com.suah.shoppingmall.dtos.CommentDto">
+        SELECT A.`index`         AS `index`,
+               A.`article_index` AS `articleIndex`,
+               A.`user_email`    AS `userEmail`,
+               B.`name`          AS `userName`,
+               A.`timestamp`     AS `timestamp`,
+               A.`content`       AS `content`
+        FROM `suavite`.`comments` AS A
+                 INNER JOIN `suavite`.`users` AS B ON A.`user_email` = B.`email`
+        WHERE A.`index` = #{cid}
+        LIMIT 1
+    </select>
+
+    <update id="updateArticleViewed">
+        UPDATE `suavite`.`articles`
+        SET `view` = `view` + 1
+        WHERE `index` = #{aid}
+        LIMIT 1
+    </update>
+</mapper>

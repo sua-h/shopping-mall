@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.suah.shoppingmall.mappers.IUserMapper">
+    <update id="updateAutoSignKeyExtended">
+        UPDATE `suavite`.`user_auto_sign_keys`
+        SET `expires_at` = DATE_ADD(NOW(), INTERVAL #{days} day)
+        WHERE `key` = #{key}
+          AND `expires_at` > NOW()
+          AND `expired_flag` = FALSE
+    </update>
+
+    <update id="updateAutoSignKeyExpired">
+        UPDATE `suavite`.`user_auto_sign_keys`
+        SET `expired_flag` = TRUE
+        WHERE `key` = #{key}
+          AND `expires_at` > NOW()
+          AND `expired_flag` = FALSE
+    </update>
+
+    <select id="selectEmailCount" resultType="_int">
+        SELECT COUNT(`index`)
+        FROM `suavite`.`users`
+        WHERE `email` = #{email}
+    </select>
+
+    <select id="selectContactCount" resultType="_int">
+        SELECT COUNT(`index`)
+        FROM `suavite`.`users`
+        WHERE `contact_first` = #{contactFirst}
+          AND `contact_second` = #{contactSecond}
+          AND `contact_third` = #{contactThird}
+    </select>
+
+    <insert id="insertUser" parameterType="com.suah.shoppingmall.vos.user.RegisterVo">
+        INSERT INTO `suavite`.`users` (`email`, `password`, `name`, `contact_first`, `contact_second`, `contact_third`,
+                                       `address_post`, `address_primary`, `address_secondary`, `birth_year`,
+                                       `birth_month`, `birth_date`)
+        VALUES (#{email}, #{hashedPassword}, #{name}, #{contactFirst}, #{contactSecond}, #{contactThird},
+                #{addressPost}, #{addressPrimary}, #{addressSecondary}, #{birthYear}, #{birthMonth}, #{birthDate})
+    </insert>
+
+    <select id="selectUser" parameterType="com.suah.shoppingmall.vos.user.LoginVo"
+            resultType="com.suah.shoppingmall.dtos.UserDto">
+        SELECT `index`             AS `index`,
+               `email`             AS `email`,
+               `password`          AS `password`,
+               `name`              AS `name`,
+               `contact_first`     AS `contactFirts`,
+               `contact_second`    AS `contactSecond`,
+               `contact_third`     AS `contactThird`,
+               `address_post`      AS `addressPost`,
+               `address_primary`   AS `addressPrimary`,
+               `address_secondary` AS `addressSecondary`,
+               `birth_year`        AS `birthYear`,
+               `birth_month`       AS `birthMonth`,
+               `birth_date`        AS `birthDate`,
+               `level`             AS `level`
+        FROM `suavite`.`users`
+        WHERE `email` = #{email}
+          AND `password` = #{hashedPassword}
+        LIMIT 1
+    </select>
+
+    <select id="selectUserFromCookie" resultType="com.suah.shoppingmall.dtos.UserDto">
+        SELECT `user`.`index`             AS `index`,
+               `user`.`email`             AS `email`,
+               `user`.`password`          AS `password`,
+               `user`.`name`              AS `name`,
+               `user`.`contact_first`     AS `contactFirts`,
+               `user`.`contact_second`    AS `contactSecond`,
+               `user`.`contact_third`     AS `contactThird`,
+               `user`.`address_post`      AS `addressPost`,
+               `user`.`address_primary`   AS `addressPrimary`,
+               `user`.`address_secondary` AS `addressSecondary`,
+               `user`.`level`             AS `level`
+        FROM `suavite`.`user_auto_sign_keys` AS `key`
+                 LEFT JOIN `suavite`.`users` AS `user` ON `key`.`user_email` = `user`.`email`
+        WHERE `key`.`key` = #{key}
+          AND `key`.expires_at > NOW()
+          AND `key`.`expired_flag` = FALSE
+    </select>
+
+    <insert id="insertAutoSignKey">
+        INSERT INTO `suavite`.`user_auto_sign_keys` (`user_email`, `key`, `expires_at`)
+        VALUES (#{email}, #{key}, DATE_ADD(NOW(), INTERVAL #{days} DAY))
+    </insert>
+
+    <update id="updateUser">
+        UPDATE `suavite`.`users`
+        SET `password`          = #{hashedPasswordNew},
+            `contact_first`     = #{contactFirst},
+            `contact_second`    = #{contactSecond},
+            `contact_third`     = #{contactThird},
+            `address_post`      = #{addressPost},
+            `address_primary`   = #{addressPrimary},
+            `address_secondary` = #{addressSecondary},
+            `birth_year`        = #{birthYear},
+            `birth_month`       = #{birthMonth},
+            `birth_date`        = #{birthDate}
+        WHERE `email` = #{user.email}
+        LIMIT 1
+    </update>
+
+    <select id="selectEmail" parameterType="com.suah.shoppingmall.vos.user.ForgotEmailVo"
+            resultType="com.suah.shoppingmall.dtos.UserDto">
+        SELECT `index`             AS `index`,
+               `email`             AS `email`,
+               `password`          AS `password`,
+               `name`              AS `name`,
+               `contact_first`     AS `contactFirts`,
+               `contact_second`    AS `contactSecond`,
+               `contact_third`     AS `contactThird`,
+               `address_post`      AS `addressPost`,
+               `address_primary`   AS `addressPrimary`,
+               `address_secondary` AS `addressSecondary`,
+               `birth_year`        AS `birthYear`,
+               `birth_month`       AS `birthMonth`,
+               `birth_date`        AS `birthDate`,
+               `level`             AS `level`
+        FROM `suavite`.`users`
+        WHERE `name` = #{name}
+          AND `contact_first` = #{contactFirst}
+          AND `contact_second` = #{contactSecond}
+          AND `contact_third` = #{contactThird}
+        LIMIT 1
+    </select>
+
+    <select id="selectPassword" parameterType="com.suah.shoppingmall.vos.user.ForgotPasswordVo"
+            resultType="com.suah.shoppingmall.dtos.UserDto">
+        SELECT `index`             AS `index`,
+               `email`             AS `email`,
+               `password`          AS `password`,
+               `name`              AS `name`,
+               `contact_first`     AS `contactFirts`,
+               `contact_second`    AS `contactSecond`,
+               `contact_third`     AS `contactThird`,
+               `address_post`      AS `addressPost`,
+               `address_primary`   AS `addressPrimary`,
+               `address_secondary` AS `addressSecondary`,
+               `birth_year`        AS `birthYear`,
+               `birth_month`       AS `birthMonth`,
+               `birth_date`        AS `birthDate`,
+               `level`             AS `level`
+        FROM `suavite`.`users`
+        WHERE `name` = #{name}
+          AND `email` = #{email}
+          AND `contact_first` = #{contactFirst}
+          AND `contact_second` = #{contactSecond}
+          AND `contact_third` = #{contactThird}
+        LIMIT 1
+    </select>
+
+    <update id="updatePassword">
+        UPDATE `suavite`.`users`
+        SET `password` = #{password}
+        WHERE `email` = #{email}
+        LIMIT 1
+    </update>
+</mapper>

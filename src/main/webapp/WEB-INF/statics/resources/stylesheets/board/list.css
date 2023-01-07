@@ -1,0 +1,85 @@
+body.list > main {
+    align-items: center;
+    padding: 5rem 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+main > .wrap > section > table {
+    width: var(--board-width-max);
+    border-collapse: collapse;
+    border-top: 0.125rem solid #2b2b2b;
+    margin-bottom: 3rem;
+}
+
+main > .wrap > section > table > thead > tr > th {
+    border-bottom: 0.0625rem solid #2b2b2b;
+    padding: 1rem 0;
+}
+
+main > .wrap > section > table > thead > tr > th:nth-child(2) {
+    width: 55rem;
+}
+
+main > .wrap > section > table > tbody > tr > td:nth-child(2) {
+    text-align: left;
+    padding-left: 3.5rem;
+}
+
+main > .wrap > section > table > tbody > tr > td {
+    border-bottom: 0.0625rem solid var(--border-color-default);
+    text-align: center;
+    padding: 0.75rem;
+}
+
+main > .wrap > section > table > tfoot > tr > .button {
+
+}
+
+main > .wrap > section > table > tfoot > tr > .button > a {
+    float: right;
+    margin-top: 0.5rem;
+    padding: 0.825rem 1.825rem;
+}
+
+main > .wrap > section > table > tfoot > tr > .page-num {
+    text-align: center;
+}
+
+main > .wrap > section > table > tfoot > tr > .page-num > span {
+    display: inline-block;
+    padding: 0.1rem 0.425rem;
+    margin-top: 1.25rem;
+}
+
+main > .wrap > section > table > tfoot > tr > .page-num > span.current-page {
+    background-color: #ececec;
+    border-radius: 100%;
+}
+
+main > .wrap > section > table > tfoot > tr > td > form {
+    margin-top: 0.825rem;
+}
+
+main > .wrap > section > table > tfoot > tr > td > form > input {
+    height: 1.75rem;
+    padding: 0 0.66rem;
+}
+
+main > .wrap > section > table > tfoot > tr > td > form > label > input {
+    border: 0.0625rem solid var(--border-color-default);
+    outline: none;
+    padding: 0.37rem 1rem;
+}
+
+main > .wrap > section > table > tfoot > tr > td > form > label select {
+    width: 4.85rem;
+    border: 0.0625rem solid var(--border-color-default);
+    outline: none;
+    padding: 0.3rem 1rem;
+}
+
+/*main > .wrap > section > table > tfoot > tr > td.space {*/
+/*    border-top: 3rem solid var(--background-default);*/
+/*}*/

@@ -1,0 +1,57 @@
+body > main > .wrap > .banner {
+    width: 100%;
+    height: 50rem;
+    align-items: flex-start;
+    background-color: #f3f3f3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+body > main > .wrap > .banner > .banner-content {
+    width: var(--width-max);
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+
+body > main > .wrap > .banner > .banner-content > .banner-img > img {
+    width: 28.5rem;
+}
+
+
+body > main > .wrap > .banner > .banner-content > .stretch {}
+
+body > main > .wrap > .banner > .banner-content > a {
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body > main > .wrap > .banner > .banner-content > a > h2 {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+body > main > .wrap > .banner > .banner-content > a > p {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.6rem;
+    padding-bottom: 3.25rem;
+    word-break: break-all;
+}
+
+body > main > .wrap > .banner > .banner-content > a > span {
+    padding: 1.13rem 3.95rem;
+    border: 0.1875rem solid #000000;
+}
+
+/*body > main > .wrap > .banner > a {*/
+/*    width: 100%;*/
+/*    !*height: 59rem;*!*/
+/*    !*background-image: url("../images/banner.png");*!*/
+/*    !*background-size: cover;*!*/
+/*    !*background-repeat: no-repeat;*!*/
+/*    display: block;*/
+/*}*/

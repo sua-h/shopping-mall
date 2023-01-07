@@ -1,0 +1,93 @@
+body > header {
+    width: 100%;
+    background-color: var(--background-default);
+    border-bottom: 0.0625rem solid var(--border-color-default);
+    position: fixed;
+    z-index: 1;
+}
+
+body > header > .container {
+    width: var(--width-max);
+    align-items: center;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    margin: 0 auto;
+    padding: 1.25rem 0;
+    position: relative;
+}
+
+body > header > .container > .logo-container > a > img {
+    height: 1.5rem;
+}
+
+body > header > .container > .menu-container {
+    width: 100%;
+    align-items: flex-start;
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 0.75rem;
+    position: relative;
+}
+
+body > header > .container > .menu-container > .menu-list {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+body > header > .container > .menu-container > .user-menu-list {
+    position: relative;
+}
+
+body > header > .container > .menu-container > ul {
+    align-items: flex-start;
+    display: inline-flex;
+    flex-direction: row;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+    justify-content: center;
+}
+
+body > header > .container > .menu-container > ul > li:not(:last-child) {
+    margin-right: 2rem;
+}
+
+body > header > .container > .menu-container .main-menu {
+    position: relative;
+}
+
+body > header > .container > .menu-container .main-menu .sub-list {
+    pointer-events: none;
+    font-size: 0.8rem;
+    left: 50%;
+    opacity: 0;
+    padding-top: 0.75rem;
+    position: absolute;
+    transform: translate(-50%, 0.725rem);
+    transition: opacity 200ms ease-in, transform 200ms ease-in, visibility 200ms ease-in;
+}
+
+body > header > .container > .menu-container .main-menu:hover .sub-list {
+    pointer-events: visible;
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+body > header > .container > .menu-container .main-menu > .sub-list > li {
+    background-color:#000000a0;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+body > header > .container > .menu-container .main-menu > .sub-list > li > a {
+    display: block;
+    padding: 0.65rem 1rem;
+}
+
+body > header > .container > .menu-container .main-menu > .sub-list > li > a:hover {
+    background-color: #00000090;
+}
+
