@@ -33,7 +33,7 @@ public class UserController extends StandardController {
         if (user != null) {
             return "redirect:/";
         }
-        return "user/login";
+        return "user/join";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST, produces = MediaType.TEXT_HTML_VALUE)
